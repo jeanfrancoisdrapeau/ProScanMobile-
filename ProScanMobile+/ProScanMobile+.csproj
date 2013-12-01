@@ -118,6 +118,14 @@
     <BundleResource Include="Images\scanner_button_hold.jpg" />
     <BundleResource Include="Images\scanner_button_funcr.jpg" />
     <BundleResource Include="Images\scanner_button_no.jpg" />
+    <BundleResource Include="Resources\led_display-7.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Icon-60%402x.png" />
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -138,5 +146,8 @@
   <ItemGroup>
     <Folder Include="Screens\" />
     <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
   </ItemGroup>
 </Project>
