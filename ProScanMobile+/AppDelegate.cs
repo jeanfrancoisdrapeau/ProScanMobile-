@@ -14,6 +14,7 @@ namespace ProScanMobile
 	{
 		// class-level declarations
 		UIWindow window;
+		NSObject observer;
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this
 		// method you should instantiate the window, load the UI into it and then make the window
@@ -26,15 +27,38 @@ namespace ProScanMobile
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			
-			// If you have defined a root view controller, set it here:
-			// window.RootViewController = myViewController;
+			var rootNavigationController = new UINavigationController(); 
+
 			vcMainScreen rootvc = new vcMainScreen ();
-			window.RootViewController = rootvc;
+
+			rootNavigationController.PushViewController(rootvc, false); 
 			
 			// make the window visible
+			window.RootViewController = rootNavigationController; 
 			window.MakeKeyAndVisible ();
-			
+
+			UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval (UIApplication.BackgroundFetchIntervalMinimum);
+
 			return true;
+		}
+
+		public override void PerformFetch (UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
+		{
+			// check for new data, and display it
+			completionHandler (UIBackgroundFetchResult.NewData);
+		}
+
+		void DefaultsChanged (NSNotification obj)
+		{
+			//Settings.SetupByPreferences ();
+		}
+
+		public override void WillTerminate (UIApplication application)
+		{
+			if (observer != null) {
+				NSNotificationCenter.DefaultCenter.RemoveObserver (observer);
+				observer = null;
+			}
 		}
 	}
 }

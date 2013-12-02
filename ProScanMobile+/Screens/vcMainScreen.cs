@@ -8,8 +8,11 @@ namespace ProScanMobile
 {
 	public partial class vcMainScreen : UIViewController
 	{
+		vcOptionsScreen optionScreen;
+
 		UIScrollView _scrollView;
 		UIPageControl _pageControl;
+		List<UILabel> _labels;
 
 		public vcMainScreen () : base ("vcMainScreen", null)
 		{
@@ -17,10 +20,19 @@ namespace ProScanMobile
 
 		public override void DidReceiveMemoryWarning ()
 		{
-			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
-			// Release any cached data, images, etc that aren't in use.
+		}
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			this.NavigationController.SetNavigationBarHidden (true, animated);
+		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+			this.NavigationController.SetNavigationBarHidden (false, animated);
 		}
 
 		public override void ViewDidLoad ()
@@ -31,6 +43,8 @@ namespace ProScanMobile
 
 		private void initInterface()
 		{
+			_labels = new List<UILabel> ();
+
 			// All the labels
 			UILabel lblScannerType = new UILabel {
 				Frame = new RectangleF (20, 82, 155, 14)
@@ -156,6 +170,7 @@ namespace ProScanMobile
 			UIButton btnStop = new UIButton {
 				Frame = new RectangleF(50, 0, 40, 40)
 			};
+			btnStop.Enabled = false;
 			btnStop.Layer.CornerRadius = 9.5f;
 			btnStop.Layer.MasksToBounds = true;
 			btnStop.ClipsToBounds = true;
@@ -434,6 +449,12 @@ namespace ProScanMobile
 
 			_scrollView.Scrolled += scrollViewScrolled_Event;
 
+			// Connect events
+			optionScreen = new vcOptionsScreen();
+			btnOptions.TouchUpInside += (sender, e) => {
+				this.NavigationController.PushViewController(optionScreen, true);
+			};
+
 			// Add everything to current view
 			View.AddSubviews (new UIView[] { ivScannerDisplay, lblScannerType, 
 				lblScannerDisplay1, lblScannerDisplay2, lblScannerDisplay3, lblScannerDisplay4, lblScannerDisplay5,
@@ -444,6 +465,11 @@ namespace ProScanMobile
 				_pageControl,
 				lblAppVersion, lblAppCreator
 			});
+
+			_labels.AddRange(new UILabel[] { lblScannerType, lblScannerDisplay1, lblScannerDisplay2, lblScannerDisplay3,
+				lblScannerDisplay4, lblScannerDisplay5, lblServerHostname, lblServerLocation,
+				lblMpegLayer, lblMpegFrequency, lblMpegRate,
+				lblTime, lblBytes });
 		}
 
 		private void btnScannerTouchUpInside_Event(object sender, EventArgs e)
