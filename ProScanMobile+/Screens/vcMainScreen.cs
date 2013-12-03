@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Timers;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
@@ -12,7 +13,25 @@ namespace ProScanMobile
 
 		UIScrollView _scrollView;
 		UIPageControl _pageControl;
-		List<UILabel> _labels;
+
+		private class Labels
+		{
+			public UILabel label;
+			public string name;
+		}
+		List<Labels> _labels;
+
+		private class Buttons
+		{
+			public UIButton button;
+			public string name;
+		}
+		List<Buttons> _buttons;
+
+		NetworkConnection networkConnection;
+
+		private Timer _timer;
+		private int _timerCounter;
 
 		public vcMainScreen () : base ("vcMainScreen", null)
 		{
@@ -43,7 +62,13 @@ namespace ProScanMobile
 
 		private void initInterface()
 		{
-			_labels = new List<UILabel> ();
+			_timer = new System.Timers.Timer ();
+
+			_timer.Interval = 500;
+			_timer.Elapsed += new System.Timers.ElapsedEventHandler(timerElapsed);
+
+			_labels = new List<Labels> ();
+			_buttons = new List<Buttons> ();
 
 			// All the labels
 			UILabel lblScannerType = new UILabel {
@@ -466,10 +491,27 @@ namespace ProScanMobile
 				lblAppVersion, lblAppCreator
 			});
 
-			_labels.AddRange(new UILabel[] { lblScannerType, lblScannerDisplay1, lblScannerDisplay2, lblScannerDisplay3,
-				lblScannerDisplay4, lblScannerDisplay5, lblServerHostname, lblServerLocation,
-				lblMpegLayer, lblMpegFrequency, lblMpegRate,
-				lblTime, lblBytes });
+			_labels.AddRange (new Labels[] { 
+				new Labels { label = lblScannerType, name = "lblScannerType" }, 
+				new Labels { label = lblScannerDisplay1, name = "lblScannerDisplay1" }, 
+				new Labels { label = lblScannerDisplay2, name = "lblScannerDisplay2" }, 
+				new Labels { label = lblScannerDisplay3, name = "lblScannerDisplay3" }, 
+				new Labels { label = lblScannerDisplay4, name = "lblScannerDisplay4" }, 
+				new Labels { label = lblScannerDisplay5, name = "lblScannerDisplay5" }, 
+				new Labels { label = lblServerHostname, name = "lblServerHostname" }, 
+				new Labels { label = lblServerLocation, name = "lblServerLocation" }, 
+				new Labels { label = lblMpegLayer, name = "lblMpegLayer" }, 
+				new Labels { label = lblMpegFrequency, name = "lblMpegFrequency" }, 
+				new Labels { label = lblMpegRate, name = "lblMpegRate" }, 
+				new Labels { label = lblTime, name = "lblTime" }, 
+				new Labels { label = lblBytes, name = "lblBytes" }
+			});
+
+			_buttons.AddRange (new Buttons[] { 
+				new Buttons { button = btnPlay, name = "btnPlay" },
+				new Buttons { button = btnStop, name = "btnStop" },
+				new Buttons { button = btnOptions, name = "btnOptions" }
+			});
 		}
 
 		private void btnScannerTouchUpInside_Event(object sender, EventArgs e)
@@ -542,6 +584,34 @@ namespace ProScanMobile
 
 		private void btnPlayTouchUpInside_Event(object sender, EventArgs e)
 		{
+			connectToHostAndBeginPlayback ();
+		}
+
+		private void connectToHostAndBeginPlayback()
+		{
+			optionScreen.GetSettings ();
+			networkConnection = new NetworkConnection (optionScreen.ServerHostName, optionScreen.ServerHostPort);
+			networkConnection.connectDone.WaitOne ();
+
+			if (networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected) {
+				networkConnection.Login ("STARTDAT 00048 PS17,VERSION=6.6,PASSWORD= ENDDAT");
+				networkConnection.loginDone.WaitOne ();
+
+				if (networkConnection.loginStatus == NetworkConnection.LoginStatus.LoggedIn) {
+
+					_buttons.Find(x => x.name == "btnPlay").button.Enabled = false;
+					_buttons.Find(x => x.name == "btnStop").button.Enabled = true;
+					_buttons.Find(x => x.name == "btnOptions").button.Enabled = false;
+
+					_timerCounter = 0;
+					_timer.Start ();
+
+				} else {
+					messageBoxShow ("ProScanMobile+", networkConnection._loginStatusMessage);
+				}
+			} else {
+				messageBoxShow ("ProScanMobile+", networkConnection._connectionStatusMessage);
+			}
 		}
 
 		private void btnStopTouchUpInside_Event(object sender, EventArgs e)
@@ -550,6 +620,22 @@ namespace ProScanMobile
 
 		private void btnOptionsTouchUpInside_Event(object sender, EventArgs e)
 		{
+		}
+
+		private void timerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+		{
+		}
+
+		private void messageBoxShow(string Title, string Message)
+		{
+			InvokeOnMainThread (delegate {
+				UIAlertView alert = new UIAlertView ();
+				alert.Title = Title;
+				alert.AddButton ("OK");
+				//alert.AddButton ("Cancel");
+				alert.Message = Message;
+				alert.Show ();
+			});
 		}
 	}
 }

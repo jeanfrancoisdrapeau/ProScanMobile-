@@ -154,9 +154,12 @@
     <Compile Include="Screens\vcOptionsScreen.designer.cs">
       <DependentUpon>vcOptionsScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\CustomServerCell.cs" />
     <Compile Include="Classes\TableItem.cs" />
     <Compile Include="Classes\TableSource.cs" />
+    <Compile Include="Classes\TableCell.cs" />
+    <Compile Include="Classes\NetworkStatus.cs" />
+    <Compile Include="Classes\NetworkConnection.cs" />
+    <Compile Include="Classes\ReadWriteBuffer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
