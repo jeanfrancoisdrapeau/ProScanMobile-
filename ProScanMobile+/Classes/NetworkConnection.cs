@@ -36,6 +36,7 @@ namespace ProScanMobile
 		public enum LoginStatus
 		{
 			LoggedIn,
+			LoggedOut,
 			Error
 		}
 		private LoginStatus _loginStatus;
@@ -53,10 +54,16 @@ namespace ProScanMobile
 
 		private ManualResetEvent _connectDone = new ManualResetEvent(false);
 		public ManualResetEvent connectDone { get { return _connectDone; } }
+		private ManualResetEvent _closeDone = new ManualResetEvent(false);
+		public ManualResetEvent closeDone { get { return _closeDone; } }
+
 		private ManualResetEvent _sendDone = new ManualResetEvent(false);
 		private ManualResetEvent _receiveDone = new ManualResetEvent(false);
+
 		private ManualResetEvent _loginDone = new ManualResetEvent(false);
 		public ManualResetEvent loginDone { get { return _loginDone; } }
+		private ManualResetEvent _logoutDone = new ManualResetEvent(false);
+		public ManualResetEvent logoutDone { get { return _logoutDone; } }
 
 		public class StateObject {
 			// Client socket.
@@ -80,6 +87,7 @@ namespace ProScanMobile
 		public NetworkConnection (string host, int port)
 		{
 			_connectDone.Reset ();
+			updateNetworkStatus ();
 
 			if (_internetStatus == NetworkStatus.NotReachable ||
 				_remoteHostStatus == NetworkStatus.NotReachable) {
@@ -136,6 +144,8 @@ namespace ProScanMobile
 					_connectionBuffer = new ReadWriteBuffer (65535);
 					_bytesReceived = 0;
 
+					Receive (ReceiveType.Data);
+
 					_loginStatus = LoginStatus.LoggedIn;
 					_loginStatusMessage = "Logged in.";
 				} else {
@@ -148,6 +158,38 @@ namespace ProScanMobile
 			}
 
 			_loginDone.Set ();
+		}
+
+		public void LogOut(string m)
+		{
+			_logoutDone.Reset ();
+
+			Send (m);
+			_sendDone.WaitOne ();
+
+			_logoutDone.Set ();
+		}
+
+		public void Close()
+		{
+			_closeDone.Reset ();
+
+			if (_tcpSocket != null) {
+
+				_tcpSocket.Close ();
+
+				_connectionStatus = ConnectionStatus.Disconnected;
+				_connectionStatusMessage = "Closed.";
+
+				_loginStatus = LoginStatus.LoggedOut;
+				_loginStatusMessage = "Logged out.";
+
+				_connectionBuffer = null;
+
+				_tcpSocket = null;
+			}
+
+			_closeDone.Set ();
 		}
 
 		private void Receive(ReceiveType rt) 
@@ -182,7 +224,6 @@ namespace ProScanMobile
 					_httpResponse = bytesTostring(tmpdata);
 				}
 			} catch {
-
 			} finally {
 				_receiveDone.Set();
 			}
@@ -215,7 +256,6 @@ namespace ProScanMobile
 						new AsyncCallback(receiveCallBackData), state);
 				}
 			} catch {
-
 			} finally {
 				_receiveDone.Set();
 			}

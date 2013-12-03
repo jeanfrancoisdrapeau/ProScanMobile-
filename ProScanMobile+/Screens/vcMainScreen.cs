@@ -4,34 +4,33 @@ using System.Collections.Generic;
 using System.Timers;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using GCDiscreetNotification;
 
 namespace ProScanMobile
 {
 	public partial class vcMainScreen : UIViewController
 	{
-		vcOptionsScreen optionScreen;
+		GCDiscreetNotificationView notificationView;
+
+		vcOptionsScreen optionScreen = new vcOptionsScreen();
 
 		UIScrollView _scrollView;
 		UIPageControl _pageControl;
 
-		private class Labels
-		{
-			public UILabel label;
-			public string name;
-		}
-		List<Labels> _labels;
+		UILabel lblScannerType, lblScannerDisplay1, lblScannerDisplay2, lblScannerDisplay3, lblScannerDisplay4, lblScannerDisplay5;
+		UILabel lblServerHostname, lblServerLocation; 
+		UILabel	lblMpegLayer, lblMpegFrequency, lblMpegRate;
+		UILabel lblTime, lblBytes;
+		UILabel lblAppVersion, lblAppCreator;
 
-		private class Buttons
-		{
-			public UIButton button;
-			public string name;
-		}
-		List<Buttons> _buttons;
+		UIButton btnPlay, btnStop, btnOptions;
 
 		NetworkConnection networkConnection;
 
 		private Timer _timer;
 		private int _timerCounter;
+
+		private int _lastBytesReceived;
 
 		public vcMainScreen () : base ("vcMainScreen", null)
 		{
@@ -67,108 +66,105 @@ namespace ProScanMobile
 			_timer.Interval = 500;
 			_timer.Elapsed += new System.Timers.ElapsedEventHandler(timerElapsed);
 
-			_labels = new List<Labels> ();
-			_buttons = new List<Buttons> ();
-
 			// All the labels
-			UILabel lblScannerType = new UILabel {
+			lblScannerType = new UILabel {
 				Frame = new RectangleF (20, 82, 155, 14)
 			};
 			lblScannerType.Text = "Uniden";
 			lblScannerType.Font = UIFont.FromName("LED Display7", 20f);
 
-			UILabel lblScannerDisplay1 = new UILabel {
+			lblScannerDisplay1 = new UILabel {
 				Frame = new RectangleF (5, 100, 310, 35)
 			};
 			lblScannerDisplay1.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay1.Text = "System";
 			lblScannerDisplay1.Font = UIFont.FromName("LED Display7", 30f);
 
-			UILabel lblScannerDisplay2 = new UILabel {
+			lblScannerDisplay2 = new UILabel {
 				Frame = new RectangleF (5, 125, 310, 35)
 			};
 			lblScannerDisplay2.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay2.Text = "Group";
 			lblScannerDisplay2.Font = UIFont.FromName("LED Display7", 30f);
 
-			UILabel lblScannerDisplay3 = new UILabel {
+			lblScannerDisplay3 = new UILabel {
 				Frame = new RectangleF (5, 155, 310, 35)
 			};
 			lblScannerDisplay3.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay3.Text = "123.456";
 			lblScannerDisplay3.Font = UIFont.FromName("LED Display7", 25f);
 
-			UILabel lblScannerDisplay4 = new UILabel {
+			lblScannerDisplay4 = new UILabel {
 				Frame = new RectangleF (5, 185, 310, 35)
 			};
 			lblScannerDisplay4.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay4.Text = "S1:1234567890";
 			lblScannerDisplay4.Font = UIFont.FromName("LED Display7", 25f);
 
-			UILabel lblScannerDisplay5 = new UILabel {
+			lblScannerDisplay5 = new UILabel {
 				Frame = new RectangleF (5, 205, 310, 35)
 			};
 			lblScannerDisplay5.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay5.Text = "GRP1234567890";
 			lblScannerDisplay5.Font = UIFont.FromName("LED Display7", 25f);
 
-			UILabel lblServerHostname = new UILabel {
+			lblServerHostname = new UILabel {
 				Frame = new RectangleF (10, 230, 305, 35)
 			};
 			lblServerHostname.TextAlignment = UITextAlignment.Left;
 			lblServerHostname.Text = "Server hostname";
 			lblServerHostname.Font = UIFont.FromName("LED Display7", 12f);
 
-			UILabel lblServerLocation = new UILabel {
+			lblServerLocation = new UILabel {
 				Frame = new RectangleF (10, 240, 305, 35)
 			};
 			lblServerLocation.TextAlignment = UITextAlignment.Left;
 			lblServerLocation.Text = "County, State, Country";
 			lblServerLocation.Font = UIFont.FromName("LED Display7", 10f);
 
-			UILabel lblMpegLayer = new UILabel {
+			lblMpegLayer = new UILabel {
 				Frame = new RectangleF (10, 255, 100, 35)
 			};
 			lblMpegLayer.TextAlignment = UITextAlignment.Left;
 			lblMpegLayer.Text = "MPEG ?, LYR ?";
 			lblMpegLayer.Font = UIFont.FromName("LED Display7", 10f);
 
-			UILabel lblMpegFrequency = new UILabel {
+			lblMpegFrequency = new UILabel {
 				Frame = new RectangleF (10, 265, 100, 35)
 			};
 			lblMpegFrequency.TextAlignment = UITextAlignment.Left;
 			lblMpegFrequency.Text = "0 Hz";
 			lblMpegFrequency.Font = UIFont.FromName("LED Display7", 10f);
 
-			UILabel lblMpegRate = new UILabel {
+			lblMpegRate = new UILabel {
 				Frame = new RectangleF (10, 275, 100, 35)
 			};
 			lblMpegRate.TextAlignment = UITextAlignment.Left;
 			lblMpegRate.Text = "0 Bps";
 			lblMpegRate.Font = UIFont.FromName("LED Display7", 10f);
 
-			UILabel lblTime = new UILabel {
+			lblTime = new UILabel {
 				Frame = new RectangleF (160, 255, 150, 35)
 			};
 			lblTime.TextAlignment = UITextAlignment.Right;
 			lblTime.Text = "00:00:00.00";
 			lblTime.Font = UIFont.FromName("LED Display7", 15f);
 
-			UILabel lblBytes = new UILabel {
+			lblBytes = new UILabel {
 				Frame = new RectangleF (160, 275, 150, 35)
 			};
 			lblBytes.TextAlignment = UITextAlignment.Right;
 			lblBytes.Text = "0B";
 			lblBytes.Font = UIFont.FromName("LED Display7", 15f);
 
-			UILabel lblAppVersion = new UILabel {
+			lblAppVersion = new UILabel {
 				Frame = new RectangleF (140, UIScreen.MainScreen.Bounds.Height - 21, 180, 17)
 			};
 			lblAppVersion.TextAlignment = UITextAlignment.Right;
 			lblAppVersion.Text = string.Format("ProScanMobile+ {0}", NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion").ToString());
 			lblAppVersion.Font = UIFont.FromName("LED Display7", 8f);
 
-			UILabel lblAppCreator = new UILabel {
+			lblAppCreator = new UILabel {
 				Frame = new RectangleF (140, UIScreen.MainScreen.Bounds.Height - 15, 180, 17)
 			};
 			lblAppCreator.TextAlignment = UITextAlignment.Right;
@@ -182,7 +178,7 @@ namespace ProScanMobile
 			};
 
 			// Play button
-			UIButton btnPlay = new UIButton {
+			btnPlay = new UIButton {
 				Frame = new RectangleF(5, 0, 40, 40)
 			};
 			btnPlay.Layer.CornerRadius = 9.5f;
@@ -192,7 +188,7 @@ namespace ProScanMobile
 			btnPlay.TouchUpInside += btnPlayTouchUpInside_Event;
 
 			// Stop button
-			UIButton btnStop = new UIButton {
+			btnStop = new UIButton {
 				Frame = new RectangleF(50, 0, 40, 40)
 			};
 			btnStop.Enabled = false;
@@ -203,14 +199,16 @@ namespace ProScanMobile
 			btnStop.TouchUpInside += btnStopTouchUpInside_Event;
 
 			// Options button
-			UIButton btnOptions = new UIButton {
+			btnOptions = new UIButton {
 				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width - 45, 0, 40, 40)
 			};
 			btnOptions.Layer.CornerRadius = 9.5f;
 			btnOptions.Layer.MasksToBounds = true;
 			btnOptions.ClipsToBounds = true;
 			btnOptions.SetImage(UIImage.FromBundle("Images/config_button.jpg"), UIControlState.Normal);
-			btnOptions.TouchUpInside += btnOptionsTouchUpInside_Event;
+			btnOptions.TouchUpInside += (sender, e) => {
+				this.NavigationController.PushViewController(optionScreen, true);
+			};
 
 			// Scanner buttons
 			UIButton btnScanner_Func = new UIButton {
@@ -474,12 +472,6 @@ namespace ProScanMobile
 
 			_scrollView.Scrolled += scrollViewScrolled_Event;
 
-			// Connect events
-			optionScreen = new vcOptionsScreen();
-			btnOptions.TouchUpInside += (sender, e) => {
-				this.NavigationController.PushViewController(optionScreen, true);
-			};
-
 			// Add everything to current view
 			View.AddSubviews (new UIView[] { ivScannerDisplay, lblScannerType, 
 				lblScannerDisplay1, lblScannerDisplay2, lblScannerDisplay3, lblScannerDisplay4, lblScannerDisplay5,
@@ -489,28 +481,6 @@ namespace ProScanMobile
 				_scrollView, 
 				_pageControl,
 				lblAppVersion, lblAppCreator
-			});
-
-			_labels.AddRange (new Labels[] { 
-				new Labels { label = lblScannerType, name = "lblScannerType" }, 
-				new Labels { label = lblScannerDisplay1, name = "lblScannerDisplay1" }, 
-				new Labels { label = lblScannerDisplay2, name = "lblScannerDisplay2" }, 
-				new Labels { label = lblScannerDisplay3, name = "lblScannerDisplay3" }, 
-				new Labels { label = lblScannerDisplay4, name = "lblScannerDisplay4" }, 
-				new Labels { label = lblScannerDisplay5, name = "lblScannerDisplay5" }, 
-				new Labels { label = lblServerHostname, name = "lblServerHostname" }, 
-				new Labels { label = lblServerLocation, name = "lblServerLocation" }, 
-				new Labels { label = lblMpegLayer, name = "lblMpegLayer" }, 
-				new Labels { label = lblMpegFrequency, name = "lblMpegFrequency" }, 
-				new Labels { label = lblMpegRate, name = "lblMpegRate" }, 
-				new Labels { label = lblTime, name = "lblTime" }, 
-				new Labels { label = lblBytes, name = "lblBytes" }
-			});
-
-			_buttons.AddRange (new Buttons[] { 
-				new Buttons { button = btnPlay, name = "btnPlay" },
-				new Buttons { button = btnStop, name = "btnStop" },
-				new Buttons { button = btnOptions, name = "btnOptions" }
 			});
 		}
 
@@ -589,19 +559,35 @@ namespace ProScanMobile
 
 		private void connectToHostAndBeginPlayback()
 		{
+			notificationView = new GCDiscreetNotificationView (
+				text: "Connecting...",
+				activity: true,
+				presentationMode: GCDNPresentationMode.Bottom,
+				view: View
+			);
+
+			notificationView.Show (animated: false);
+
 			optionScreen.GetSettings ();
 			networkConnection = new NetworkConnection (optionScreen.ServerHostName, optionScreen.ServerHostPort);
 			networkConnection.connectDone.WaitOne ();
 
+			string password = optionScreen.ServerPassWord;
+
 			if (networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected) {
-				networkConnection.Login ("STARTDAT 00048 PS17,VERSION=6.6,PASSWORD= ENDDAT");
+
+				notificationView.SetTextLabel ("Login in...", false);
+				networkConnection.Login (string.Format("STARTDAT 00048 PS17,VERSION=6.6,PASSWORD={0} ENDDAT", 
+					password.Length == 0 ? string.Empty : password));
 				networkConnection.loginDone.WaitOne ();
 
 				if (networkConnection.loginStatus == NetworkConnection.LoginStatus.LoggedIn) {
 
-					_buttons.Find(x => x.name == "btnPlay").button.Enabled = false;
-					_buttons.Find(x => x.name == "btnStop").button.Enabled = true;
-					_buttons.Find(x => x.name == "btnOptions").button.Enabled = false;
+					notificationView.SetTextLabel ("Starting playback...", false);
+
+					btnPlay.Enabled = false;
+					btnStop.Enabled = true;
+					btnOptions.Enabled = false;
 
 					_timerCounter = 0;
 					_timer.Start ();
@@ -612,18 +598,49 @@ namespace ProScanMobile
 			} else {
 				messageBoxShow ("ProScanMobile+", networkConnection._connectionStatusMessage);
 			}
+
+			notificationView.Hide (animated: true);
+			notificationView = null;
 		}
 
 		private void btnStopTouchUpInside_Event(object sender, EventArgs e)
 		{
-		}
+			_timer.Stop ();
 
-		private void btnOptionsTouchUpInside_Event(object sender, EventArgs e)
-		{
+			networkConnection.LogOut ("STARTDAT 00026 PS05 ENDDAT");
+			networkConnection.logoutDone.WaitOne ();
+
+			networkConnection.Close ();
+			networkConnection.closeDone.WaitOne ();
+
+			btnPlay.Enabled = true;
+			btnStop.Enabled = false;
+			btnOptions.Enabled = true;
 		}
 
 		private void timerElapsed(object sender, System.Timers.ElapsedEventArgs e)
-		{
+		{   
+			if (networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected) {
+
+				if (_lastBytesReceived == networkConnection.bytesReceived) {
+					_timerCounter += 1;
+				} else {
+					_lastBytesReceived = networkConnection.bytesReceived;
+				}
+
+				if (_timerCounter == 5) {
+					networkConnection.Close ();
+					networkConnection.closeDone.WaitOne ();
+
+					BeginInvokeOnMainThread (delegate {
+						btnPlay.Enabled = true;
+						btnStop.Enabled = false;
+						btnOptions.Enabled = true;
+					});
+				}
+
+				BeginInvokeOnMainThread (delegate { lblBytes.Text = bytesCountToString(networkConnection.bytesReceived); });
+			}
 		}
 
 		private void messageBoxShow(string Title, string Message)
@@ -636,6 +653,17 @@ namespace ProScanMobile
 				alert.Message = Message;
 				alert.Show ();
 			});
+		}
+
+		public string bytesCountToString(long byteCount)
+		{
+			string[] suf = { "B", "KB", "MB", "GB", "TB", "PB", "EB" };
+			if (byteCount == 0)
+				return "0" + suf[0];
+			long bytes = Math.Abs(byteCount);
+			int place = Convert.ToInt32(Math.Floor(Math.Log(bytes, 1024)));
+			double num = Math.Round(bytes / Math.Pow(1024, place), 1);
+			return string.Format("{0:#0.0}", (Math.Sign(byteCount) * num)) + suf[place];
 		}
 	}
 }

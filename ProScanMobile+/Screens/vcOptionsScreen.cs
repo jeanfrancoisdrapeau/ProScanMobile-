@@ -23,6 +23,7 @@ namespace ProScanMobile
 
 		public static MonoTouch.UIKit.UITextField txtSH;
 		public static MonoTouch.UIKit.UITextField txtSP;
+		public static MonoTouch.UIKit.UITextField txtPW;
 
 		[Serializable]
 		[XmlRoot("Settings")]
@@ -67,6 +68,7 @@ namespace ProScanMobile
 		public string ServerHostName { get { return (si.SettingsList [0] == null ? string.Empty : si.SettingsList [0].host); } }
 		public int ServerHostPort { get { return (si.SettingsList [0] == null ? 0 : si.SettingsList [0].port); } }
 		public bool ServerAutoConnect { get { return (si.SettingsList [0] == null ? false : si.SettingsList [0].auto); } }
+		public string ServerPassWord { get { return (txtPW == null ? string.Empty : txtPW.Text.Trim()); } }
 
 		public vcOptionsScreen () : base ("vcOptionsScreen", null)
 		{
@@ -168,6 +170,7 @@ namespace ProScanMobile
 
 			txtSH = _txtServerHost;
 			txtSP = _txtServerPort;
+			txtPW = _txtServerPassword;
 		}
 
 		private void btnRefreshTouchUpInside_Event (object sender, EventArgs e)
