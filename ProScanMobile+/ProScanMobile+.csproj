@@ -160,6 +160,9 @@
     <Compile Include="Classes\NetworkStatus.cs" />
     <Compile Include="Classes\NetworkConnection.cs" />
     <Compile Include="Classes\ReadWriteBuffer.cs" />
+    <Compile Include="Classes\Encryption.cs" />
+    <Compile Include="Classes\ScannerAudio.cs" />
+    <Compile Include="Classes\ScannerScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

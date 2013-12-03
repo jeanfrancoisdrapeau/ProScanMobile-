@@ -33,6 +33,19 @@ namespace ProScanMobile
 		public SendStatus sendStatus { get { return _sendStatus; } }
 		public string _sendStatusMessage;
 
+		public enum ReceiveStatus
+		{
+			Ok,
+			Error
+		}
+		private SendStatus _receiveHttpStatus;
+		public SendStatus receiveHttpStatus { get { return _receiveHttpStatus; } }
+		public string _receiveHttpStatusMessage;
+
+		private SendStatus _receiveDataStatus;
+		public SendStatus receiveDataStatus { get { return _receiveDataStatus; } }
+		public string _receiveDataStatusMessage;
+
 		public enum LoginStatus
 		{
 			LoggedIn,
@@ -202,6 +215,7 @@ namespace ProScanMobile
 
 			// Begin receiving the data from the remote device.
 			if (rt == ReceiveType.Http) {
+				_receiveHttpStatus = SendStatus.Ok;
 				_tcpSocket.BeginReceive (state.buffer, 0, StateObject.BufferSize, 0,
 					new AsyncCallback (receiveCallBackHttp), state);
 			} else {
@@ -224,6 +238,8 @@ namespace ProScanMobile
 					_httpResponse = bytesTostring(tmpdata);
 				}
 			} catch {
+				_receiveHttpStatus = SendStatus.Error;
+				_receiveHttpStatusMessage = "An error occured receiving http response.";
 			} finally {
 				_receiveDone.Set();
 			}
@@ -231,6 +247,8 @@ namespace ProScanMobile
 
 		private void receiveCallBackData( IAsyncResult ar ) {
 			try {
+				_receiveDataStatus = SendStatus.Ok;
+
 				StateObject state = (StateObject) ar.AsyncState;
 				Socket client = state.workSocket;
 
@@ -256,6 +274,8 @@ namespace ProScanMobile
 						new AsyncCallback(receiveCallBackData), state);
 				}
 			} catch {
+				_receiveDataStatus = SendStatus.Error;
+				_receiveDataStatusMessage = "An error occured receiving scanner data.";
 			} finally {
 				_receiveDone.Set();
 			}

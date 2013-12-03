@@ -17,6 +17,8 @@ namespace ProScanMobile
 		UIScrollView _scrollView;
 		UIPageControl _pageControl;
 
+		UIImageView ivScannerBars;
+
 		UILabel lblScannerType, lblScannerDisplay1, lblScannerDisplay2, lblScannerDisplay3, lblScannerDisplay4, lblScannerDisplay5;
 		UILabel lblServerHostname, lblServerLocation; 
 		UILabel	lblMpegLayer, lblMpegFrequency, lblMpegRate;
@@ -27,8 +29,25 @@ namespace ProScanMobile
 
 		NetworkConnection networkConnection;
 
+		const int INDEX_MESSAGE_TYPE = 0;
+		const int INDEX_MESSAGE_LENGTH = 9;
+		const int INDEX_MESSAGE_SEQ = 15;
+		const int INDEX_DATA_START_AT = 21;
+
+		const int BYTES_MESSAGE_TYPE = 8;
+		const int BYTES_MESSAGE_LENGTH = 5;
+		const int BYTES_MESSAGE_SEQ = 5;
+
+		const int MIN_MESSAGE_LENGTH = 14;
+
+		const string MESSAGE_TYPE_STARTDAT = "STARTDAT";
+		const string MESSAGE_TYPE_STARTAUD = "STARTAUD";
+
+		ScannerAudio _scannerAudio;
+		ScannerScreen _scannerScreen;
+
 		private Timer _timer;
-		private int _timerCounter;
+		private DateTime _timerCounter;
 
 		private int _lastBytesReceived;
 
@@ -63,7 +82,7 @@ namespace ProScanMobile
 		{
 			_timer = new System.Timers.Timer ();
 
-			_timer.Interval = 500;
+			_timer.Interval = 250;
 			_timer.Elapsed += new System.Timers.ElapsedEventHandler(timerElapsed);
 
 			// All the labels
@@ -72,6 +91,10 @@ namespace ProScanMobile
 			};
 			lblScannerType.Text = "Uniden";
 			lblScannerType.Font = UIFont.FromName("LED Display7", 20f);
+
+			ivScannerBars = new UIImageView {
+				Frame = new RectangleF (UIScreen.MainScreen.Bounds.Width - 50, 82, 19, 14),
+			};
 
 			lblScannerDisplay1 = new UILabel {
 				Frame = new RectangleF (5, 100, 310, 35)
@@ -173,7 +196,7 @@ namespace ProScanMobile
 
 			// Scanner display
 			UIImageView ivScannerDisplay = new UIImageView {
-				Frame = new RectangleF (5, 73, 310, 249),
+				Frame = new RectangleF (5, 73, UIScreen.MainScreen.Bounds.Width - 5, 249),
 				Image = UIImage.FromBundle("Images/scanner_display.jpg")
 			};
 
@@ -473,7 +496,7 @@ namespace ProScanMobile
 			_scrollView.Scrolled += scrollViewScrolled_Event;
 
 			// Add everything to current view
-			View.AddSubviews (new UIView[] { ivScannerDisplay, lblScannerType, 
+			View.AddSubviews (new UIView[] { ivScannerDisplay, lblScannerType, ivScannerBars,
 				lblScannerDisplay1, lblScannerDisplay2, lblScannerDisplay3, lblScannerDisplay4, lblScannerDisplay5,
 				lblServerHostname, lblServerLocation,
 				lblMpegLayer, lblMpegFrequency, lblMpegRate,
@@ -573,23 +596,27 @@ namespace ProScanMobile
 			networkConnection.connectDone.WaitOne ();
 
 			string password = optionScreen.ServerPassWord;
+			Encryption enc = new Encryption ();
 
 			if (networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected) {
 
 				notificationView.SetTextLabel ("Login in...", false);
 				networkConnection.Login (string.Format("STARTDAT 00048 PS17,VERSION=6.6,PASSWORD={0} ENDDAT", 
-					password.Length == 0 ? string.Empty : password));
+					password.Length == 0 ? string.Empty : enc.Encrypt(password)));
 				networkConnection.loginDone.WaitOne ();
 
 				if (networkConnection.loginStatus == NetworkConnection.LoginStatus.LoggedIn) {
 
-					notificationView.SetTextLabel ("Starting playback...", false);
+					notificationView.SetTextLabel ("Buffering...", false);
 
 					btnPlay.Enabled = false;
 					btnStop.Enabled = true;
 					btnOptions.Enabled = false;
 
-					_timerCounter = 0;
+					_scannerAudio = new ScannerAudio ();
+					_scannerScreen = new ScannerScreen ();
+
+					_timerCounter = DateTime.Now;
 					_timer.Start ();
 
 				} else {
@@ -599,8 +626,7 @@ namespace ProScanMobile
 				messageBoxShow ("ProScanMobile+", networkConnection._connectionStatusMessage);
 			}
 
-			notificationView.Hide (animated: true);
-			notificationView = null;
+			enc = null;
 		}
 
 		private void btnStopTouchUpInside_Event(object sender, EventArgs e)
@@ -620,26 +646,102 @@ namespace ProScanMobile
 
 		private void timerElapsed(object sender, System.Timers.ElapsedEventArgs e)
 		{   
-			if (networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected) {
+			try
+			{
+				if (networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected) {
 
-				if (_lastBytesReceived == networkConnection.bytesReceived) {
-					_timerCounter += 1;
-				} else {
-					_lastBytesReceived = networkConnection.bytesReceived;
-				}
+					if (_lastBytesReceived != networkConnection.bytesReceived) {
+						_lastBytesReceived = networkConnection.bytesReceived;
+						_timerCounter = DateTime.Now;
+					}
 
-				if (_timerCounter == 5) {
-					networkConnection.Close ();
-					networkConnection.closeDone.WaitOne ();
+					TimeSpan ts = DateTime.Now - _timerCounter;
 
-					BeginInvokeOnMainThread (delegate {
-						btnPlay.Enabled = true;
-						btnStop.Enabled = false;
-						btnOptions.Enabled = true;
+					if (ts.TotalSeconds > 5 ||
+						networkConnection.receiveDataStatus == NetworkConnection.SendStatus.Error) {
+
+						if (networkConnection.receiveDataStatus == NetworkConnection.SendStatus.Error)
+							messageBoxShow ("ProScanMobile+", networkConnection._receiveDataStatusMessage);
+
+						networkConnection.Close ();
+						networkConnection.closeDone.WaitOne ();
+
+						BeginInvokeOnMainThread (delegate {
+							btnPlay.Enabled = true;
+							btnStop.Enabled = false;
+							btnOptions.Enabled = true;
+						});
+					}
+
+					int i_messageLength;
+					byte[] b_messageLength = new byte[BYTES_MESSAGE_LENGTH];
+					Array.ConstrainedCopy (networkConnection.connectionBuffer.Read(14, true), 
+						INDEX_MESSAGE_LENGTH, b_messageLength, 0, BYTES_MESSAGE_LENGTH);
+					//Console.WriteLine("---------- b_messageLength........: {0} (first bytes of data buffer)", bytesTostring(b_messageLength));
+
+					int.TryParse (bytesToString (b_messageLength), out i_messageLength);
+
+					//Console.WriteLine("---------- Message length.........: {0} (first bytes of data buffer)", i_messageLength.ToString());
+
+					bool continueParse = true;
+					while (continueParse)
+					{
+						if (networkConnection.connectionBuffer.Count < i_messageLength)
+						{
+							//Console.WriteLine("---------- **** MESSAGE LENGTH GREATER THAN DATABUFFER **** ----------");
+							continueParse = false;
+						} else {
+
+							byte[] messageReceived = new byte[i_messageLength];
+							messageReceived = networkConnection.connectionBuffer.Read(i_messageLength);
+							//Console.WriteLine("---------- m_listDataBuffer while.: {0}", m_listDataBuffer.Count.ToString());
+
+							byte[] b_messageType = new byte[BYTES_MESSAGE_TYPE];
+							Array.ConstrainedCopy (messageReceived, INDEX_MESSAGE_TYPE, 
+								b_messageType, 0, BYTES_MESSAGE_TYPE);
+
+							//Console.WriteLine(i_messageLength.ToString());
+							// Based on message type...
+							switch (bytesToString (b_messageType))
+							{
+							case MESSAGE_TYPE_STARTAUD:
+								_scannerAudio.processData(messageReceived, i_messageLength);
+								break;
+							case MESSAGE_TYPE_STARTDAT:
+								_scannerScreen.processData(messageReceived, i_messageLength);
+								break;
+							}
+
+							if (networkConnection.connectionBuffer.Count == 0 || 
+								networkConnection.connectionBuffer.Count < MIN_MESSAGE_LENGTH)
+							{
+								continueParse = false;
+							} else {
+								b_messageLength = new byte[BYTES_MESSAGE_LENGTH];
+								Array.ConstrainedCopy (networkConnection.connectionBuffer.Read(MIN_MESSAGE_LENGTH, true), 
+									INDEX_MESSAGE_LENGTH, b_messageLength, 0, BYTES_MESSAGE_LENGTH);
+									//Console.WriteLine("---------- b_messageLength while..: {0} (first bytes of data buffer)", bytesTostring(b_messageLength));
+								int.TryParse (bytesToString (b_messageLength), out i_messageLength);
+							}
+						}
+					}
+
+					//notificationView.Hide (animated: true);
+					//notificationView = null;
+
+					BeginInvokeOnMainThread (delegate { 
+						lblScannerType.Text = _scannerScreen.scannerScreen_Model;
+						ivScannerBars.Image = UIImage.FromBundle("Images/" + getSignalBars(_scannerScreen.scannerScreen_Signal));
+						lblScannerDisplay1.Text = _scannerScreen.scannerScreen_Line1;
+						lblScannerDisplay2.Text = _scannerScreen.scannerScreen_Line2;
+						lblScannerDisplay3.Text = _scannerScreen.scannerScreen_Line3;
+						lblScannerDisplay4.Text = _scannerScreen.scannerScreen_Line4;
+						lblScannerDisplay5.Text = _scannerScreen.scannerScreen_Line5;
+						lblBytes.Text = bytesCountToString(networkConnection.bytesReceived); 
 					});
 				}
-
-				BeginInvokeOnMainThread (delegate { lblBytes.Text = bytesCountToString(networkConnection.bytesReceived); });
+			} catch (Exception ex) {
+				messageBoxShow ("ProScanMobile+", ex.Message);
 			}
 		}
 
@@ -655,7 +757,7 @@ namespace ProScanMobile
 			});
 		}
 
-		public string bytesCountToString(long byteCount)
+		private string bytesCountToString(long byteCount)
 		{
 			string[] suf = { "B", "KB", "MB", "GB", "TB", "PB", "EB" };
 			if (byteCount == 0)
@@ -664,6 +766,30 @@ namespace ProScanMobile
 			int place = Convert.ToInt32(Math.Floor(Math.Log(bytes, 1024)));
 			double num = Math.Round(bytes / Math.Pow(1024, place), 1);
 			return string.Format("{0:#0.0}", (Math.Sign(byteCount) * num)) + suf[place];
+		}
+
+		private string bytesToString(byte[] b)
+		{
+			// Return a string encoded byte array
+			return System.Text.Encoding.ASCII.GetString (b);
+		}
+
+		private string getSignalBars(int signal)
+		{
+			if (signal >= 0 && signal < 150)
+				return "signal_0";
+			if (signal >= 150 && signal < 225)
+				return "signal_1";
+			if (signal >= 225 && signal < 250)
+				return "signal_2";
+			if (signal >= 250 && signal < 300)
+				return "signal_3";
+			if (signal >= 300 && signal < 350)
+				return "signal_4";
+			if (signal >= 350)
+				return "signal_5";
+
+			return "signal_0";
 		}
 	}
 }
