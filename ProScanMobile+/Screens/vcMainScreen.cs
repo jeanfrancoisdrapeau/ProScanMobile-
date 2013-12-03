@@ -516,52 +516,76 @@ namespace ProScanMobile
 
 		private void btnScannerTouchUpInside_Event(object sender, EventArgs e)
 		{
+			if (networkConnection.loginStatus != NetworkConnection.LoginStatus.LoggedIn)
+				return;
+
 			UIButton btn = (UIButton)sender;
 
 			string message = string.Empty;
 
 			switch((int)btn.Tag) {
 			case 1: //"btnScanner_Func":
+				message = "STARTDAT 00034 PS31 KEY,F,P ENDDAT";
 				break;
 			case 2: //"btnScanner_1":
+				message = "STARTDAT 00034 PS31 KEY,1,P ENDDAT";
 				break;
 			case 3: //"btnScanner_2":
+				message = "STARTDAT 00034 PS31 KEY,2,P ENDDAT";
 				break;
 			case 4: //"btnScanner_3":
+				message = "STARTDAT 00034 PS31 KEY,2,P ENDDAT";
 				break;
 			case 5: //"btnScanner_Scan":
+				message = "STARTDAT 00034 PS31 KEY,S,P ENDDAT";
 				break;
 			case 6: //"btnScanner_Menu":
+				message = "STARTDAT 00034 PS31 KEY,M,P ENDDAT";
 				break;
 			case 7: //"btnScanner_4":
+				message = "STARTDAT 00034 PS31 KEY,4,P ENDDAT";
 				break; 
 			case 8: //"btnScanner_5":
+				message = "STARTDAT 00034 PS31 KEY,5,P ENDDAT";
 				break;
 			case 9: //"btnScanner_6":
+				message = "STARTDAT 00034 PS31 KEY,6,P ENDDAT";
 				break;
 			case 10: //"btnScanner_Hold":
+				message = "STARTDAT 00034 PS31 KEY,H,P ENDDAT";
 				break;
 			case 11: //"btnScanner_LO":
+				message = "STARTDAT 00034 PS31 KEY,L,P ENDDAT";
 				break;
 			case 12: //"btnScanner_7":
+				message = "STARTDAT 00034 PS31 KEY,7,P ENDDAT";
 				break;
 			case 13: //"btnScanner_8":
+				message = "STARTDAT 00034 PS31 KEY,8,P ENDDAT";
 				break;
 			case 14: //"btnScanner_9,":
+				message = "STARTDAT 00034 PS31 KEY,9,P ENDDAT";
 				break;
 			case 15: //"btnScanner_Left":
+				message = "STARTDAT 00034 PS31 KEY,<,P ENDDAT";
 				break;
 			case 16: //"btnScanner_No":
+				message = "STARTDAT 00034 PS31 KEY,.,P ENDDAT";
 				break;
 			case 17: //"btnScanner_0":
+				message = "STARTDAT 00034 PS31 KEY,0,P ENDDAT";
 				break;
 			case 18: //"btnScanner_Eyes":
+				message = "STARTDAT 00034 PS31 KEY,E,P ENDDAT";
 				break;
 			case 19: //"btnScanner_Right":
+				message = "STARTDAT 00034 PS31 KEY,>,P ENDDAT";
 				break;
 			case 20: //"btnScanner_FuncH":
+				message = "STARTDAT 00034 PS31 KEY,F,H ENDDAT";
 				break;
 			case 21: //"btnScanner_FuncR":
+				message = "STARTDAT 00042 PS31 KEY,F,R\nKEY,F,P ENDDAT";
 				break;
 			case 22: //"btnScanner_Push":
 				break;
@@ -610,13 +634,12 @@ namespace ProScanMobile
 			networkConnection.connectDone.WaitOne ();
 
 			string password = optionScreen.ServerPassWord;
-			Encryption enc = new Encryption ();
 
 			if (networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected) {
 
 				notificationView.SetTextLabel ("Login in...", false);
 				networkConnection.Login (string.Format("STARTDAT 00048 PS17,VERSION=6.6,PASSWORD={0} ENDDAT", 
-					password.Length == 0 ? string.Empty : enc.Encrypt(password)));
+					password.Length == 0 ? string.Empty : password));
 				networkConnection.loginDone.WaitOne ();
 
 				if (networkConnection.loginStatus == NetworkConnection.LoginStatus.LoggedIn) {
@@ -642,8 +665,6 @@ namespace ProScanMobile
 			} else {
 				messageBoxShow ("ProScanMobile+", networkConnection._connectionStatusMessage);
 			}
-
-			enc = null;
 		}
 
 		private void btnStopTouchUpInside_Event(object sender, EventArgs e)
@@ -766,6 +787,7 @@ namespace ProScanMobile
 						lblBytes.Text = bytesCountToString(networkConnection.bytesReceived);
 
 						lblServerHostname.Text = optionScreen.ServerHostName;
+						lblServerLocation.Text = optionScreen.getLocationFromHost(optionScreen.ServerHostName);
 
 						TimeSpan t = DateTime.Now - _startTime;
 						lblTime.Text = string.Format("{0:D2}h{1:D2}m{2:D2}s", 
@@ -788,7 +810,8 @@ namespace ProScanMobile
 					});
 				}
 			} catch (Exception ex) {
-				messageBoxShow ("ProScanMobile+", ex.Message);
+				//messageBoxShow ("ProScanMobile+", ex.Message);
+				Console.WriteLine (ex.Message);
 			}
 		}
 

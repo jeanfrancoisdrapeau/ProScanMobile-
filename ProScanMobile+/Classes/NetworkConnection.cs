@@ -181,6 +181,9 @@ namespace ProScanMobile
 			Send (m);
 			_sendDone.WaitOne ();
 
+			_loginStatus = LoginStatus.LoggedOut;
+			_loginStatusMessage = "Logged out.";
+
 			_logoutDone.Set ();
 		}
 

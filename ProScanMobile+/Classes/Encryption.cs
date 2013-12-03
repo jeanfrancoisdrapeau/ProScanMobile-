@@ -30,6 +30,25 @@ namespace ProScanMobile
 
 			return Convert.ToBase64String (resultArray, 0, resultArray.Length);
 		}
+
+		public string Decrypt(string p)
+		{
+			byte[] toEncArray = Convert.FromBase64String (p);
+
+			TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider ();
+			ICryptoTransform cTransform;
+
+			byte[] keyArray = UTF8Encoding.UTF8.GetBytes (TDES_KEY);
+			byte[] ivArray = UTF8Encoding.UTF8.GetBytes (TDES_IV);
+
+			cTransform = tdes.CreateDecryptor (keyArray, ivArray);
+
+			byte[] resultArray = cTransform.TransformFinalBlock (toEncArray, 0, toEncArray.Length);
+
+			tdes.Clear ();
+
+			return UTF8Encoding.UTF8.GetString(resultArray);
+		}
 	}
 }
 

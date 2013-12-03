@@ -39,6 +39,7 @@ namespace ProScanMobile
 			public string host { get; set; }
 			public int port { get; set; }
 			public bool auto { get; set; }
+			public string pass { get; set; }
 		}
 
 		[Serializable]
@@ -65,14 +66,17 @@ namespace ProScanMobile
 		private Servers s;
 		private List<TableItem> tableItems;
 
+		private Encryption enc;
+
 		public string ServerHostName { get { return (si.SettingsList [0] == null ? string.Empty : si.SettingsList [0].host); } }
 		public int ServerHostPort { get { return (si.SettingsList [0] == null ? 0 : si.SettingsList [0].port); } }
 		public bool ServerAutoConnect { get { return (si.SettingsList [0] == null ? false : si.SettingsList [0].auto); } }
-		public string ServerPassWord { get { return (txtPW == null ? string.Empty : txtPW.Text.Trim()); } }
+		public string ServerPassWord { get { return (txtPW == null ? string.Empty : enc.Encrypt(txtPW.Text.Trim())); } }
 
 		public vcOptionsScreen () : base ("vcOptionsScreen", null)
 		{
 			Title = "Options and Servers";
+			enc = new Encryption ();
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -283,6 +287,7 @@ namespace ProScanMobile
 
 			sid.port = port;
 			sid.auto = _swAutoConnect.On;
+			sid.pass = (txtPW == null ? string.Empty : enc.Encrypt(txtPW.Text.Trim()));
 			si.SettingsList.Add (sid);
 
 			serializer = new XmlSerializer (typeof(Settings));
@@ -339,8 +344,24 @@ namespace ProScanMobile
 			if (si != null) {
 				_txtServerHost.Text = si.SettingsList[0].host;
 				_txtServerPort.Text = si.SettingsList[0].port.ToString();
+				_txtServerPassword.Text = (si.SettingsList [0].pass == null ? string.Empty : 
+					enc.Decrypt (si.SettingsList [0].pass));
 				_swAutoConnect.On = si.SettingsList [0].auto;
 			}
+		}
+
+		public string getLocationFromHost(string h)
+		{
+			if (s != null) {
+				int index = s.ServerList.FindIndex (r => r.host.Equals (h));
+
+				if (index != -1)
+					return string.Format ("{0}, {1}, {2}", s.ServerList [index].county,
+						s.ServerList [index].state,
+						s.ServerList [index].country);
+			}
+				
+			return string.Empty;
 		}
 
 		private void MessageBoxShow(string Title, string Message)
