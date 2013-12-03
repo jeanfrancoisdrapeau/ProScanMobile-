@@ -36,6 +36,11 @@ namespace ProScanMobile
 			_listDataBuffer_Screen = new BlockingCollection<messageStruct> ();
 		}
 
+		public void Dispose()
+		{
+			_listDataBuffer_Screen = null;
+		}
+
 		public void processData(byte[] message, int messageLength)
 		{
 			messageStruct ms = new messageStruct();

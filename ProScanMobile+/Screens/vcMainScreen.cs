@@ -5,12 +5,16 @@ using System.Timers;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using GCDiscreetNotification;
+using MonoTouch.AudioToolbox;
 
 namespace ProScanMobile
 {
 	public partial class vcMainScreen : UIViewController
 	{
 		GCDiscreetNotificationView notificationView;
+
+		SystemSound _soundConnected;
+		SystemSound _soundDisconnected;
 
 		vcOptionsScreen optionScreen = new vcOptionsScreen();
 
@@ -32,7 +36,6 @@ namespace ProScanMobile
 		const int INDEX_MESSAGE_TYPE = 0;
 		const int INDEX_MESSAGE_LENGTH = 9;
 		const int INDEX_MESSAGE_SEQ = 15;
-		const int INDEX_DATA_START_AT = 21;
 
 		const int BYTES_MESSAGE_TYPE = 8;
 		const int BYTES_MESSAGE_LENGTH = 5;
@@ -48,6 +51,7 @@ namespace ProScanMobile
 
 		private Timer _timer;
 		private DateTime _timerCounter;
+		private DateTime _startTime;
 
 		private int _lastBytesReceived;
 
@@ -84,6 +88,9 @@ namespace ProScanMobile
 
 			_timer.Interval = 250;
 			_timer.Elapsed += new System.Timers.ElapsedEventHandler(timerElapsed);
+
+			_soundConnected = SystemSound.FromFile ("Sounds/connected.mp3");
+			_soundDisconnected = SystemSound.FromFile ("Sounds/disconnected.mp3");
 
 			// All the labels
 			lblScannerType = new UILabel {
@@ -146,7 +153,7 @@ namespace ProScanMobile
 			lblServerLocation.Font = UIFont.FromName("LED Display7", 10f);
 
 			lblMpegLayer = new UILabel {
-				Frame = new RectangleF (10, 255, 100, 35)
+				Frame = new RectangleF (10, 255, 125, 35)
 			};
 			lblMpegLayer.TextAlignment = UITextAlignment.Left;
 			lblMpegLayer.Text = "MPEG ?, LYR ?";
@@ -196,7 +203,7 @@ namespace ProScanMobile
 
 			// Scanner display
 			UIImageView ivScannerDisplay = new UIImageView {
-				Frame = new RectangleF (5, 73, UIScreen.MainScreen.Bounds.Width - 5, 249),
+				Frame = new RectangleF (5, 73, UIScreen.MainScreen.Bounds.Width - 10, 249),
 				Image = UIImage.FromBundle("Images/scanner_display.jpg")
 			};
 
@@ -511,6 +518,8 @@ namespace ProScanMobile
 		{
 			UIButton btn = (UIButton)sender;
 
+			string message = string.Empty;
+
 			switch((int)btn.Tag) {
 			case 1: //"btnScanner_Func":
 				break;
@@ -557,6 +566,11 @@ namespace ProScanMobile
 			case 22: //"btnScanner_Push":
 				break;
 			}
+
+			networkConnection.Send (message);
+			networkConnection.sendDone.WaitOne ();
+			if (networkConnection.sendStatus != NetworkConnection.SendStatus.Ok)
+				messageBoxShow ("ProScanMobile+", networkConnection._sendStatusMessage);
 		}
 
 		private void scrollViewScrolled_Event(object sender, EventArgs e)
@@ -607,6 +621,8 @@ namespace ProScanMobile
 
 				if (networkConnection.loginStatus == NetworkConnection.LoginStatus.LoggedIn) {
 
+					_soundConnected.PlaySystemSound ();
+
 					notificationView.SetTextLabel ("Buffering...", false);
 
 					btnPlay.Enabled = false;
@@ -616,6 +632,7 @@ namespace ProScanMobile
 					_scannerAudio = new ScannerAudio ();
 					_scannerScreen = new ScannerScreen ();
 
+					_startTime = DateTime.Now;
 					_timerCounter = DateTime.Now;
 					_timer.Start ();
 
@@ -631,7 +648,12 @@ namespace ProScanMobile
 
 		private void btnStopTouchUpInside_Event(object sender, EventArgs e)
 		{
+			_soundDisconnected.PlaySystemSound ();
+
 			_timer.Stop ();
+
+			_scannerAudio.Dispose ();
+			_scannerScreen.Dispose ();
 
 			networkConnection.LogOut ("STARTDAT 00026 PS05 ENDDAT");
 			networkConnection.logoutDone.WaitOne ();
@@ -660,11 +682,18 @@ namespace ProScanMobile
 					if (ts.TotalSeconds > 5 ||
 						networkConnection.receiveDataStatus == NetworkConnection.SendStatus.Error) {
 
+						_soundDisconnected.PlaySystemSound ();
+
 						if (networkConnection.receiveDataStatus == NetworkConnection.SendStatus.Error)
 							messageBoxShow ("ProScanMobile+", networkConnection._receiveDataStatusMessage);
 
+						_scannerAudio.Dispose ();
+						_scannerScreen.Dispose ();
+
 						networkConnection.Close ();
 						networkConnection.closeDone.WaitOne ();
+
+						_timer.Stop ();
 
 						BeginInvokeOnMainThread (delegate {
 							btnPlay.Enabled = true;
@@ -726,9 +755,6 @@ namespace ProScanMobile
 						}
 					}
 
-					//notificationView.Hide (animated: true);
-					//notificationView = null;
-
 					BeginInvokeOnMainThread (delegate { 
 						lblScannerType.Text = _scannerScreen.scannerScreen_Model;
 						ivScannerBars.Image = UIImage.FromBundle("Images/" + getSignalBars(_scannerScreen.scannerScreen_Signal));
@@ -737,7 +763,28 @@ namespace ProScanMobile
 						lblScannerDisplay3.Text = _scannerScreen.scannerScreen_Line3;
 						lblScannerDisplay4.Text = _scannerScreen.scannerScreen_Line4;
 						lblScannerDisplay5.Text = _scannerScreen.scannerScreen_Line5;
-						lblBytes.Text = bytesCountToString(networkConnection.bytesReceived); 
+						lblBytes.Text = bytesCountToString(networkConnection.bytesReceived);
+
+						lblServerHostname.Text = optionScreen.ServerHostName;
+
+						TimeSpan t = DateTime.Now - _startTime;
+						lblTime.Text = string.Format("{0:D2}h{1:D2}m{2:D2}s", 
+							t.Hours, 
+							t.Minutes, 
+							t.Seconds);
+
+						lblMpegLayer.Text = _scannerAudio.scannerAudio_Mpeg;
+						lblMpegFrequency.Text = _scannerAudio.scannerAudio_Freq;
+						lblMpegRate.Text = _scannerAudio.scannerAudio_Rate;
+
+						if (_scannerAudio.scannerAudio_Buffering)
+						{
+							notificationView.SetTextLabel ("Buffering...", false);
+							notificationView.Show (animated: true);
+						} else {
+							if (!notificationView.Hidden)
+								notificationView.Hide (animated: true);
+						}
 					});
 				}
 			} catch (Exception ex) {

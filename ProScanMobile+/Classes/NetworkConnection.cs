@@ -71,6 +71,7 @@ namespace ProScanMobile
 		public ManualResetEvent closeDone { get { return _closeDone; } }
 
 		private ManualResetEvent _sendDone = new ManualResetEvent(false);
+		public ManualResetEvent sendDone { get { return _sendDone; } }
 		private ManualResetEvent _receiveDone = new ManualResetEvent(false);
 
 		private ManualResetEvent _loginDone = new ManualResetEvent(false);
