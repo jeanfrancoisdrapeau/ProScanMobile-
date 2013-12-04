@@ -159,9 +159,17 @@ namespace ProScanMobile
 					_bytesReceived = 0;
 
 					Receive (ReceiveType.Data);
+					_receiveDone.WaitOne ();
 
-					_loginStatus = LoginStatus.LoggedIn;
-					_loginStatusMessage = "Logged in.";
+					string[] message = bytesTostring(_connectionBuffer.Read (_connectionBuffer.Count, true)).Split(' ');
+
+					if (message [2] == "PS20") {
+						_loginStatus = LoginStatus.Error;
+						_loginStatusMessage = "Connection refused.";
+					} else {
+						_loginStatus = LoginStatus.LoggedIn;
+						_loginStatusMessage = "Logged in.";
+					}
 				} else {
 					_loginStatus = LoginStatus.Error;
 					_loginStatusMessage = "Connection refused.";

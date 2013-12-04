@@ -65,8 +65,10 @@ namespace ProScanMobile
 						string scase = sdata.Substring (15, 4);
 
 						string[] ps01;
+						string[] ps02;
 						string[] ps30;
 						string[] ps01_system_details;
+						string[] ps02_system_details;
 						string[] ps30_system_details;
 
 						// Based on the metadata type
@@ -76,6 +78,13 @@ namespace ProScanMobile
 							ps01_system_details = ps01 [0].Split (',');
 
 							_scannerScreen_Model = ps01_system_details [1].Trim ();
+
+							break;
+						case "PS02":
+							ps02 = sdata.Split ('\r');
+							ps02_system_details = ps02 [0].Split (',');
+
+							_scannerScreen_Model = string.Format("{0} *ADMIN*", ps02_system_details [1].Trim ());
 
 							break;
 						case "PS30":

@@ -94,7 +94,7 @@ namespace ProScanMobile
 
 			// All the labels
 			lblScannerType = new UILabel {
-				Frame = new RectangleF (20, 82, 155, 14)
+				Frame = new RectangleF (20, 82, 250, 14)
 			};
 			lblScannerType.Text = "Uniden";
 			lblScannerType.Font = UIFont.FromName("LED Display7", 20f);
@@ -118,25 +118,25 @@ namespace ProScanMobile
 			lblScannerDisplay2.Font = UIFont.FromName("LED Display7", 30f);
 
 			lblScannerDisplay3 = new UILabel {
-				Frame = new RectangleF (5, 155, 310, 35)
+				Frame = new RectangleF (5, 150, 310, 35)
 			};
 			lblScannerDisplay3.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay3.Text = "123.456";
-			lblScannerDisplay3.Font = UIFont.FromName("LED Display7", 25f);
+			lblScannerDisplay3.Font = UIFont.FromName("LED Display7", 30f);
 
 			lblScannerDisplay4 = new UILabel {
-				Frame = new RectangleF (5, 185, 310, 35)
+				Frame = new RectangleF (5, 175, 310, 35)
 			};
 			lblScannerDisplay4.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay4.Text = "S1:1234567890";
-			lblScannerDisplay4.Font = UIFont.FromName("LED Display7", 25f);
+			lblScannerDisplay4.Font = UIFont.FromName("LED Display7", 30f);
 
 			lblScannerDisplay5 = new UILabel {
-				Frame = new RectangleF (5, 205, 310, 35)
+				Frame = new RectangleF (5, 200, 310, 35)
 			};
 			lblScannerDisplay5.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay5.Text = "GRP1234567890";
-			lblScannerDisplay5.Font = UIFont.FromName("LED Display7", 25f);
+			lblScannerDisplay5.Font = UIFont.FromName("LED Display7", 30f);
 
 			lblServerHostname = new UILabel {
 				Frame = new RectangleF (10, 230, 305, 35)
@@ -660,9 +660,21 @@ namespace ProScanMobile
 					_timer.Start ();
 
 				} else {
+					if (!notificationView.Hidden)
+						notificationView.Hide (animated: true);
+
 					messageBoxShow ("ProScanMobile+", networkConnection._loginStatusMessage);
+
+					networkConnection.LogOut ("STARTDAT 00026 PS05 ENDDAT");
+					networkConnection.logoutDone.WaitOne ();
+
+					networkConnection.Close ();
+					networkConnection.closeDone.WaitOne ();
 				}
 			} else {
+				if (!notificationView.Hidden)
+					notificationView.Hide (animated: true);
+
 				messageBoxShow ("ProScanMobile+", networkConnection._connectionStatusMessage);
 			}
 		}

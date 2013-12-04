@@ -52,6 +52,7 @@ namespace ProScanMobile {
 		{
 			vcOptionsScreen.txtSH.Text = indexedTableItems [keys [indexPath.Section]] [indexPath.Row].Host;
 			vcOptionsScreen.txtSP.Text = indexedTableItems [keys [indexPath.Section]] [indexPath.Row].Port;
+			vcOptionsScreen.txtPW.Text = string.Empty;
 			tableView.DeselectRow (indexPath, true);
 		}
 

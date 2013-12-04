@@ -15,6 +15,9 @@ namespace ProScanMobile
 
 		public string Encrypt(string p)
 		{
+			if (p.Trim ().Length == 0)
+				return string.Empty;
+
 			TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider ();
 			ICryptoTransform cTransform;
 
@@ -33,6 +36,9 @@ namespace ProScanMobile
 
 		public string Decrypt(string p)
 		{
+			if (p.Trim ().Length == 0)
+				return string.Empty;
+
 			byte[] toEncArray = Convert.FromBase64String (p);
 
 			TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider ();

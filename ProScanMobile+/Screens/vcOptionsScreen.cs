@@ -71,7 +71,7 @@ namespace ProScanMobile
 		public string ServerHostName { get { return (si.SettingsList [0] == null ? string.Empty : si.SettingsList [0].host); } }
 		public int ServerHostPort { get { return (si.SettingsList [0] == null ? 0 : si.SettingsList [0].port); } }
 		public bool ServerAutoConnect { get { return (si.SettingsList [0] == null ? false : si.SettingsList [0].auto); } }
-		public string ServerPassWord { get { return (txtPW == null ? string.Empty : enc.Encrypt(txtPW.Text.Trim())); } }
+		public string ServerPassWord { get { return (si.SettingsList [0] == null ? string.Empty : si.SettingsList [0].pass); } }
 
 		public vcOptionsScreen () : base ("vcOptionsScreen", null)
 		{
@@ -240,7 +240,7 @@ namespace ProScanMobile
 
 				foreach (ServerDetails sd in s.ServerList) {
 					tableItems.Add (new TableItem (sd.host) { 
-						Image = sd.open == "ON" ? UIImage.FromBundle("state_on") : UIImage.FromBundle("state_off"),
+						Image = sd.open == "ON" ? UIImage.FromBundle("Images/state_on") : UIImage.FromBundle("Images/state_off"),
 						Port = sd.port, 
 						Description = sd.desc.Length == 0 ? " " : sd.desc,
 						Country = sd.country,
@@ -287,7 +287,7 @@ namespace ProScanMobile
 
 			sid.port = port;
 			sid.auto = _swAutoConnect.On;
-			sid.pass = (txtPW == null ? string.Empty : enc.Encrypt(txtPW.Text.Trim()));
+			sid.pass = enc.Encrypt(_txtServerPassword.Text);
 			si.SettingsList.Add (sid);
 
 			serializer = new XmlSerializer (typeof(Settings));
