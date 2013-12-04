@@ -146,6 +146,10 @@
     <BundleResource Include="Images\signal_5.png" />
     <BundleResource Include="Sounds\connected.mp3" />
     <BundleResource Include="Sounds\disconnected.mp3" />
+    <BundleResource Include="Images\folder_button.png" />
+    <BundleResource Include="Images\network_button.png" />
+    <BundleResource Include="Images\rec_activate_button.jpg" />
+    <BundleResource Include="Images\rec_deactivate_button.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -172,11 +176,17 @@
     <Compile Include="Classes\ScannerAudio.cs" />
     <Compile Include="Classes\ScannerScreen.cs" />
     <Compile Include="Classes\StreamingPlaybackV2.cs" />
+    <Compile Include="Screens\vcRecordingsScreen.cs" />
+    <Compile Include="Screens\vcRecordingsScreen.designer.cs">
+      <DependentUpon>vcRecordingsScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\RecordAudio.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="Screens\vcMainScreen.xib" />
     <InterfaceDefinition Include="Screens\vcOptionsScreen.xib" />
+    <InterfaceDefinition Include="Screens\vcRecordingsScreen.xib" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Screens\" />

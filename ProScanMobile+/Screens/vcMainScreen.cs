@@ -20,7 +20,6 @@ namespace ProScanMobile
 		vcOptionsScreen optionScreen = new vcOptionsScreen();
 
 		UIScrollView _scrollView;
-		UIPageControl _pageControl;
 
 		UIImageView ivScannerBars;
 
@@ -30,7 +29,7 @@ namespace ProScanMobile
 		UILabel lblTime, lblBytes;
 		UILabel lblAppVersion, lblAppCreator;
 
-		UIButton btnPlay, btnStop, btnOptions;
+		UIButton btnPlay, btnRec, btnStop, btnOptions;
 
 		NetworkConnection networkConnection;
 
@@ -55,6 +54,8 @@ namespace ProScanMobile
 		private DateTime _startTime;
 
 		private int _lastBytesReceived;
+
+		private bool _recordAudio = false;
 
 		public vcMainScreen () : base ("vcMainScreen", null)
 		{
@@ -109,108 +110,108 @@ namespace ProScanMobile
 
 			// All the labels
 			lblScannerType = new UILabel {
-				Frame = new RectangleF (20, 82, 250, 14)
+				Frame = new RectangleF (20, 32, 250, 14)
 			};
 			lblScannerType.Text = "Uniden";
 			lblScannerType.Font = UIFont.FromName("LED Display7", 20f);
 
 			ivScannerBars = new UIImageView {
-				Frame = new RectangleF (UIScreen.MainScreen.Bounds.Width - 50, 82, 19, 14),
+				Frame = new RectangleF (UIScreen.MainScreen.Bounds.Width - 50, 32, 19, 14),
 			};
 
 			lblScannerDisplay1 = new UILabel {
-				Frame = new RectangleF (5, 100, 310, 35)
+				Frame = new RectangleF (5, 50, 310, 35)
 			};
 			lblScannerDisplay1.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay1.Text = "System";
 			lblScannerDisplay1.Font = UIFont.FromName("LED Display7", 30f);
 
 			lblScannerDisplay2 = new UILabel {
-				Frame = new RectangleF (5, 125, 310, 35)
+				Frame = new RectangleF (5, 75, 310, 35)
 			};
 			lblScannerDisplay2.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay2.Text = "Group";
 			lblScannerDisplay2.Font = UIFont.FromName("LED Display7", 30f);
 
 			lblScannerDisplay3 = new UILabel {
-				Frame = new RectangleF (5, 150, 310, 35)
+				Frame = new RectangleF (5, 100, 310, 35)
 			};
 			lblScannerDisplay3.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay3.Text = "123.456";
 			lblScannerDisplay3.Font = UIFont.FromName("LED Display7", 30f);
 
 			lblScannerDisplay4 = new UILabel {
-				Frame = new RectangleF (5, 175, 310, 35)
+				Frame = new RectangleF (5, 125, 310, 35)
 			};
 			lblScannerDisplay4.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay4.Text = "S1:1234567890";
 			lblScannerDisplay4.Font = UIFont.FromName("LED Display7", 30f);
 
 			lblScannerDisplay5 = new UILabel {
-				Frame = new RectangleF (5, 200, 310, 35)
+				Frame = new RectangleF (5, 150, 310, 35)
 			};
 			lblScannerDisplay5.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay5.Text = "GRP1234567890";
 			lblScannerDisplay5.Font = UIFont.FromName("LED Display7", 30f);
 
 			lblServerHostname = new UILabel {
-				Frame = new RectangleF (10, 230, 305, 35)
+				Frame = new RectangleF (10, 180, 305, 35)
 			};
 			lblServerHostname.TextAlignment = UITextAlignment.Left;
 			lblServerHostname.Text = "Server hostname";
 			lblServerHostname.Font = UIFont.FromName("LED Display7", 12f);
 
 			lblServerLocation = new UILabel {
-				Frame = new RectangleF (10, 240, 305, 35)
+				Frame = new RectangleF (10, 190, 305, 35)
 			};
 			lblServerLocation.TextAlignment = UITextAlignment.Left;
 			lblServerLocation.Text = "County, State, Country";
 			lblServerLocation.Font = UIFont.FromName("LED Display7", 10f);
 
 			lblMpegLayer = new UILabel {
-				Frame = new RectangleF (10, 255, 125, 35)
+				Frame = new RectangleF (10, 205, 125, 35)
 			};
 			lblMpegLayer.TextAlignment = UITextAlignment.Left;
 			lblMpegLayer.Text = "MPEG ?, LYR ?";
 			lblMpegLayer.Font = UIFont.FromName("LED Display7", 10f);
 
 			lblMpegFrequency = new UILabel {
-				Frame = new RectangleF (10, 265, 100, 35)
+				Frame = new RectangleF (10, 215, 100, 35)
 			};
 			lblMpegFrequency.TextAlignment = UITextAlignment.Left;
 			lblMpegFrequency.Text = "0 Hz";
 			lblMpegFrequency.Font = UIFont.FromName("LED Display7", 10f);
 
 			lblMpegRate = new UILabel {
-				Frame = new RectangleF (10, 275, 100, 35)
+				Frame = new RectangleF (10, 225, 100, 35)
 			};
 			lblMpegRate.TextAlignment = UITextAlignment.Left;
 			lblMpegRate.Text = "0 Bps";
 			lblMpegRate.Font = UIFont.FromName("LED Display7", 10f);
 
 			lblTime = new UILabel {
-				Frame = new RectangleF (160, 255, 150, 35)
+				Frame = new RectangleF (160, 205, 150, 35)
 			};
 			lblTime.TextAlignment = UITextAlignment.Right;
 			lblTime.Text = "00:00:00.00";
 			lblTime.Font = UIFont.FromName("LED Display7", 15f);
 
 			lblBytes = new UILabel {
-				Frame = new RectangleF (160, 275, 150, 35)
+				Frame = new RectangleF (160, 225, 150, 35)
 			};
 			lblBytes.TextAlignment = UITextAlignment.Right;
 			lblBytes.Text = "0B";
 			lblBytes.Font = UIFont.FromName("LED Display7", 15f);
 
 			lblAppVersion = new UILabel {
-				Frame = new RectangleF (140, UIScreen.MainScreen.Bounds.Height - 21, 180, 17)
+				Frame = new RectangleF (140, UIScreen.MainScreen.Bounds.Height - 71, 180, 17)
 			};
 			lblAppVersion.TextAlignment = UITextAlignment.Right;
 			lblAppVersion.Text = string.Format("ProScanMobile+ {0}", NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion").ToString());
 			lblAppVersion.Font = UIFont.FromName("LED Display7", 8f);
 
 			lblAppCreator = new UILabel {
-				Frame = new RectangleF (140, UIScreen.MainScreen.Bounds.Height - 15, 180, 17)
+				Frame = new RectangleF (140, UIScreen.MainScreen.Bounds.Height - 65, 180, 17)
 			};
 			lblAppCreator.TextAlignment = UITextAlignment.Right;
 			lblAppCreator.Text = "(c) 2013 Jean-Francois Drapeau";
@@ -218,13 +219,23 @@ namespace ProScanMobile
 
 			// Scanner display
 			UIImageView ivScannerDisplay = new UIImageView {
-				Frame = new RectangleF (5, 73, UIScreen.MainScreen.Bounds.Width - 10, 249),
+				Frame = new RectangleF (5, 23, UIScreen.MainScreen.Bounds.Width - 10, 249),
 				Image = UIImage.FromBundle("Images/scanner_display.jpg")
 			};
 
+			// Rec button
+			btnRec = new UIButton {
+				Frame = new RectangleF(5, 0, 40, 40)
+			};
+			btnRec.Layer.CornerRadius = 9.5f;
+			btnRec.Layer.MasksToBounds = true;
+			btnRec.ClipsToBounds = true;
+			btnRec.SetImage(UIImage.FromBundle("Images/rec_activate_button.jpg"), UIControlState.Normal);
+			btnRec.TouchUpInside += btnRecTouchUpInside_Event;
+
 			// Play button
 			btnPlay = new UIButton {
-				Frame = new RectangleF(5, 0, 40, 40)
+				Frame = new RectangleF(50, 0, 40, 40)
 			};
 			btnPlay.Layer.CornerRadius = 9.5f;
 			btnPlay.Layer.MasksToBounds = true;
@@ -234,7 +245,7 @@ namespace ProScanMobile
 
 			// Stop button
 			btnStop = new UIButton {
-				Frame = new RectangleF(50, 0, 40, 40)
+				Frame = new RectangleF(95, 0, 40, 40)
 			};
 			btnStop.Enabled = false;
 			btnStop.Layer.CornerRadius = 9.5f;
@@ -478,7 +489,7 @@ namespace ProScanMobile
 
 			// Scrollview for Play, Stop, Options and Scanner controls
 			_scrollView = new UIScrollView {
-				Frame = new RectangleF (0, 325, UIScreen.MainScreen.Bounds.Width,
+				Frame = new RectangleF (0, 275, UIScreen.MainScreen.Bounds.Width,
 					125),
 				ContentSize = new SizeF (UIScreen.MainScreen.Bounds.Width * 2, 125),
 				BackgroundColor = UIColor.White,
@@ -487,13 +498,13 @@ namespace ProScanMobile
 				ShowsHorizontalScrollIndicator = false
 			};
 
-			_scrollView.Layer.MasksToBounds = false;
-			_scrollView.Layer.ShadowColor = UIColor.DarkGray.CGColor;
-			_scrollView.Layer.ShadowOpacity = 0.1f;
-			_scrollView.Layer.ShadowRadius = 1.0f;
-			_scrollView.Layer.ShadowOffset = new System.Drawing.SizeF(0f, 3f);
+			_scrollView.Layer.MasksToBounds = true;
+			//_scrollView.Layer.ShadowColor = UIColor.DarkGray.CGColor;
+			//_scrollView.Layer.ShadowOpacity = 0.1f;
+			//_scrollView.Layer.ShadowRadius = 1.0f;
+			//_scrollView.Layer.ShadowOffset = new System.Drawing.SizeF(0f, 3f);
 
-			_scrollView.AddSubviews (new UIView[] { btnPlay, 
+			_scrollView.AddSubviews (new UIView[] { btnPlay, btnRec,
 				btnStop, 
 				btnOptions });
 
@@ -504,33 +515,23 @@ namespace ProScanMobile
 				btnScanner_FuncH, btnScanner_FuncR, btnScanner_Push
 			 });
 
-			// Dot indicator for _scrollView
-			_pageControl = new UIPageControl {
-				Frame = new RectangleF ((UIScreen.MainScreen.Bounds.Width / 2) - 25, 
-					_scrollView.Frame.Y + _scrollView.Frame.Height, 
-					50, 15),
-				PageIndicatorTintColor = UIColor.LightGray,
-				CurrentPageIndicatorTintColor = UIColor.Blue
-			};
-			_pageControl.Pages = 2;
-			_pageControl.ValueChanged += pageControlValueChanged_Event;
-
-			_scrollView.Scrolled += scrollViewScrolled_Event;
-
 			// Add everything to current view
 			View.AddSubviews (new UIView[] { ivScannerDisplay, lblScannerType, ivScannerBars,
 				lblScannerDisplay1, lblScannerDisplay2, lblScannerDisplay3, lblScannerDisplay4, lblScannerDisplay5,
 				lblServerHostname, lblServerLocation,
 				lblMpegLayer, lblMpegFrequency, lblMpegRate,
 				lblTime, lblBytes,
-				_scrollView, 
-				_pageControl,
+				_scrollView,
 				lblAppVersion, lblAppCreator
 			});
 		}
 
 		private void btnScannerTouchUpInside_Event(object sender, EventArgs e)
 		{
+			if (networkConnection == null)
+				return;
+			if (networkConnection.connectionStatus != NetworkConnection.ConnectionStatus.Connected)
+				return;
 			if (networkConnection.loginStatus != NetworkConnection.LoginStatus.LoggedIn)
 				return;
 
@@ -612,22 +613,6 @@ namespace ProScanMobile
 				messageBoxShow ("ProScanMobile+", networkConnection._sendStatusMessage);
 		}
 
-		private void scrollViewScrolled_Event(object sender, EventArgs e)
-		{
-			_pageControl.CurrentPage = 
-				(int)System.Math.Floor(_scrollView.ContentOffset.X 
-					/ this._scrollView.Frame.Size.Width);
-		}
-
-		private void pageControlValueChanged_Event(object sender, EventArgs e)
-		{
-			UIPageControl pager = sender as UIPageControl;
-			int page = pager.CurrentPage;
-			RectangleF frame = _scrollView.Frame;
-			frame.X = frame.Width * page;
-			_scrollView.ScrollRectToVisible (frame, true);
-		}
-
 		private void btnPlayTouchUpInside_Event(object sender, EventArgs e)
 		{
 			connectToHostAndBeginPlayback ();
@@ -693,6 +678,19 @@ namespace ProScanMobile
 			}
 		}
 
+		private void btnRecTouchUpInside_Event(object sender, EventArgs e)
+		{
+			_recordAudio = _recordAudio == true ? false : true;
+
+			string img = string.Empty;
+			if (_recordAudio)
+				img = "rec_deactivate_button.jpg";
+			else
+				img = "rec_activate_button.jpg";
+
+			btnRec.SetImage(UIImage.FromBundle("Images/" + img), UIControlState.Normal);
+		}
+
 		private void btnStopTouchUpInside_Event(object sender, EventArgs e)
 		{
 			_soundDisconnected.PlaySystemSound ();
@@ -749,55 +747,59 @@ namespace ProScanMobile
 						});
 					}
 
-					int i_messageLength;
-					byte[] b_messageLength = new byte[BYTES_MESSAGE_LENGTH];
-					Array.ConstrainedCopy (networkConnection.connectionBuffer.Read(14, true), 
-						INDEX_MESSAGE_LENGTH, b_messageLength, 0, BYTES_MESSAGE_LENGTH);
-					//Console.WriteLine("---------- b_messageLength........: {0} (first bytes of data buffer)", bytesTostring(b_messageLength));
-
-					int.TryParse (bytesToString (b_messageLength), out i_messageLength);
-
-					//Console.WriteLine("---------- Message length.........: {0} (first bytes of data buffer)", i_messageLength.ToString());
-
-					bool continueParse = true;
-					while (continueParse)
+					if (networkConnection.connectionBuffer.Count > 0)
 					{
-						if (networkConnection.connectionBuffer.Count < i_messageLength)
+						int i_messageLength;
+						byte[] b_messageLength = new byte[BYTES_MESSAGE_LENGTH];
+						Array.ConstrainedCopy (networkConnection.connectionBuffer.Read(14, true), 
+							INDEX_MESSAGE_LENGTH, b_messageLength, 0, BYTES_MESSAGE_LENGTH);
+
+						//Console.WriteLine("---------- b_messageLength........: {0} (first bytes of data buffer)", bytesToString(b_messageLength));
+
+						int.TryParse (bytesToString (b_messageLength), out i_messageLength);
+
+						//Console.WriteLine("---------- Message length.........: {0} (first bytes of data buffer)", i_messageLength.ToString());
+
+						bool continueParse = true;
+						while (continueParse)
 						{
-							//Console.WriteLine("---------- **** MESSAGE LENGTH GREATER THAN DATABUFFER **** ----------");
-							continueParse = false;
-						} else {
-
-							byte[] messageReceived = new byte[i_messageLength];
-							messageReceived = networkConnection.connectionBuffer.Read(i_messageLength);
-							//Console.WriteLine("---------- m_listDataBuffer while.: {0}", m_listDataBuffer.Count.ToString());
-
-							byte[] b_messageType = new byte[BYTES_MESSAGE_TYPE];
-							Array.ConstrainedCopy (messageReceived, INDEX_MESSAGE_TYPE, 
-								b_messageType, 0, BYTES_MESSAGE_TYPE);
-
-							//Console.WriteLine(i_messageLength.ToString());
-							// Based on message type...
-							switch (bytesToString (b_messageType))
+							if (networkConnection.connectionBuffer.Count < i_messageLength)
 							{
-							case MESSAGE_TYPE_STARTAUD:
-								_scannerAudio.processData(messageReceived, i_messageLength);
-								break;
-							case MESSAGE_TYPE_STARTDAT:
-								_scannerScreen.processData(messageReceived, i_messageLength);
-								break;
-							}
-
-							if (networkConnection.connectionBuffer.Count == 0 || 
-								networkConnection.connectionBuffer.Count < MIN_MESSAGE_LENGTH)
-							{
+								//Console.WriteLine("---------- **** MESSAGE LENGTH GREATER THAN DATABUFFER **** ----------");
 								continueParse = false;
 							} else {
-								b_messageLength = new byte[BYTES_MESSAGE_LENGTH];
-								Array.ConstrainedCopy (networkConnection.connectionBuffer.Read(MIN_MESSAGE_LENGTH, true), 
-									INDEX_MESSAGE_LENGTH, b_messageLength, 0, BYTES_MESSAGE_LENGTH);
-									//Console.WriteLine("---------- b_messageLength while..: {0} (first bytes of data buffer)", bytesTostring(b_messageLength));
-								int.TryParse (bytesToString (b_messageLength), out i_messageLength);
+
+								byte[] messageReceived = new byte[i_messageLength];
+								messageReceived = networkConnection.connectionBuffer.Read(i_messageLength);
+								//Console.WriteLine("---------- m_listDataBuffer while.: {0}", networkConnection.connectionBuffer.Count.ToString());
+
+								byte[] b_messageType = new byte[BYTES_MESSAGE_TYPE];
+								Array.ConstrainedCopy (messageReceived, INDEX_MESSAGE_TYPE, 
+									b_messageType, 0, BYTES_MESSAGE_TYPE);
+
+								//Console.WriteLine(i_messageLength.ToString());
+								// Based on message type...
+								switch (bytesToString (b_messageType))
+								{
+								case MESSAGE_TYPE_STARTAUD:
+									_scannerAudio.processData(messageReceived, i_messageLength);
+									break;
+								case MESSAGE_TYPE_STARTDAT:
+									_scannerScreen.processData(messageReceived, i_messageLength);
+									break;
+								}
+
+								if (networkConnection.connectionBuffer.Count == 0 || 
+									networkConnection.connectionBuffer.Count < MIN_MESSAGE_LENGTH)
+								{
+									continueParse = false;
+								} else {
+									b_messageLength = new byte[BYTES_MESSAGE_LENGTH];
+									Array.ConstrainedCopy (networkConnection.connectionBuffer.Read(MIN_MESSAGE_LENGTH, true), 
+										INDEX_MESSAGE_LENGTH, b_messageLength, 0, BYTES_MESSAGE_LENGTH);
+								//Console.WriteLine("---------- b_messageLength while..: {0} (first bytes of data buffer)", bytesToString(b_messageLength));
+									int.TryParse (bytesToString (b_messageLength), out i_messageLength);
+								}
 							}
 						}
 					}

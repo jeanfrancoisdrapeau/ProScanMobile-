@@ -14,6 +14,10 @@ namespace ProScanMobile
 	{
 		// class-level declarations
 		UIWindow window;
+		UITabBarController tabController;
+		vcMainScreen viewControllerMainScreen;
+		vcRecordingsScreen viewControllerRecordingsScreen;
+
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this
 		// method you should instantiate the window, load the UI into it and then make the window
@@ -28,9 +32,21 @@ namespace ProScanMobile
 			
 			var rootNavigationController = new UINavigationController(); 
 
-			vcMainScreen rootvc = new vcMainScreen ();
+			tabController = new UITabBarController ();
 
-			rootNavigationController.PushViewController(rootvc, false); 
+			viewControllerMainScreen = new vcMainScreen ();
+			viewControllerRecordingsScreen = new vcRecordingsScreen ();
+
+			tabController.ViewControllers = new UIViewController[] {
+				viewControllerMainScreen,
+				viewControllerRecordingsScreen
+			};
+			tabController.ViewControllers [0].TabBarItem.Title = "Live";
+			tabController.ViewControllers [0].TabBarItem.Image = UIImage.FromBundle ("Images/network_button");
+			tabController.ViewControllers [1].TabBarItem.Title = "Recordings";
+			tabController.ViewControllers [1].TabBarItem.Image = UIImage.FromBundle ("Images/folder_button");
+
+			rootNavigationController.PushViewController(tabController, false); 
 			
 			// make the window visible
 			window.RootViewController = rootNavigationController; 

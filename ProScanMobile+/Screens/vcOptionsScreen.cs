@@ -70,10 +70,10 @@ namespace ProScanMobile
 
 		private Encryption enc;
 
-		public string ServerHostName { get { return (si.SettingsList [0] == null ? string.Empty : si.SettingsList [0].host); } }
-		public int ServerHostPort { get { return (si.SettingsList [0] == null ? 0 : si.SettingsList [0].port); } }
-		public bool ServerAutoConnect { get { return (si.SettingsList [0] == null ? false : si.SettingsList [0].auto); } }
-		public string ServerPassWord { get { return (si.SettingsList [0] == null ? string.Empty : si.SettingsList [0].pass); } }
+		public string ServerHostName { get { return (si == null ? string.Empty : si.SettingsList [0].host); } }
+		public int ServerHostPort { get { return (si == null ? 0 : si.SettingsList [0].port); } }
+		public bool ServerAutoConnect { get { return (si == null ? false : si.SettingsList [0].auto); } }
+		public string ServerPassWord { get { return (si == null ? string.Empty : si.SettingsList [0].pass); } }
 
 		public vcOptionsScreen () : base ("vcOptionsScreen", null)
 		{

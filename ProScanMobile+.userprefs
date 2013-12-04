@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.Jeff’s iPhone" />
   <MonoDevelop.Ide.Workbench ActiveDocument="ProScanMobile+/Screens/vcMainScreen.cs">
     <Files>
-      <File FileName="ProScanMobile+/Screens/vcMainScreen.cs" Line="80" Column="38" />
+      <File FileName="ProScanMobile+/Screens/vcMainScreen.cs" Line="76" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
