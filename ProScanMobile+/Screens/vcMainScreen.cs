@@ -27,6 +27,7 @@ namespace ProScanMobile
 		UILabel lblServerHostname, lblServerLocation; 
 		UILabel	lblMpegLayer, lblMpegFrequency, lblMpegRate;
 		UILabel lblTime, lblBytes;
+		UILabel lblRecording;
 		UILabel lblAppVersion, lblAppCreator;
 
 		UIButton btnPlay, btnRec, btnStop, btnOptions;
@@ -202,6 +203,14 @@ namespace ProScanMobile
 			lblBytes.TextAlignment = UITextAlignment.Right;
 			lblBytes.Text = "0B";
 			lblBytes.Font = UIFont.FromName("LED Display7", 15f);
+
+			lblRecording = new UILabel {
+				Frame = new RectangleF ((UIScreen.MainScreen.Bounds.Width / 2) - 85, 240, 175, 35)
+			};
+			lblRecording.TextAlignment = UITextAlignment.Center;
+			lblRecording.TextColor = UIColor.Red;
+			lblRecording.Text = string.Empty;
+			lblRecording.Font = UIFont.FromName("LED Display7", 15f);
 
 			lblAppVersion = new UILabel {
 				Frame = new RectangleF (140, UIScreen.MainScreen.Bounds.Height - 71, 180, 17)
@@ -521,6 +530,7 @@ namespace ProScanMobile
 				lblServerHostname, lblServerLocation,
 				lblMpegLayer, lblMpegFrequency, lblMpegRate,
 				lblTime, lblBytes,
+				lblRecording,
 				_scrollView,
 				lblAppVersion, lblAppCreator
 			});
@@ -683,11 +693,19 @@ namespace ProScanMobile
 			_recordAudio = _recordAudio == true ? false : true;
 
 			string img = string.Empty;
-			if (_recordAudio)
+			if (_recordAudio) {
+				if (_scannerAudio != null) {
+					_scannerAudio.PrepareOutputToFile ();
+				}
+					
 				img = "rec_deactivate_button.jpg";
-			else
-				img = "rec_activate_button.jpg";
+			} else {
+				if (_scannerAudio != null) {
+					_scannerAudio.StopOutputToFile ();
+				}
 
+				img = "rec_activate_button.jpg";
+			}
 			btnRec.SetImage(UIImage.FromBundle("Images/" + img), UIControlState.Normal);
 		}
 
@@ -813,6 +831,8 @@ namespace ProScanMobile
 						lblScannerDisplay4.Text = _scannerScreen.scannerScreen_Line4;
 						lblScannerDisplay5.Text = _scannerScreen.scannerScreen_Line5;
 						lblBytes.Text = bytesCountToString(networkConnection.bytesReceived);
+
+						lblRecording.Text = (_recordAudio == true ? "Recording" : string.Empty);
 
 						lblServerHostname.Text = optionScreen.ServerHostName;
 						lblServerLocation.Text = optionScreen.getLocationFromHost(optionScreen.ServerHostName);

@@ -180,7 +180,6 @@
     <Compile Include="Screens\vcRecordingsScreen.designer.cs">
       <DependentUpon>vcRecordingsScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\RecordAudio.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

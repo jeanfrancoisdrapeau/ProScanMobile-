@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using MonoTouch.AudioToolbox;
 using MonoTouch.AVFoundation;
 
@@ -69,10 +70,14 @@ namespace ProScanMobile
 		private bool _scannerAudio_Buffering;
 		public bool scannerAudio_Buffering { get { return _scannerAudio_Buffering; } }
 
+		private FileStream _fileOut;
+		private bool _writeToFile;
+
 		const int INDEX_DATA_START_AT = 21;
 
 		public ScannerAudio ()
 		{
+			_writeToFile = false;
 			_listDataBuffer_Audio = new ReadWriteBuffer (65535);
 			_streamingPlayer = new StreamingPlaybackV2 ();
 			_streamingPlayer.Start ();
@@ -80,9 +85,35 @@ namespace ProScanMobile
 
 		public void Dispose()
 		{
+			if (_writeToFile)
+				StopOutputToFile ();
+
 			_listDataBuffer_Audio = null;
 			_streamingPlayer.Dispose ();
 			_streamingPlayer = null;
+		}
+
+		public void PrepareOutputToFile()
+		{
+			string f = string.Format ("proscanmobile_{0:D4}{1:D2}{2:D2}-{3:D2}{4:D2}{5:D2}.mp3",
+				DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
+				DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+
+			var documents = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
+			var filename = Path.Combine (documents, f);
+
+			_fileOut = new FileStream (filename, FileMode.Create);
+			_writeToFile = true;
+		}
+
+		public void StopOutputToFile()
+		{
+			_writeToFile = false;
+
+			if (_fileOut != null) {
+				_fileOut.Close ();
+				_fileOut.Dispose ();
+			}
 		}
 
 		public void processData(byte[] message, int messageLength)
@@ -141,7 +172,14 @@ namespace ProScanMobile
 
 					// Store data in audio buffer
 					// This time, Read consume the left-most bytes in the array (thread safe)
-					_streamingPlayer.ParseBytes (_listDataBuffer_Audio.Read (m_frameSize), m_frameSize, true);
+					byte[] outbuf = new byte[m_frameSize];
+					outbuf = _listDataBuffer_Audio.Read (m_frameSize);
+
+					_streamingPlayer.ParseBytes (outbuf, m_frameSize, true);
+
+					if (_writeToFile)
+						_fileOut.Write (outbuf, 0, m_frameSize);
+
 				} else {
 					// The 4 left-most bytes are not a header
 					// Discard first byte
