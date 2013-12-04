@@ -1,13 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhoneRetina.7.0" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ProScanMobile+/Info.plist">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.Jeff’s iPhone" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ProScanMobile+/Screens/vcMainScreen.cs">
     <Files>
-      <File FileName="ProScanMobile+/Screens/vcMainScreen.cs" Line="633" Column="19" />
-      <File FileName="../ProScanMobile/Screens/mainScreen.cs" Line="35" Column="30" />
-      <File FileName="ProScanMobile+/Classes/ScannerAudio.cs" Line="86" Column="4" />
-      <File FileName="ProScanMobile+/Classes/ScannerScreen.cs" Line="39" Column="24" />
-      <File FileName="ProScanMobile+/Classes/StreamingPlaybackV2.cs" Line="65" Column="4" />
-      <File FileName="ProScanMobile+/Info.plist" />
+      <File FileName="ProScanMobile+/Screens/vcMainScreen.cs" Line="80" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

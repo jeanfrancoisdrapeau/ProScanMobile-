@@ -14,7 +14,6 @@ namespace ProScanMobile
 	{
 		// class-level declarations
 		UIWindow window;
-		NSObject observer;
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this
 		// method you should instantiate the window, load the UI into it and then make the window
@@ -46,19 +45,6 @@ namespace ProScanMobile
 		{
 			// check for new data, and display it
 			completionHandler (UIBackgroundFetchResult.NewData);
-		}
-
-		void DefaultsChanged (NSNotification obj)
-		{
-			//Settings.SetupByPreferences ();
-		}
-
-		public override void WillTerminate (UIApplication application)
-		{
-			if (observer != null) {
-				NSNotificationCenter.DefaultCenter.RemoveObserver (observer);
-				observer = null;
-			}
 		}
 	}
 }

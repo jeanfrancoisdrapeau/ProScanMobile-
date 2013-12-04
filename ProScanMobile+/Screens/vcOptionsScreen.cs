@@ -4,6 +4,8 @@ using System.Threading;
 using System.Net;
 using System.IO;
 using System.Xml.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Collections.Generic;
@@ -224,7 +226,7 @@ namespace ProScanMobile
 						ServerDetails sd = new ServerDetails ();
 						sd.host = str [0].Substring (3);
 						sd.port = str [1].Substring (5);
-						sd.desc = str [2].Substring (5);
+						sd.desc =    str [2].Substring (5);
 						sd.country = str [13];
 						sd.state = str [14];
 						sd.county = str [15];
@@ -303,8 +305,10 @@ namespace ProScanMobile
 
 			if (File.Exists (filename)) {
 
+				stripIllegalXMLChars (filename);
+
 				XmlSerializer deserializer = new XmlSerializer (typeof(Servers));
-				TextReader textReader = new StreamReader (filename);
+				TextReader textReader = new StreamReader (filename, Encoding.UTF8);
 				s = (Servers)deserializer.Deserialize (textReader);
 				textReader.Close ();
 			}
@@ -312,11 +316,29 @@ namespace ProScanMobile
 			filename = Path.Combine (documents, "proscanmobile_settings.xml");
 
 			if (File.Exists (filename)) {
+
+				stripIllegalXMLChars (filename);
+
 				XmlSerializer deserializer = new XmlSerializer (typeof(Settings));
 				TextReader textReader = new StreamReader (filename);
 				si = (Settings)deserializer.Deserialize (textReader);
 				textReader.Close ();
 			}
+		}
+
+		private void stripIllegalXMLChars(string filePath)
+		{
+			//Remove illegal character sequences
+			string tmpContents = File.ReadAllText(filePath, Encoding.UTF8);
+
+			string pattern = @"#x((10?|[2-F])FFF[EF]|FDD[0-9A-F]|[19][0-9A-F]|7F|8[0-46-9A-F]|0?[1-8BCEF])";
+
+			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			if (regex.IsMatch(tmpContents)) {
+				tmpContents = regex.Replace(tmpContents, String.Empty);
+				File.WriteAllText(filePath, tmpContents, Encoding.UTF8);
+			}
+			tmpContents = string.Empty;
 		}
 
 		private void UpdateSettings ()

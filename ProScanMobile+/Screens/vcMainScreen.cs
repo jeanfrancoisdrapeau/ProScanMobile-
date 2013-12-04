@@ -6,6 +6,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using GCDiscreetNotification;
 using MonoTouch.AudioToolbox;
+using MonoTouch.AVFoundation;
 
 namespace ProScanMobile
 {
@@ -80,6 +81,20 @@ namespace ProScanMobile
 		{
 			base.ViewDidLoad ();
 			initInterface ();
+
+			// Initialise audio
+			NSError error;
+			AVAudioSession audioInstance = AVAudioSession.SharedInstance();
+			audioInstance.SetActive(true, AVAudioSessionSetActiveOptions.NotifyOthersOnDeactivation, out error);
+			audioInstance.SetCategory(new NSString("AVAudioSessionCategoryPlayback"), out error);
+
+			if (error != null) {
+			}
+
+			optionScreen.GetSettings ();
+
+			if (optionScreen.ServerAutoConnect)
+				connectToHostAndBeginPlayback ();
 		}
 
 		private void initInterface()
@@ -629,7 +644,6 @@ namespace ProScanMobile
 
 			notificationView.Show (animated: false);
 
-			optionScreen.GetSettings ();
 			networkConnection = new NetworkConnection (optionScreen.ServerHostName, optionScreen.ServerHostPort);
 			networkConnection.connectDone.WaitOne ();
 

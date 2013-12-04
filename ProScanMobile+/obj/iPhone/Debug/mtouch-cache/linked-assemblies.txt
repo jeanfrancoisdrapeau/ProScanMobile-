@@ -1,3 +1,7 @@
+/Users/Jeff/Projects/ProScanMobile+/ProScanMobile+/obj/iPhone/Debug/mtouch-cache/Link/GCDiscreetNotification.dll
 /Users/Jeff/Projects/ProScanMobile+/ProScanMobile+/obj/iPhone/Debug/mtouch-cache/Link/monotouch.dll
 /Users/Jeff/Projects/ProScanMobile+/ProScanMobile+/obj/iPhone/Debug/mtouch-cache/Link/mscorlib.dll
+/Users/Jeff/Projects/ProScanMobile+/ProScanMobile+/obj/iPhone/Debug/mtouch-cache/Link/System.Xml.dll
 /Users/Jeff/Projects/ProScanMobile+/ProScanMobile+/obj/iPhone/Debug/mtouch-cache/Link/ProScanMobile.exe
+/Users/Jeff/Projects/ProScanMobile+/ProScanMobile+/obj/iPhone/Debug/mtouch-cache/Link/System.Core.dll
+/Users/Jeff/Projects/ProScanMobile+/ProScanMobile+/obj/iPhone/Debug/mtouch-cache/Link/System.dll

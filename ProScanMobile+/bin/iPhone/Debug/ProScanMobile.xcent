@@ -3,12 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>application-identifier</key>
-	<string>DLQS56544R.com.jeanfrancoisdrapeau.ProScanMobilePlus</string>
+	<string>DLQS56544R.com.jfdrapeau.proscanmobileplus</string>
 	<key>get-task-allow</key>
 	<true/>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>DLQS56544R.com.jeanfrancoisdrapeau.ProScanMobilePlus</string>
+		<string>DLQS56544R.com.jfdrapeau.proscanmobileplus</string>
 	</array>
 </dict>
 </plist>
