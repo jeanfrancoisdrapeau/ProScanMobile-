@@ -7,17 +7,11 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.AVFoundation;
 
-//TODO: AVAudioPlayer player = AVAudioPlayer.FRomUrl(NSUrl.FromFileName(fileName));
-//player.PrepareToPlay();
-//player.Play();
-
 namespace ProScanMobile
 {
 	public partial class vcRecordingsScreen : UIViewController
 	{
 		UITableView _tvMp3;
-
-		AVAudioPlayer player;
 
 		public vcRecordingsScreen () : base ("vcRecordingsScreen", null)
 		{

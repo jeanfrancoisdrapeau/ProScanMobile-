@@ -10,6 +10,8 @@ namespace ProScanMobile
 {
 	public class RecTableSource : UITableViewSource
 	{
+		NSIndexPath _selectRowIndex;
+
 		List<RecTableItem> tableItems;
 
 		NSString cellIdentifier = new NSString("TableCell");
@@ -26,6 +28,10 @@ namespace ProScanMobile
 
 		public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 		{
+			if (_selectRowIndex != null)
+				if(indexPath.Row == _selectRowIndex.Row) {
+				return ROW_HEIGHT + 20;
+				}
 			return ROW_HEIGHT;
 		}
 
@@ -50,6 +56,9 @@ namespace ProScanMobile
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
+			_selectRowIndex = indexPath;
+			tableView.BeginUpdates ();
+			tableView.EndUpdates ();
 		}
 
 		public override void CommitEditingStyle (UITableView tableView, UITableViewCellEditingStyle editingStyle, MonoTouch.Foundation.NSIndexPath indexPath)
