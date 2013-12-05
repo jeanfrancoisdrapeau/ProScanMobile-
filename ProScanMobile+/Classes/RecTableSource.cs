@@ -30,7 +30,7 @@ namespace ProScanMobile
 		{
 			if (_selectRowIndex != null)
 				if(indexPath.Row == _selectRowIndex.Row) {
-				return ROW_HEIGHT + 20;
+					return ROW_HEIGHT + 20;
 				}
 			return ROW_HEIGHT;
 		}
@@ -56,6 +56,13 @@ namespace ProScanMobile
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
+			if (_selectRowIndex != null) {
+				if (indexPath != _selectRowIndex) {
+					CustomRecCell cell = tableView.CellAt (_selectRowIndex) as CustomRecCell;
+					cell.CellChanged ();
+				}
+			}
+
 			_selectRowIndex = indexPath;
 			tableView.BeginUpdates ();
 			tableView.EndUpdates ();
