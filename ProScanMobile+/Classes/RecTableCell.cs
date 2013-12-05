@@ -15,6 +15,9 @@ namespace ProScanMobile
 		private UILabel fileNameLabel;
 		private UIButton playerPlayButton;
 		private UIButton playerStopButton;
+		private UISlider progressBar;
+
+		NSTimer updateTimer;
 
 		public CustomRecCell (NSString cellId) : base (UITableViewCellStyle.Default, cellId)
 		{
@@ -36,23 +39,18 @@ namespace ProScanMobile
 			playerStopButton.Font = UIFont.FromName ("AmericanTypewriter", 15f);
 			playerStopButton.TouchUpInside += playerStopButtonTouchUpInside_Event;
 
+			progressBar = new UISlider ();
+			progressBar.SetThumbImage (UIImage.FromBundle("Images/slider_thumb"), UIControlState.Normal);
+
 			ContentView.Add (fileNameLabel);
 			ContentView.Add (playerPlayButton);
 			ContentView.Add (playerStopButton);
+			ContentView.Add (progressBar);
 		}
 
 		public void UpdateCell (string fileName)
 		{
 			fileNameLabel.Text = fileName;
-		}
-
-		public void CellChanged()
-		{
-			if (_audioPlayer != null) {
-				if (_audioPlayer.Playing)
-					_audioPlayer.Stop ();
-			}
-			playerPlayButton.Selected = false;
 		}
 
 		public override void LayoutSubviews ()
@@ -62,6 +60,7 @@ namespace ProScanMobile
 			fileNameLabel.Frame = new RectangleF(5, 5, ContentView.Bounds.Width, 20);
 			playerPlayButton.Frame = new RectangleF(0, 25, 80, 20);
 			playerStopButton.Frame = new RectangleF(80, 25, 50, 20);
+			progressBar.Frame = new RectangleF(135, 28, 150, 13);
 		}
 
 		private void playerPlayButtonTouchUpInside_Event(object sender, EventArgs e)
@@ -75,22 +74,47 @@ namespace ProScanMobile
 				_audioPlayer.PrepareToPlay ();
 				_audioPlayer.Play ();
 
+				progressBar.MinValue = 0.0f;
+				progressBar.Value = 0.0f;
+				progressBar.MaxValue = (float)_audioPlayer.Duration;
+
+				updateTimer = NSTimer.CreateRepeatingScheduledTimer (TimeSpan.FromSeconds (0.01), delegate {
+					progressBar.Value = (float) _audioPlayer.CurrentTime;
+				});
+
 				playerPlayButton.Selected = true;
 			}
 		}
 
 		private void audioPlayerFinishedPlaying_Event(object sender, EventArgs e)
 		{
-			_audioPlayer = null;
-			playerPlayButton.Selected = false;
+			clearPlayer ();
+		}
+
+		public void CellChanged()
+		{
+			clearPlayer ();
 		}
 
 		private void playerStopButtonTouchUpInside_Event(object sender, EventArgs e)
 		{
+			clearPlayer ();
+		}
+
+		private void clearPlayer()
+		{
 			if (_audioPlayer != null) {
-				if (_audioPlayer.Playing)
+				if (_audioPlayer.Playing) {
 					_audioPlayer.Stop ();
+				}
 			}
+
+			if (updateTimer != null)
+				updateTimer.Invalidate ();
+			updateTimer = null;
+
+			progressBar.Value = 0.0f;
+
 			playerPlayButton.Selected = false;
 		}
 	}

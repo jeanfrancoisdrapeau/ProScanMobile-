@@ -150,6 +150,7 @@
     <BundleResource Include="Images\network_button.png" />
     <BundleResource Include="Images\rec_activate_button.jpg" />
     <BundleResource Include="Images\rec_deactivate_button.jpg" />
+    <BundleResource Include="Images\slider_thumb.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
