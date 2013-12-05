@@ -76,7 +76,6 @@ namespace ProScanMobile
 		public override void ViewWillDisappear (bool animated)
 		{
 			base.ViewWillDisappear (animated);
-			this.NavigationController.SetNavigationBarHidden (false, animated);
 		}
 
 		public override void ViewDidLoad ()

@@ -180,6 +180,9 @@
     <Compile Include="Screens\vcRecordingsScreen.designer.cs">
       <DependentUpon>vcRecordingsScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\RecTableSource.cs" />
+    <Compile Include="Classes\RecTableCell.cs" />
+    <Compile Include="Classes\RecTableItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

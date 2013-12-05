@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using MonoTouch.AVFoundation;
 
 //TODO: AVAudioPlayer player = AVAudioPlayer.FRomUrl(NSUrl.FromFileName(fileName));
 //player.PrepareToPlay();
@@ -16,28 +17,7 @@ namespace ProScanMobile
 	{
 		UITableView _tvMp3;
 
-		private class RecTableSource : UITableViewSource
-		{
-			string[] tableItems;
-			string cellIdentifier = "MP3";
-			public RecTableSource (string[] items)
-			{
-				tableItems = items;
-			}
-			public override int RowsInSection (UITableView tableview, int section)
-			{
-				return tableItems.Length;
-			}
-			public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
-			{
-				UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier);
-				// if there are no cells to reuse, create a new one
-				if (cell == null)
-					cell = new UITableViewCell (UITableViewCellStyle.Default, cellIdentifier);
-				cell.TextLabel.Text = tableItems[indexPath.Row];
-				return cell;
-			}
-		}
+		AVAudioPlayer player;
 
 		public vcRecordingsScreen () : base ("vcRecordingsScreen", null)
 		{
@@ -57,7 +37,7 @@ namespace ProScanMobile
 		private void initInterface()
 		{
 			_tvMp3 = new UITableView {
-				Frame = new RectangleF (0, 55, UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height - 185)
+				Frame = new RectangleF (0, 23, UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height)
 			};
 
 			View.AddSubviews (new UIView[] { _tvMp3 });
@@ -66,6 +46,7 @@ namespace ProScanMobile
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
+			this.NavigationController.SetNavigationBarHidden (true, animated);
 
 			var documents = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
 			var orderedFiles = Directory.GetFiles (documents, "proscanmobile_*.mp3")
@@ -79,6 +60,11 @@ namespace ProScanMobile
 
 			_tvMp3.Source = new RecTableSource (fileonly.ToArray());
 			_tvMp3.ReloadData ();
+		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
 		}
 	}
 }

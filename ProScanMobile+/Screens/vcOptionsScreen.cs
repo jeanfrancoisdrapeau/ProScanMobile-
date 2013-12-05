@@ -95,12 +95,14 @@ namespace ProScanMobile
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
+			this.NavigationController.SetNavigationBarHidden (false, animated);
 			UpdateSettings ();
 		}
 
 		public override void ViewWillDisappear (bool animated)
 		{
 			base.ViewWillDisappear (animated);
+			this.NavigationController.SetNavigationBarHidden (true, animated);
 			SaveSettings ();
 		}
 
