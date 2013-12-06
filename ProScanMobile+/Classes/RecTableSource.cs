@@ -59,7 +59,8 @@ namespace ProScanMobile
 			if (_selectRowIndex != null) {
 				if (indexPath != _selectRowIndex) {
 					CustomRecCell cell = tableView.CellAt (_selectRowIndex) as CustomRecCell;
-					cell.CellChanged ();
+					if (cell != null)
+						cell.CellChanged ();
 				}
 			}
 

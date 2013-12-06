@@ -18,7 +18,7 @@
 		</data>
 		<key>GCDiscreetNotification.dll</key>
 		<data>
-		s1OBO1er2RO3E/+qbmPY+Yo1yKM=
+		HT4XVf0cOWsSIBR9aZSCd7kKNZs=
 		</data>
 		<key>Icon-60@2x.png</key>
 		<data>
@@ -36,9 +36,25 @@
 		<data>
 		DLz8D6+LFL+Y4BAHWIbI3hVeVdA=
 		</data>
+		<key>Images/folder_button.png</key>
+		<data>
+		kcOWe7ftuWy2EPVgAyO33TqBSuA=
+		</data>
 		<key>Images/green_button.jpg</key>
 		<data>
 		cOJDA+PNu3gdr+cMfrBdhbBPR/g=
+		</data>
+		<key>Images/network_button.png</key>
+		<data>
+		GMMooODSC4Dtua5KsUtuVKdK7Cg=
+		</data>
+		<key>Images/rec_activate_button.jpg</key>
+		<data>
+		NUhDe42Y/2f9sjcm7QFM7T7nP8s=
+		</data>
+		<key>Images/rec_deactivate_button.jpg</key>
+		<data>
+		Zg5oBRXg31FGpLbojfaRkiYTiuc=
 		</data>
 		<key>Images/red_button.jpg</key>
 		<data>
@@ -160,6 +176,10 @@
 		<data>
 		8UMOy9TP+hCuRFB0kjH8Rk1NUYc=
 		</data>
+		<key>Images/slider_thumb.png</key>
+		<data>
+		Er8Mav353MNOy4Raorhnq5Nl198=
+		</data>
 		<key>Images/state_off.png</key>
 		<data>
 		xlypTpe5u6gFheV0DZG6i3m1JV8=
@@ -178,7 +198,7 @@
 		</data>
 		<key>ProScanMobile.exe</key>
 		<data>
-		fxSXZUwrTUlcAK40q29ppGAIlow=
+		l9dtLbYNo1Dfj9WY2wIGf5mavDw=
 		</data>
 		<key>Sounds/connected.mp3</key>
 		<data>
@@ -190,15 +210,15 @@
 		</data>
 		<key>System.Core.dll</key>
 		<data>
-		cVFqGIrad/qTCCtjkg1z014PWDI=
+		TR01SYLvKz4jh1/2w2Cq8YflwYM=
 		</data>
 		<key>System.Xml.dll</key>
 		<data>
-		kTT7aySzSSDoOgE/FGIvx9RBwks=
+		J4+3d6OAsSdz+PqMq2ORtqNEiuI=
 		</data>
 		<key>System.dll</key>
 		<data>
-		v9E5ebDRQmbigIjnNpd6RDWnW7U=
+		crVZntGuA5UU+pMbm9uYf+qNExU=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
@@ -210,19 +230,23 @@
 		</data>
 		<key>monotouch.dll</key>
 		<data>
-		FQb1SDu3DtIJG1nT10ddL03F5Es=
+		omD6BM/Gn8DfKrNoLyhDua/ilMc=
 		</data>
 		<key>mscorlib.dll</key>
 		<data>
-		nzB3qOs+HP8M1e5QpLY+C73mnNI=
+		sNcqF5ynWMlJtOS8TGW0LaBxw+E=
 		</data>
 		<key>vcMainScreen.nib</key>
 		<data>
-		ugGfVHneryT9N8mXPFkJdzshuNQ=
+		hu/lDBpvuYH2kXIFPd7Cz0nFtxk=
 		</data>
 		<key>vcOptionsScreen.nib</key>
 		<data>
-		kfBZ8rnVDVzjnA0HrVa/BNpMTVw=
+		NELCljsGfS7NZs0hvMfFhWtO8iM=
+		</data>
+		<key>vcRecordingsScreen.nib</key>
+		<data>
+		b0QrsnlROXtCVT+yj4vyrDIeA2A=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -241,7 +265,7 @@
 		</data>
 		<key>GCDiscreetNotification.dll</key>
 		<data>
-		s1OBO1er2RO3E/+qbmPY+Yo1yKM=
+		HT4XVf0cOWsSIBR9aZSCd7kKNZs=
 		</data>
 		<key>Icon-60@2x.png</key>
 		<data>
@@ -259,9 +283,25 @@
 		<data>
 		DLz8D6+LFL+Y4BAHWIbI3hVeVdA=
 		</data>
+		<key>Images/folder_button.png</key>
+		<data>
+		kcOWe7ftuWy2EPVgAyO33TqBSuA=
+		</data>
 		<key>Images/green_button.jpg</key>
 		<data>
 		cOJDA+PNu3gdr+cMfrBdhbBPR/g=
+		</data>
+		<key>Images/network_button.png</key>
+		<data>
+		GMMooODSC4Dtua5KsUtuVKdK7Cg=
+		</data>
+		<key>Images/rec_activate_button.jpg</key>
+		<data>
+		NUhDe42Y/2f9sjcm7QFM7T7nP8s=
+		</data>
+		<key>Images/rec_deactivate_button.jpg</key>
+		<data>
+		Zg5oBRXg31FGpLbojfaRkiYTiuc=
 		</data>
 		<key>Images/red_button.jpg</key>
 		<data>
@@ -383,6 +423,10 @@
 		<data>
 		8UMOy9TP+hCuRFB0kjH8Rk1NUYc=
 		</data>
+		<key>Images/slider_thumb.png</key>
+		<data>
+		Er8Mav353MNOy4Raorhnq5Nl198=
+		</data>
 		<key>Images/state_off.png</key>
 		<data>
 		xlypTpe5u6gFheV0DZG6i3m1JV8=
@@ -401,7 +445,7 @@
 		</data>
 		<key>ProScanMobile.exe</key>
 		<data>
-		fxSXZUwrTUlcAK40q29ppGAIlow=
+		l9dtLbYNo1Dfj9WY2wIGf5mavDw=
 		</data>
 		<key>Sounds/connected.mp3</key>
 		<data>
@@ -413,15 +457,15 @@
 		</data>
 		<key>System.Core.dll</key>
 		<data>
-		cVFqGIrad/qTCCtjkg1z014PWDI=
+		TR01SYLvKz4jh1/2w2Cq8YflwYM=
 		</data>
 		<key>System.Xml.dll</key>
 		<data>
-		kTT7aySzSSDoOgE/FGIvx9RBwks=
+		J4+3d6OAsSdz+PqMq2ORtqNEiuI=
 		</data>
 		<key>System.dll</key>
 		<data>
-		v9E5ebDRQmbigIjnNpd6RDWnW7U=
+		crVZntGuA5UU+pMbm9uYf+qNExU=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
@@ -433,19 +477,23 @@
 		</data>
 		<key>monotouch.dll</key>
 		<data>
-		FQb1SDu3DtIJG1nT10ddL03F5Es=
+		omD6BM/Gn8DfKrNoLyhDua/ilMc=
 		</data>
 		<key>mscorlib.dll</key>
 		<data>
-		nzB3qOs+HP8M1e5QpLY+C73mnNI=
+		sNcqF5ynWMlJtOS8TGW0LaBxw+E=
 		</data>
 		<key>vcMainScreen.nib</key>
 		<data>
-		ugGfVHneryT9N8mXPFkJdzshuNQ=
+		hu/lDBpvuYH2kXIFPd7Cz0nFtxk=
 		</data>
 		<key>vcOptionsScreen.nib</key>
 		<data>
-		kfBZ8rnVDVzjnA0HrVa/BNpMTVw=
+		NELCljsGfS7NZs0hvMfFhWtO8iM=
+		</data>
+		<key>vcRecordingsScreen.nib</key>
+		<data>
+		b0QrsnlROXtCVT+yj4vyrDIeA2A=
 		</data>
 	</dict>
 	<key>rules</key>

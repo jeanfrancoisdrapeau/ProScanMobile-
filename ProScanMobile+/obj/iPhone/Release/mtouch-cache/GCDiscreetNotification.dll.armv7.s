@@ -365,7 +365,7 @@ bl _p_13
 	.byte 0,0,159,231,11,16,160,227
 bl _p_14
 
-	.byte 0,16,160,225,232,1,0,227,0,2,64,227
+	.byte 0,16,160,225,234,1,0,227,0,2,64,227
 bl _mono_create_corlib_exception_1
 bl _p_15
 
@@ -377,7 +377,7 @@ bl _p_15
 	.byte 1,16,160,227
 bl _p_14
 
-	.byte 0,16,160,225,232,1,0,227,0,2,64,227
+	.byte 0,16,160,225,234,1,0,227,0,2,64,227
 bl _mono_create_corlib_exception_1
 bl _p_15
 
@@ -450,7 +450,7 @@ bl _p_13
 	.byte 0,0,159,231,11,16,160,227
 bl _p_14
 
-	.byte 0,16,160,225,232,1,0,227,0,2,64,227
+	.byte 0,16,160,225,234,1,0,227,0,2,64,227
 bl _mono_create_corlib_exception_1
 bl _p_15
 
@@ -462,7 +462,7 @@ bl _p_15
 	.byte 1,16,160,227
 bl _p_14
 
-	.byte 0,16,160,225,232,1,0,227,0,2,64,227
+	.byte 0,16,160,225,234,1,0,227,0,2,64,227
 bl _mono_create_corlib_exception_1
 bl _p_15
 
@@ -537,7 +537,7 @@ bl _p_13
 	.byte 0,0,159,231,11,16,160,227
 bl _p_14
 
-	.byte 0,16,160,225,232,1,0,227,0,2,64,227
+	.byte 0,16,160,225,234,1,0,227,0,2,64,227
 bl _mono_create_corlib_exception_1
 bl _p_15
 
@@ -549,7 +549,7 @@ bl _p_15
 	.byte 1,16,160,227
 bl _p_14
 
-	.byte 0,16,160,225,232,1,0,227,0,2,64,227
+	.byte 0,16,160,225,234,1,0,227,0,2,64,227
 bl _mono_create_corlib_exception_1
 bl _p_15
 
@@ -954,7 +954,7 @@ bl _p_13
 	.byte 0,0,159,231,1,16,160,227
 bl _p_14
 
-	.byte 0,16,160,225,232,1,0,227,0,2,64,227
+	.byte 0,16,160,225,234,1,0,227,0,2,64,227
 bl _mono_create_corlib_exception_1
 bl _p_15
 
@@ -1035,7 +1035,7 @@ bl _p_13
 	.byte 0,0,159,231,1,16,160,227
 bl _p_14
 
-	.byte 0,16,160,225,232,1,0,227,0,2,64,227
+	.byte 0,16,160,225,234,1,0,227,0,2,64,227
 bl _mono_create_corlib_exception_1
 bl _p_15
 
@@ -1087,7 +1087,7 @@ bl _p_33
 	.byte 6,0,160,225,0,208,141,226,96,5,189,232,128,128,189,232,14,16,160,225,0,0,159,229
 bl _p_34
 
-	.byte 59,2,0,2
+	.byte 62,2,0,2
 
 Lme_19:
 .text
@@ -1137,7 +1137,7 @@ bl _p_33
 	.byte 6,0,160,225,0,208,141,226,96,5,189,232,128,128,189,232,14,16,160,225,0,0,159,229
 bl _p_34
 
-	.byte 59,2,0,2
+	.byte 62,2,0,2
 
 Lme_1a:
 .text
@@ -1186,7 +1186,7 @@ bl _p_35
 	.byte 6,0,160,225,0,208,141,226,96,5,189,232,128,128,189,232,14,16,160,225,0,0,159,229
 bl _p_34
 
-	.byte 59,2,0,2
+	.byte 62,2,0,2
 
 Lme_1b:
 .text
@@ -1233,7 +1233,7 @@ bl _p_35
 	.byte 0,0,159,231,203,19,0,227
 bl _p_14
 
-	.byte 0,16,160,225,232,1,0,227,0,2,64,227
+	.byte 0,16,160,225,234,1,0,227,0,2,64,227
 bl _mono_create_corlib_exception_1
 bl _p_15
 
@@ -1372,7 +1372,7 @@ bl _p_13
 	.byte 0,0,159,231,203,19,0,227
 bl _p_14
 
-	.byte 0,16,160,225,232,1,0,227,0,2,64,227
+	.byte 0,16,160,225,234,1,0,227,0,2,64,227
 bl _mono_create_corlib_exception_1
 bl _p_15
 
@@ -1698,16 +1698,16 @@ got_info_offsets:
 
 	.long 41,10,5,2
 	.short 0, 11, 22, 33, 44
-	.byte 128,254,2,1,1,1,7,4,6,6,6,129,36,4,4,4,4,4,4,4,4,4,129,76,4,4,4,4,4,4,4,4
-	.byte 4,129,116,4,4,4,4,4,5,6,5,5,129,164
+	.byte 128,254,2,1,1,1,7,4,6,7,7,129,38,4,4,4,4,4,4,4,4,4,129,78,4,4,4,4,4,4,4,4
+	.byte 4,129,118,4,4,4,4,4,5,6,5,5,129,166
 .section __TEXT, __const
 	.align 3
 ex_info_offsets:
 
 	.long 42,10,5,2
 	.short 0, 16, 27, 38, 54
-	.byte 130,236,3,255,255,255,253,17,0,0,0,130,242,3,3,3,130,254,3,3,4,3,3,3,3,4,4,131,32,3,4,4
-	.byte 4,4,4,4,4,3,131,69,3,3,4,3,4,3,255,255,255,252,167,131,93,4,131,101,4
+	.byte 130,238,3,255,255,255,253,15,0,0,0,130,244,3,3,3,131,0,3,3,4,3,3,3,3,4,4,131,34,3,4,4
+	.byte 4,4,4,4,4,3,131,71,3,3,4,3,4,3,255,255,255,252,165,131,95,4,131,103,4
 .section __TEXT, __const
 	.align 3
 unwind_info:
@@ -1730,7 +1730,7 @@ class_info_offsets:
 
 	.long 4,10,1,2
 	.short 0
-	.byte 131,109,7,99,24
+	.byte 131,111,7,99,24
 
 .text
 	.align 4
@@ -1741,301 +1741,301 @@ plt_MonoTouch_UIKit_UIView__ctor_MonoTouch_Foundation_NSObjectFlag:
 _p_1:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 164,421
+	.long _mono_aot_GCDiscreetNotification_got - . + 164,423
 	.no_dead_strip plt_System_Reflection_Assembly_op_Equality_System_Reflection_Assembly_System_Reflection_Assembly
 plt_System_Reflection_Assembly_op_Equality_System_Reflection_Assembly_System_Reflection_Assembly:
 _p_2:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 168,426
+	.long _mono_aot_GCDiscreetNotification_got - . + 168,428
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSend_intptr_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSend_intptr_intptr:
 _p_3:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 172,431
+	.long _mono_aot_GCDiscreetNotification_got - . + 172,433
 	.no_dead_strip plt_MonoTouch_Foundation_NSObject_set_Handle_intptr
 plt_MonoTouch_Foundation_NSObject_set_Handle_intptr:
 _p_4:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 176,436
+	.long _mono_aot_GCDiscreetNotification_got - . + 176,438
 	.no_dead_strip plt_MonoTouch_Foundation_NSObject_get_SuperHandle
 plt_MonoTouch_Foundation_NSObject_get_SuperHandle:
 _p_5:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 180,441
+	.long _mono_aot_GCDiscreetNotification_got - . + 180,443
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSendSuper_intptr_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSendSuper_intptr_intptr:
 _p_6:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 184,446
+	.long _mono_aot_GCDiscreetNotification_got - . + 184,448
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSend_IntPtr_intptr_intptr_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSend_IntPtr_intptr_intptr_intptr:
 _p_7:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 188,451
+	.long _mono_aot_GCDiscreetNotification_got - . + 188,453
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSendSuper_IntPtr_intptr_intptr_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSendSuper_IntPtr_intptr_intptr_intptr:
 _p_8:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 192,456
+	.long _mono_aot_GCDiscreetNotification_got - . + 192,458
 	.no_dead_strip plt_MonoTouch_UIKit_UIView__ctor_intptr
 plt_MonoTouch_UIKit_UIView__ctor_intptr:
 _p_9:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 196,461
+	.long _mono_aot_GCDiscreetNotification_got - . + 196,463
 	.no_dead_strip plt_MonoTouch_Foundation_NSString_CreateNative_string
 plt_MonoTouch_Foundation_NSString_CreateNative_string:
 _p_10:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 200,466
+	.long _mono_aot_GCDiscreetNotification_got - . + 200,468
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSend_IntPtr_IntPtr_intptr_intptr_intptr_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSend_IntPtr_IntPtr_intptr_intptr_intptr_intptr:
 _p_11:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 204,471
+	.long _mono_aot_GCDiscreetNotification_got - . + 204,473
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSendSuper_IntPtr_IntPtr_intptr_intptr_intptr_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSendSuper_IntPtr_IntPtr_intptr_intptr_intptr_intptr:
 _p_12:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 208,476
+	.long _mono_aot_GCDiscreetNotification_got - . + 208,478
 	.no_dead_strip plt_MonoTouch_Foundation_NSString_ReleaseNative_intptr
 plt_MonoTouch_Foundation_NSString_ReleaseNative_intptr:
 _p_13:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 212,481
+	.long _mono_aot_GCDiscreetNotification_got - . + 212,483
 	.no_dead_strip plt__jit_icall_mono_helper_ldstr
 plt__jit_icall_mono_helper_ldstr:
 _p_14:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 216,486
+	.long _mono_aot_GCDiscreetNotification_got - . + 216,488
 	.no_dead_strip plt__jit_icall_mono_arch_throw_exception
 plt__jit_icall_mono_arch_throw_exception:
 _p_15:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 220,506
+	.long _mono_aot_GCDiscreetNotification_got - . + 220,508
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSend_IntPtr_bool_IntPtr_intptr_intptr_intptr_bool_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSend_IntPtr_bool_IntPtr_intptr_intptr_intptr_bool_intptr:
 _p_16:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 224,534
+	.long _mono_aot_GCDiscreetNotification_got - . + 224,536
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSendSuper_IntPtr_bool_IntPtr_intptr_intptr_intptr_bool_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_IntPtr_objc_msgSendSuper_IntPtr_bool_IntPtr_intptr_intptr_intptr_bool_intptr:
 _p_17:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 228,539
+	.long _mono_aot_GCDiscreetNotification_got - . + 228,541
 	.no_dead_strip plt_ApiDefinition_Messaging_IntPtr_objc_msgSend_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr
 plt_ApiDefinition_Messaging_IntPtr_objc_msgSend_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr:
 _p_18:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 232,544
+	.long _mono_aot_GCDiscreetNotification_got - . + 232,546
 	.no_dead_strip plt_ApiDefinition_Messaging_IntPtr_objc_msgSendSuper_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr
 plt_ApiDefinition_Messaging_IntPtr_objc_msgSendSuper_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr:
 _p_19:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 236,546
+	.long _mono_aot_GCDiscreetNotification_got - . + 236,548
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Class_GetHandle_string
 plt_MonoTouch_ObjCRuntime_Class_GetHandle_string:
 _p_20:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 240,548
+	.long _mono_aot_GCDiscreetNotification_got - . + 240,550
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSend_intptr_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSend_intptr_intptr:
 _p_21:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 244,553
+	.long _mono_aot_GCDiscreetNotification_got - . + 244,555
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSendSuper_intptr_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSendSuper_intptr_intptr:
 _p_22:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 248,558
+	.long _mono_aot_GCDiscreetNotification_got - . + 248,560
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSend_Double_intptr_intptr_double
 plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSend_Double_intptr_intptr_double:
 _p_23:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 252,563
+	.long _mono_aot_GCDiscreetNotification_got - . + 252,565
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSendSuper_Double_intptr_intptr_double
 plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSendSuper_Double_intptr_intptr_double:
 _p_24:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 256,568
+	.long _mono_aot_GCDiscreetNotification_got - . + 256,570
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSend_bool_intptr_intptr_bool
 plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSend_bool_intptr_intptr_bool:
 _p_25:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 260,573
+	.long _mono_aot_GCDiscreetNotification_got - . + 260,575
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSendSuper_bool_intptr_intptr_bool
 plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSendSuper_bool_intptr_intptr_bool:
 _p_26:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 264,578
+	.long _mono_aot_GCDiscreetNotification_got - . + 264,580
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSend_IntPtr_bool_intptr_intptr_intptr_bool
 plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSend_IntPtr_bool_intptr_intptr_intptr_bool:
 _p_27:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 268,583
+	.long _mono_aot_GCDiscreetNotification_got - . + 268,585
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSendSuper_IntPtr_bool_intptr_intptr_intptr_bool
 plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSendSuper_IntPtr_bool_intptr_intptr_intptr_bool:
 _p_28:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 272,588
+	.long _mono_aot_GCDiscreetNotification_got - . + 272,590
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSend_bool_bool_intptr_intptr_bool_bool
 plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSend_bool_bool_intptr_intptr_bool_bool:
 _p_29:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 276,593
+	.long _mono_aot_GCDiscreetNotification_got - . + 276,595
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSendSuper_bool_bool_intptr_intptr_bool_bool
 plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSendSuper_bool_bool_intptr_intptr_bool_bool:
 _p_30:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 280,598
+	.long _mono_aot_GCDiscreetNotification_got - . + 280,600
 	.no_dead_strip plt_ApiDefinition_Messaging_void_objc_msgSend_IntPtr_bool_bool_intptr_intptr_intptr_bool_bool
 plt_ApiDefinition_Messaging_void_objc_msgSend_IntPtr_bool_bool_intptr_intptr_intptr_bool_bool:
 _p_31:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 284,603
+	.long _mono_aot_GCDiscreetNotification_got - . + 284,605
 	.no_dead_strip plt_ApiDefinition_Messaging_void_objc_msgSendSuper_IntPtr_bool_bool_intptr_intptr_intptr_bool_bool
 plt_ApiDefinition_Messaging_void_objc_msgSendSuper_IntPtr_bool_bool_intptr_intptr_intptr_bool_bool:
 _p_32:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 288,605
+	.long _mono_aot_GCDiscreetNotification_got - . + 288,607
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Runtime_GetNSObject_intptr
 plt_MonoTouch_ObjCRuntime_Runtime_GetNSObject_intptr:
 _p_33:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 292,607
+	.long _mono_aot_GCDiscreetNotification_got - . + 292,609
 	.no_dead_strip plt__jit_icall_mono_arch_throw_corlib_exception
 plt__jit_icall_mono_arch_throw_corlib_exception:
 _p_34:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 296,612
+	.long _mono_aot_GCDiscreetNotification_got - . + 296,614
 	.no_dead_strip plt_MonoTouch_Foundation_NSObject_MarkDirty
 plt_MonoTouch_Foundation_NSObject_MarkDirty:
 _p_35:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 300,647
+	.long _mono_aot_GCDiscreetNotification_got - . + 300,649
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSend_IntPtr_intptr_intptr_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSend_IntPtr_intptr_intptr_intptr:
 _p_36:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 304,652
+	.long _mono_aot_GCDiscreetNotification_got - . + 304,654
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSendSuper_IntPtr_intptr_intptr_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSendSuper_IntPtr_intptr_intptr_intptr:
 _p_37:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 308,657
+	.long _mono_aot_GCDiscreetNotification_got - . + 308,659
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_int_objc_msgSend_intptr_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_int_objc_msgSend_intptr_intptr:
 _p_38:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 312,662
+	.long _mono_aot_GCDiscreetNotification_got - . + 312,664
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_int_objc_msgSendSuper_intptr_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_int_objc_msgSendSuper_intptr_intptr:
 _p_39:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 316,667
+	.long _mono_aot_GCDiscreetNotification_got - . + 316,669
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSend_int_intptr_intptr_int
 plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSend_int_intptr_intptr_int:
 _p_40:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 320,672
+	.long _mono_aot_GCDiscreetNotification_got - . + 320,674
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSendSuper_int_intptr_intptr_int
 plt_MonoTouch_ObjCRuntime_Messaging_void_objc_msgSendSuper_int_intptr_intptr_int:
 _p_41:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 324,677
+	.long _mono_aot_GCDiscreetNotification_got - . + 324,679
 	.no_dead_strip plt_MonoTouch_Foundation_NSString_FromHandle_intptr
 plt_MonoTouch_Foundation_NSString_FromHandle_intptr:
 _p_42:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 328,682
+	.long _mono_aot_GCDiscreetNotification_got - . + 328,684
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_bool_objc_msgSend_intptr_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_bool_objc_msgSend_intptr_intptr:
 _p_43:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 332,687
+	.long _mono_aot_GCDiscreetNotification_got - . + 332,689
 	.no_dead_strip plt_MonoTouch_ObjCRuntime_Messaging_bool_objc_msgSendSuper_intptr_intptr
 plt_MonoTouch_ObjCRuntime_Messaging_bool_objc_msgSendSuper_intptr_intptr:
 _p_44:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 336,692
+	.long _mono_aot_GCDiscreetNotification_got - . + 336,694
 	.no_dead_strip plt_MonoTouch_UIKit_UIView_Dispose_bool
 plt_MonoTouch_UIKit_UIView_Dispose_bool:
 _p_45:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 340,697
+	.long _mono_aot_GCDiscreetNotification_got - . + 340,699
 	.no_dead_strip plt__icall_native__ApiDefinition_Messaging_IntPtr_objc_msgSend_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr
 plt__icall_native__ApiDefinition_Messaging_IntPtr_objc_msgSend_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr:
 _p_46:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 344,702
+	.long _mono_aot_GCDiscreetNotification_got - . + 344,704
 	.no_dead_strip plt__jit_icall_mono_thread_interruption_checkpoint
 plt__jit_icall_mono_thread_interruption_checkpoint:
 _p_47:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 348,704
+	.long _mono_aot_GCDiscreetNotification_got - . + 348,706
 	.no_dead_strip plt__icall_native__ApiDefinition_Messaging_IntPtr_objc_msgSendSuper_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr
 plt__icall_native__ApiDefinition_Messaging_IntPtr_objc_msgSendSuper_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr:
 _p_48:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 352,742
+	.long _mono_aot_GCDiscreetNotification_got - . + 352,744
 	.no_dead_strip plt__icall_native__ApiDefinition_Messaging_void_objc_msgSend_IntPtr_bool_bool_intptr_intptr_intptr_bool_bool
 plt__icall_native__ApiDefinition_Messaging_void_objc_msgSend_IntPtr_bool_bool_intptr_intptr_intptr_bool_bool:
 _p_49:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 356,744
+	.long _mono_aot_GCDiscreetNotification_got - . + 356,746
 	.no_dead_strip plt__icall_native__ApiDefinition_Messaging_void_objc_msgSendSuper_IntPtr_bool_bool_intptr_intptr_intptr_bool_bool
 plt__icall_native__ApiDefinition_Messaging_void_objc_msgSendSuper_IntPtr_bool_bool_intptr_intptr_intptr_bool_bool:
 _p_50:
 
 	.byte 0,192,159,229,12,240,159,231
-	.long _mono_aot_GCDiscreetNotification_got - . + 360,746
+	.long _mono_aot_GCDiscreetNotification_got - . + 360,748
 plt_end:
 .section __TEXT, __const
 	.align 3
@@ -2146,7 +2146,7 @@ _mono_aot_file_info:
 	.align 2
 	.long unbox_trampolines_end
 
-	.long 41,368,51,42,10,118565375,0,1170
+	.long 41,368,51,42,10,118565375,0,1168
 	.long 0,0,0,0,0,0,0,0
 	.long 0,0,0,0,128,4,4,14
 	.globl _mono_aot_module_GCDiscreetNotification_info
@@ -2166,35 +2166,35 @@ blob:
 	.byte 2,15,15,1,4,2,16,16,1,4,2,17,17,1,4,2,18,18,1,4,2,19,19,1,4,2,20,20,1,4,2,21
 	.byte 21,1,4,2,22,22,1,4,1,39,1,3,2,3,40,1,3,2,3,40,1,3,2,3,40,1,3,2,3,40,255,252
 	.byte 0,0,0,6,0,3,255,252,0,0,0,6,0,4,255,252,0,0,0,6,0,5,255,252,0,0,0,6,0,6,12,0
-	.byte 39,42,47,19,0,194,0,0,3,0,16,1,3,5,16,2,70,1,129,110,16,2,123,1,129,249,16,2,123,1,129,250
-	.byte 16,1,4,17,16,1,4,18,16,1,4,19,16,1,4,6,16,1,4,7,16,1,4,8,16,1,4,9,16,1,4,10
-	.byte 16,1,4,11,16,1,4,12,16,1,4,13,16,1,4,14,16,1,4,15,16,1,4,16,16,1,4,20,16,1,4,21
-	.byte 16,1,4,22,16,1,4,23,16,1,4,24,16,1,4,25,16,1,4,26,16,1,4,27,16,1,4,28,16,1,4,29
-	.byte 17,0,131,149,16,1,4,30,11,2,128,168,1,16,2,71,1,129,117,11,2,128,167,1,11,2,128,157,1,16,2,130
-	.byte 58,2,136,3,33,3,193,0,3,57,3,194,0,6,178,3,193,0,2,37,3,193,0,1,95,3,193,0,1,93,3,193
-	.byte 0,2,38,3,193,0,2,39,3,193,0,2,40,3,193,0,3,58,3,193,0,0,197,3,193,0,2,48,3,193,0,2
-	.byte 49,3,193,0,0,198,7,17,109,111,110,111,95,104,101,108,112,101,114,95,108,100,115,116,114,0,7,25,109,111,110,111
-	.byte 95,97,114,99,104,95,116,104,114,111,119,95,101,120,99,101,112,116,105,111,110,0,3,193,0,2,86,3,193,0,2,87
-	.byte 3,3,3,4,3,193,0,2,4,3,193,0,2,27,3,193,0,2,30,3,193,0,2,45,3,193,0,2,46,3,193,0
-	.byte 2,28,3,193,0,2,50,3,193,0,2,57,3,193,0,2,58,3,193,0,2,62,3,193,0,2,63,3,5,3,6,3
-	.byte 193,0,1,165,7,32,109,111,110,111,95,97,114,99,104,95,116,104,114,111,119,95,99,111,114,108,105,98,95,101,120,99
-	.byte 101,112,116,105,111,110,0,3,193,0,1,114,3,193,0,2,41,3,193,0,2,42,3,193,0,2,51,3,193,0,2,52
-	.byte 3,193,0,2,53,3,193,0,2,54,3,193,0,0,200,3,193,0,2,33,3,193,0,2,47,3,193,0,3,79,31,3
-	.byte 7,35,109,111,110,111,95,116,104,114,101,97,100,95,105,110,116,101,114,114,117,112,116,105,111,110,95,99,104,101,99,107
-	.byte 112,111,105,110,116,0,31,4,31,5,31,6,2,0,0,2,19,0,2,38,0,2,56,0,2,79,0,2,79,0,2,100
-	.byte 0,2,125,0,2,128,155,0,2,19,0,2,0,0,2,38,0,2,38,0,2,128,183,0,2,128,204,0,2,128,204,0
-	.byte 2,38,0,2,128,183,0,2,128,225,0,2,128,204,0,2,128,248,0,2,129,20,0,2,129,20,0,2,129,20,0,2
-	.byte 56,0,2,38,0,2,79,0,2,38,0,2,128,225,0,2,38,0,2,128,204,0,2,38,0,2,128,183,0,2,129,42
-	.byte 0,2,129,42,0,2,129,79,0,2,129,79,0,0,128,144,8,0,0,1,23,128,144,12,0,0,4,194,0,14,153,194
-	.byte 0,14,167,194,0,16,146,194,0,14,165,194,0,14,152,194,0,14,125,194,0,14,126,194,0,14,127,194,0,14,128,194
-	.byte 0,14,129,194,0,14,130,194,0,14,131,194,0,14,132,194,0,14,133,194,0,14,134,194,0,14,135,194,0,14,154,194
-	.byte 0,14,136,194,0,14,137,194,0,14,138,194,0,14,139,194,0,14,155,194,0,14,124,4,128,196,2,8,4,0,1,194
-	.byte 0,16,150,194,0,16,147,194,0,16,146,194,0,16,144,55,128,166,14,193,0,1,98,44,100,0,4,193,0,1,106,194
-	.byte 0,16,147,193,0,1,98,194,0,16,144,193,0,1,94,193,0,1,99,37,193,0,1,102,193,0,1,97,15,193,0,2
-	.byte 254,193,0,3,76,193,0,3,66,193,0,3,67,193,0,3,60,193,0,3,68,193,0,3,69,193,0,3,78,193,0,3
-	.byte 77,193,0,3,73,193,0,3,72,193,0,3,71,193,0,3,70,193,0,3,69,193,0,3,68,193,0,3,67,193,0,3
-	.byte 66,193,0,3,65,193,0,3,64,193,0,3,63,193,0,3,62,193,0,3,61,193,0,3,60,193,0,3,59,36,35,34
-	.byte 33,32,31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,98,111,101,104,109,0
+	.byte 39,42,47,19,0,194,0,0,3,0,16,1,3,5,16,2,75,1,129,119,16,2,128,128,1,130,2,16,2,128,128,1
+	.byte 130,3,16,1,4,17,16,1,4,18,16,1,4,19,16,1,4,6,16,1,4,7,16,1,4,8,16,1,4,9,16,1
+	.byte 4,10,16,1,4,11,16,1,4,12,16,1,4,13,16,1,4,14,16,1,4,15,16,1,4,16,16,1,4,20,16,1
+	.byte 4,21,16,1,4,22,16,1,4,23,16,1,4,24,16,1,4,25,16,1,4,26,16,1,4,27,16,1,4,28,16,1
+	.byte 4,29,17,0,131,149,16,1,4,30,11,2,128,175,1,16,2,76,1,129,126,11,2,128,174,1,11,2,128,164,1,16
+	.byte 2,130,61,2,136,5,33,3,193,0,3,101,3,194,0,6,192,3,193,0,2,72,3,193,0,1,131,3,193,0,1,129
+	.byte 3,193,0,2,73,3,193,0,2,74,3,193,0,2,75,3,193,0,3,102,3,193,0,0,224,3,193,0,2,84,3,193
+	.byte 0,2,85,3,193,0,0,225,7,17,109,111,110,111,95,104,101,108,112,101,114,95,108,100,115,116,114,0,7,25,109,111
+	.byte 110,111,95,97,114,99,104,95,116,104,114,111,119,95,101,120,99,101,112,116,105,111,110,0,3,193,0,2,124,3,193,0
+	.byte 2,125,3,3,3,4,3,193,0,2,39,3,193,0,2,62,3,193,0,2,65,3,193,0,2,81,3,193,0,2,82,3
+	.byte 193,0,2,63,3,193,0,2,86,3,193,0,2,93,3,193,0,2,94,3,193,0,2,98,3,193,0,2,99,3,5,3
+	.byte 6,3,193,0,1,201,7,32,109,111,110,111,95,97,114,99,104,95,116,104,114,111,119,95,99,111,114,108,105,98,95,101
+	.byte 120,99,101,112,116,105,111,110,0,3,193,0,1,150,3,193,0,2,76,3,193,0,2,77,3,193,0,2,87,3,193,0
+	.byte 2,88,3,193,0,2,89,3,193,0,2,90,3,193,0,0,227,3,193,0,2,68,3,193,0,2,83,3,193,0,3,122
+	.byte 31,3,7,35,109,111,110,111,95,116,104,114,101,97,100,95,105,110,116,101,114,114,117,112,116,105,111,110,95,99,104,101
+	.byte 99,107,112,111,105,110,116,0,31,4,31,5,31,6,2,0,0,2,19,0,2,38,0,2,56,0,2,79,0,2,79,0
+	.byte 2,100,0,2,125,0,2,128,155,0,2,19,0,2,0,0,2,38,0,2,38,0,2,128,183,0,2,128,204,0,2,128
+	.byte 204,0,2,38,0,2,128,183,0,2,128,225,0,2,128,204,0,2,128,248,0,2,129,20,0,2,129,20,0,2,129,20
+	.byte 0,2,56,0,2,38,0,2,79,0,2,38,0,2,128,225,0,2,38,0,2,128,204,0,2,38,0,2,128,183,0,2
+	.byte 129,42,0,2,129,42,0,2,129,79,0,2,129,79,0,0,128,144,8,0,0,1,23,128,144,12,0,0,4,194,0,14
+	.byte 172,194,0,14,186,194,0,16,171,194,0,14,184,194,0,14,171,194,0,14,144,194,0,14,145,194,0,14,146,194,0,14
+	.byte 147,194,0,14,148,194,0,14,149,194,0,14,150,194,0,14,151,194,0,14,152,194,0,14,153,194,0,14,154,194,0,14
+	.byte 173,194,0,14,155,194,0,14,156,194,0,14,157,194,0,14,158,194,0,14,174,194,0,14,143,4,128,196,2,8,4,0
+	.byte 1,194,0,16,175,194,0,16,172,194,0,16,171,194,0,16,169,54,128,166,14,193,0,1,134,44,100,0,4,193,0,1
+	.byte 142,194,0,16,172,193,0,1,134,194,0,16,169,193,0,1,130,193,0,1,135,37,193,0,1,138,193,0,1,133,15,193
+	.byte 0,3,42,193,0,3,119,193,0,3,109,193,0,3,110,193,0,3,104,193,0,3,111,193,0,3,112,193,0,3,121,193
+	.byte 0,3,120,193,0,3,116,193,0,3,115,193,0,3,114,193,0,3,113,193,0,3,112,193,0,3,111,193,0,3,110,193
+	.byte 0,3,109,193,0,3,108,193,0,3,107,193,0,3,106,193,0,3,105,193,0,3,104,193,0,3,103,36,35,34,33,32
+	.byte 31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,98,111,101,104,109,0
 .section	__DATA,__objc_selrefs,literal_pointers,no_dead_strip
 .align	2
 L_OBJC_SELECTOR_REFERENCES_0:
@@ -3417,7 +3417,7 @@ LTDIE_12:
 	.byte 5
 	.asciz "MonoTouch_UIKit_UILabel"
 
-	.byte 36,16
+	.byte 40,16
 LDIFF_SYM152=LTDIE_3 - Ldebug_info_start
 	.long LDIFF_SYM152
 	.byte 2,35,0,6
@@ -3425,21 +3425,26 @@ LDIFF_SYM152=LTDIE_3 - Ldebug_info_start
 
 LDIFF_SYM153=LDIE_OBJECT - Ldebug_info_start
 	.long LDIFF_SYM153
-	.byte 2,35,32,0,7
+	.byte 2,35,32,6
+	.asciz "__mt_TextColor_var"
+
+LDIFF_SYM154=LDIE_OBJECT - Ldebug_info_start
+	.long LDIFF_SYM154
+	.byte 2,35,36,0,7
 	.asciz "MonoTouch_UIKit_UILabel"
 
-LDIFF_SYM154=LTDIE_12 - Ldebug_info_start
-	.long LDIFF_SYM154
+LDIFF_SYM155=LTDIE_12 - Ldebug_info_start
+	.long LDIFF_SYM155
 LTDIE_12_POINTER:
 
 	.byte 13
-LDIFF_SYM155=LTDIE_12 - Ldebug_info_start
-	.long LDIFF_SYM155
+LDIFF_SYM156=LTDIE_12 - Ldebug_info_start
+	.long LDIFF_SYM156
 LTDIE_12_REFERENCE:
 
 	.byte 14
-LDIFF_SYM156=LTDIE_12 - Ldebug_info_start
-	.long LDIFF_SYM156
+LDIFF_SYM157=LTDIE_12 - Ldebug_info_start
+	.long LDIFF_SYM157
 	.byte 2
 	.asciz "GCDiscreetNotification.GCDiscreetNotificationView:get_Label"
 	.long _GCDiscreetNotification_GCDiscreetNotificationView_get_Label
@@ -3448,27 +3453,27 @@ LDIFF_SYM156=LTDIE_12 - Ldebug_info_start
 	.byte 2,118,16,3
 	.asciz "this"
 
-LDIFF_SYM157=LTDIE_2_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM157
+LDIFF_SYM158=LTDIE_2_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM158
 	.byte 1,90,11
 	.asciz "ret"
 
-LDIFF_SYM158=LTDIE_12_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM158
+LDIFF_SYM159=LTDIE_12_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM159
 	.byte 1,86,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM159=Lfde21_end - Lfde21_start
-	.long LDIFF_SYM159
+LDIFF_SYM160=Lfde21_end - Lfde21_start
+	.long LDIFF_SYM160
 Lfde21_start:
 
 	.long 0
 	.align 2
 	.long _GCDiscreetNotification_GCDiscreetNotificationView_get_Label
 
-LDIFF_SYM160=Lme_19 - _GCDiscreetNotification_GCDiscreetNotificationView_get_Label
-	.long LDIFF_SYM160
+LDIFF_SYM161=Lme_19 - _GCDiscreetNotification_GCDiscreetNotificationView_get_Label
+	.long LDIFF_SYM161
 	.byte 12,13,0,72,14,8,135,2,68,14,24,133,6,134,5,136,4,138,3,142,1
 	.align 2
 Lfde21_end:
@@ -3480,23 +3485,23 @@ LTDIE_13:
 	.asciz "MonoTouch_UIKit_UIActivityIndicatorView"
 
 	.byte 32,16
-LDIFF_SYM161=LTDIE_3 - Ldebug_info_start
-	.long LDIFF_SYM161
+LDIFF_SYM162=LTDIE_3 - Ldebug_info_start
+	.long LDIFF_SYM162
 	.byte 2,35,0,0,7
 	.asciz "MonoTouch_UIKit_UIActivityIndicatorView"
 
-LDIFF_SYM162=LTDIE_13 - Ldebug_info_start
-	.long LDIFF_SYM162
+LDIFF_SYM163=LTDIE_13 - Ldebug_info_start
+	.long LDIFF_SYM163
 LTDIE_13_POINTER:
 
 	.byte 13
-LDIFF_SYM163=LTDIE_13 - Ldebug_info_start
-	.long LDIFF_SYM163
+LDIFF_SYM164=LTDIE_13 - Ldebug_info_start
+	.long LDIFF_SYM164
 LTDIE_13_REFERENCE:
 
 	.byte 14
-LDIFF_SYM164=LTDIE_13 - Ldebug_info_start
-	.long LDIFF_SYM164
+LDIFF_SYM165=LTDIE_13 - Ldebug_info_start
+	.long LDIFF_SYM165
 	.byte 2
 	.asciz "GCDiscreetNotification.GCDiscreetNotificationView:get_ActivityIndicator"
 	.long _GCDiscreetNotification_GCDiscreetNotificationView_get_ActivityIndicator
@@ -3505,27 +3510,27 @@ LDIFF_SYM164=LTDIE_13 - Ldebug_info_start
 	.byte 2,118,16,3
 	.asciz "this"
 
-LDIFF_SYM165=LTDIE_2_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM165
+LDIFF_SYM166=LTDIE_2_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM166
 	.byte 1,90,11
 	.asciz "ret"
 
-LDIFF_SYM166=LTDIE_13_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM166
+LDIFF_SYM167=LTDIE_13_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM167
 	.byte 1,86,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM167=Lfde22_end - Lfde22_start
-	.long LDIFF_SYM167
+LDIFF_SYM168=Lfde22_end - Lfde22_start
+	.long LDIFF_SYM168
 Lfde22_start:
 
 	.long 0
 	.align 2
 	.long _GCDiscreetNotification_GCDiscreetNotificationView_get_ActivityIndicator
 
-LDIFF_SYM168=Lme_1a - _GCDiscreetNotification_GCDiscreetNotificationView_get_ActivityIndicator
-	.long LDIFF_SYM168
+LDIFF_SYM169=Lme_1a - _GCDiscreetNotification_GCDiscreetNotificationView_get_ActivityIndicator
+	.long LDIFF_SYM169
 	.byte 12,13,0,72,14,8,135,2,68,14,24,133,6,134,5,136,4,138,3,142,1
 	.align 2
 Lfde22_end:
@@ -3540,27 +3545,27 @@ Lfde22_end:
 	.byte 2,118,16,3
 	.asciz "this"
 
-LDIFF_SYM169=LTDIE_2_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM169
+LDIFF_SYM170=LTDIE_2_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM170
 	.byte 1,90,11
 	.asciz "ret"
 
-LDIFF_SYM170=LTDIE_3_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM170
+LDIFF_SYM171=LTDIE_3_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM171
 	.byte 1,86,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM171=Lfde23_end - Lfde23_start
-	.long LDIFF_SYM171
+LDIFF_SYM172=Lfde23_end - Lfde23_start
+	.long LDIFF_SYM172
 Lfde23_start:
 
 	.long 0
 	.align 2
 	.long _GCDiscreetNotification_GCDiscreetNotificationView_get_View
 
-LDIFF_SYM172=Lme_1b - _GCDiscreetNotification_GCDiscreetNotificationView_get_View
-	.long LDIFF_SYM172
+LDIFF_SYM173=Lme_1b - _GCDiscreetNotification_GCDiscreetNotificationView_get_View
+	.long LDIFF_SYM173
 	.byte 12,13,0,72,14,8,135,2,68,14,24,133,6,134,5,136,4,138,3,142,1
 	.align 2
 Lfde23_end:
@@ -3575,27 +3580,27 @@ Lfde23_end:
 	.byte 2,118,16,3
 	.asciz "this"
 
-LDIFF_SYM173=LTDIE_2_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM173
+LDIFF_SYM174=LTDIE_2_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM174
 	.byte 1,86,3
 	.asciz "value"
 
-LDIFF_SYM174=LTDIE_3_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM174
+LDIFF_SYM175=LTDIE_3_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM175
 	.byte 1,90,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM175=Lfde24_end - Lfde24_start
-	.long LDIFF_SYM175
+LDIFF_SYM176=Lfde24_end - Lfde24_start
+	.long LDIFF_SYM176
 Lfde24_start:
 
 	.long 0
 	.align 2
 	.long _GCDiscreetNotification_GCDiscreetNotificationView_set_View_MonoTouch_UIKit_UIView
 
-LDIFF_SYM176=Lme_1c - _GCDiscreetNotification_GCDiscreetNotificationView_set_View_MonoTouch_UIKit_UIView
-	.long LDIFF_SYM176
+LDIFF_SYM177=Lme_1c - _GCDiscreetNotification_GCDiscreetNotificationView_set_View_MonoTouch_UIKit_UIView
+	.long LDIFF_SYM177
 	.byte 12,13,0,72,14,8,135,2,68,14,20,134,5,136,4,138,3,142,1,68,14,24
 	.align 2
 Lfde24_end:
@@ -3610,22 +3615,22 @@ Lfde24_end:
 	.byte 2,118,16,3
 	.asciz "this"
 
-LDIFF_SYM177=LTDIE_2_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM177
+LDIFF_SYM178=LTDIE_2_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM178
 	.byte 1,90,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM178=Lfde25_end - Lfde25_start
-	.long LDIFF_SYM178
+LDIFF_SYM179=Lfde25_end - Lfde25_start
+	.long LDIFF_SYM179
 Lfde25_start:
 
 	.long 0
 	.align 2
 	.long _GCDiscreetNotification_GCDiscreetNotificationView_get_PresentationMode
 
-LDIFF_SYM179=Lme_1d - _GCDiscreetNotification_GCDiscreetNotificationView_get_PresentationMode
-	.long LDIFF_SYM179
+LDIFF_SYM180=Lme_1d - _GCDiscreetNotification_GCDiscreetNotificationView_get_PresentationMode
+	.long LDIFF_SYM180
 	.byte 12,13,0,72,14,8,135,2,68,14,16,136,4,138,3,142,1
 	.align 2
 Lfde25_end:
@@ -3640,27 +3645,27 @@ Lfde25_end:
 	.byte 2,118,16,3
 	.asciz "this"
 
-LDIFF_SYM180=LTDIE_2_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM180
+LDIFF_SYM181=LTDIE_2_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM181
 	.byte 1,86,3
 	.asciz "value"
 
-LDIFF_SYM181=LTDIE_10 - Ldebug_info_start
-	.long LDIFF_SYM181
+LDIFF_SYM182=LTDIE_10 - Ldebug_info_start
+	.long LDIFF_SYM182
 	.byte 2,125,0,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM182=Lfde26_end - Lfde26_start
-	.long LDIFF_SYM182
+LDIFF_SYM183=Lfde26_end - Lfde26_start
+	.long LDIFF_SYM183
 Lfde26_start:
 
 	.long 0
 	.align 2
 	.long _GCDiscreetNotification_GCDiscreetNotificationView_set_PresentationMode_GCDiscreetNotification_GCDNPresentationMode
 
-LDIFF_SYM183=Lme_1e - _GCDiscreetNotification_GCDiscreetNotificationView_set_PresentationMode_GCDiscreetNotification_GCDNPresentationMode
-	.long LDIFF_SYM183
+LDIFF_SYM184=Lme_1e - _GCDiscreetNotification_GCDiscreetNotificationView_set_PresentationMode_GCDiscreetNotification_GCDNPresentationMode
+	.long LDIFF_SYM184
 	.byte 12,13,0,72,14,8,135,2,68,14,16,134,4,136,3,142,1,68,14,24
 	.align 2
 Lfde26_end:
@@ -3675,22 +3680,22 @@ Lfde26_end:
 	.byte 2,118,16,3
 	.asciz "this"
 
-LDIFF_SYM184=LTDIE_2_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM184
+LDIFF_SYM185=LTDIE_2_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM185
 	.byte 1,90,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM185=Lfde27_end - Lfde27_start
-	.long LDIFF_SYM185
+LDIFF_SYM186=Lfde27_end - Lfde27_start
+	.long LDIFF_SYM186
 Lfde27_start:
 
 	.long 0
 	.align 2
 	.long _GCDiscreetNotification_GCDiscreetNotificationView_get_TextLabel
 
-LDIFF_SYM186=Lme_1f - _GCDiscreetNotification_GCDiscreetNotificationView_get_TextLabel
-	.long LDIFF_SYM186
+LDIFF_SYM187=Lme_1f - _GCDiscreetNotification_GCDiscreetNotificationView_get_TextLabel
+	.long LDIFF_SYM187
 	.byte 12,13,0,72,14,8,135,2,68,14,16,136,4,138,3,142,1
 	.align 2
 Lfde27_end:
@@ -3705,32 +3710,32 @@ Lfde27_end:
 	.byte 2,118,16,3
 	.asciz "this"
 
-LDIFF_SYM187=LTDIE_2_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM187
+LDIFF_SYM188=LTDIE_2_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM188
 	.byte 1,86,3
 	.asciz "value"
 
-LDIFF_SYM188=LDIE_STRING - Ldebug_info_start
-	.long LDIFF_SYM188
+LDIFF_SYM189=LDIE_STRING - Ldebug_info_start
+	.long LDIFF_SYM189
 	.byte 2,125,0,11
 	.asciz "nsvalue"
 
-LDIFF_SYM189=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM189
+LDIFF_SYM190=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM190
 	.byte 1,85,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM190=Lfde28_end - Lfde28_start
-	.long LDIFF_SYM190
+LDIFF_SYM191=Lfde28_end - Lfde28_start
+	.long LDIFF_SYM191
 Lfde28_start:
 
 	.long 0
 	.align 2
 	.long _GCDiscreetNotification_GCDiscreetNotificationView_set_TextLabel_string
 
-LDIFF_SYM191=Lme_20 - _GCDiscreetNotification_GCDiscreetNotificationView_set_TextLabel_string
-	.long LDIFF_SYM191
+LDIFF_SYM192=Lme_20 - _GCDiscreetNotification_GCDiscreetNotificationView_set_TextLabel_string
+	.long LDIFF_SYM192
 	.byte 12,13,0,72,14,8,135,2,68,14,20,133,5,134,4,136,3,142,1,68,14,32
 	.align 2
 Lfde28_end:
@@ -3745,22 +3750,22 @@ Lfde28_end:
 	.byte 2,118,16,3
 	.asciz "this"
 
-LDIFF_SYM192=LTDIE_2_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM192
+LDIFF_SYM193=LTDIE_2_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM193
 	.byte 1,90,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM193=Lfde29_end - Lfde29_start
-	.long LDIFF_SYM193
+LDIFF_SYM194=Lfde29_end - Lfde29_start
+	.long LDIFF_SYM194
 Lfde29_start:
 
 	.long 0
 	.align 2
 	.long _GCDiscreetNotification_GCDiscreetNotificationView_get_ShowActivity
 
-LDIFF_SYM194=Lme_21 - _GCDiscreetNotification_GCDiscreetNotificationView_get_ShowActivity
-	.long LDIFF_SYM194
+LDIFF_SYM195=Lme_21 - _GCDiscreetNotification_GCDiscreetNotificationView_get_ShowActivity
+	.long LDIFF_SYM195
 	.byte 12,13,0,72,14,8,135,2,68,14,16,136,4,138,3,142,1
 	.align 2
 Lfde29_end:
@@ -3775,27 +3780,27 @@ Lfde29_end:
 	.byte 2,118,16,3
 	.asciz "this"
 
-LDIFF_SYM195=LTDIE_2_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM195
+LDIFF_SYM196=LTDIE_2_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM196
 	.byte 1,90,3
 	.asciz "value"
 
-LDIFF_SYM196=LDIE_BOOLEAN - Ldebug_info_start
-	.long LDIFF_SYM196
+LDIFF_SYM197=LDIE_BOOLEAN - Ldebug_info_start
+	.long LDIFF_SYM197
 	.byte 2,125,0,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM197=Lfde30_end - Lfde30_start
-	.long LDIFF_SYM197
+LDIFF_SYM198=Lfde30_end - Lfde30_start
+	.long LDIFF_SYM198
 Lfde30_start:
 
 	.long 0
 	.align 2
 	.long _GCDiscreetNotification_GCDiscreetNotificationView_set_ShowActivity_bool
 
-LDIFF_SYM198=Lme_22 - _GCDiscreetNotification_GCDiscreetNotificationView_set_ShowActivity_bool
-	.long LDIFF_SYM198
+LDIFF_SYM199=Lme_22 - _GCDiscreetNotification_GCDiscreetNotificationView_set_ShowActivity_bool
+	.long LDIFF_SYM199
 	.byte 12,13,0,72,14,8,135,2,68,14,16,136,4,138,3,142,1,68,14,24
 	.align 2
 Lfde30_end:
@@ -3810,22 +3815,22 @@ Lfde30_end:
 	.byte 2,118,16,3
 	.asciz "this"
 
-LDIFF_SYM199=LTDIE_2_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM199
+LDIFF_SYM200=LTDIE_2_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM200
 	.byte 1,90,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM200=Lfde31_end - Lfde31_start
-	.long LDIFF_SYM200
+LDIFF_SYM201=Lfde31_end - Lfde31_start
+	.long LDIFF_SYM201
 Lfde31_start:
 
 	.long 0
 	.align 2
 	.long _GCDiscreetNotification_GCDiscreetNotificationView_get_Showing
 
-LDIFF_SYM201=Lme_23 - _GCDiscreetNotification_GCDiscreetNotificationView_get_Showing
-	.long LDIFF_SYM201
+LDIFF_SYM202=Lme_23 - _GCDiscreetNotification_GCDiscreetNotificationView_get_Showing
+	.long LDIFF_SYM202
 	.byte 12,13,0,72,14,8,135,2,68,14,16,136,4,138,3,142,1
 	.align 2
 Lfde31_end:
@@ -3840,27 +3845,27 @@ Lfde31_end:
 	.byte 2,118,16,3
 	.asciz "this"
 
-LDIFF_SYM202=LTDIE_2_REFERENCE - Ldebug_info_start
-	.long LDIFF_SYM202
+LDIFF_SYM203=LTDIE_2_REFERENCE - Ldebug_info_start
+	.long LDIFF_SYM203
 	.byte 1,90,3
 	.asciz "disposing"
 
-LDIFF_SYM203=LDIE_BOOLEAN - Ldebug_info_start
-	.long LDIFF_SYM203
+LDIFF_SYM204=LDIE_BOOLEAN - Ldebug_info_start
+	.long LDIFF_SYM204
 	.byte 2,125,8,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM204=Lfde32_end - Lfde32_start
-	.long LDIFF_SYM204
+LDIFF_SYM205=Lfde32_end - Lfde32_start
+	.long LDIFF_SYM205
 Lfde32_start:
 
 	.long 0
 	.align 2
 	.long _GCDiscreetNotification_GCDiscreetNotificationView_Dispose_bool
 
-LDIFF_SYM205=Lme_24 - _GCDiscreetNotification_GCDiscreetNotificationView_Dispose_bool
-	.long LDIFF_SYM205
+LDIFF_SYM206=Lme_24 - _GCDiscreetNotification_GCDiscreetNotificationView_Dispose_bool
+	.long LDIFF_SYM206
 	.byte 12,13,0,72,14,8,135,2,68,14,16,136,4,138,3,142,1,68,14,32
 	.align 2
 Lfde32_end:
@@ -3872,28 +3877,28 @@ LTDIE_14:
 	.asciz "System_Int32"
 
 	.byte 12,16
-LDIFF_SYM206=LTDIE_7 - Ldebug_info_start
-	.long LDIFF_SYM206
+LDIFF_SYM207=LTDIE_7 - Ldebug_info_start
+	.long LDIFF_SYM207
 	.byte 2,35,0,6
 	.asciz "m_value"
 
-LDIFF_SYM207=LDIE_I4 - Ldebug_info_start
-	.long LDIFF_SYM207
+LDIFF_SYM208=LDIE_I4 - Ldebug_info_start
+	.long LDIFF_SYM208
 	.byte 2,35,8,0,7
 	.asciz "System_Int32"
 
-LDIFF_SYM208=LTDIE_14 - Ldebug_info_start
-	.long LDIFF_SYM208
+LDIFF_SYM209=LTDIE_14 - Ldebug_info_start
+	.long LDIFF_SYM209
 LTDIE_14_POINTER:
 
 	.byte 13
-LDIFF_SYM209=LTDIE_14 - Ldebug_info_start
-	.long LDIFF_SYM209
+LDIFF_SYM210=LTDIE_14 - Ldebug_info_start
+	.long LDIFF_SYM210
 LTDIE_14_REFERENCE:
 
 	.byte 14
-LDIFF_SYM210=LTDIE_14 - Ldebug_info_start
-	.long LDIFF_SYM210
+LDIFF_SYM211=LTDIE_14 - Ldebug_info_start
+	.long LDIFF_SYM211
 	.byte 2
 	.asciz "(wrapper managed-to-native) ApiDefinition.Messaging:IntPtr_objc_msgSend_IntPtr_bool_int_IntPtr"
 	.long _wrapper_managed_to_native_ApiDefinition_Messaging_IntPtr_objc_msgSend_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr
@@ -3902,72 +3907,72 @@ LDIFF_SYM210=LTDIE_14 - Ldebug_info_start
 	.byte 2,118,16,3
 	.asciz "param0"
 
-LDIFF_SYM211=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM211
+LDIFF_SYM212=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM212
 	.byte 2,123,12,3
 	.asciz "param1"
 
-LDIFF_SYM212=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM212
+LDIFF_SYM213=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM213
 	.byte 2,123,16,3
 	.asciz "param2"
 
-LDIFF_SYM213=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM213
+LDIFF_SYM214=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM214
 	.byte 2,123,20,3
 	.asciz "param3"
 
-LDIFF_SYM214=LDIE_BOOLEAN - Ldebug_info_start
-	.long LDIFF_SYM214
+LDIFF_SYM215=LDIE_BOOLEAN - Ldebug_info_start
+	.long LDIFF_SYM215
 	.byte 2,123,24,3
 	.asciz "param4"
 
-LDIFF_SYM215=LDIE_I4 - Ldebug_info_start
-	.long LDIFF_SYM215
+LDIFF_SYM216=LDIE_I4 - Ldebug_info_start
+	.long LDIFF_SYM216
 	.byte 2,123,28,3
 	.asciz "param5"
 
-LDIFF_SYM216=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM216
+LDIFF_SYM217=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM217
 	.byte 2,123,32,11
 	.asciz "V_0"
-
-LDIFF_SYM217=LDIE_I4 - Ldebug_info_start
-	.long LDIFF_SYM217
-	.byte 0,11
-	.asciz "V_1"
 
 LDIFF_SYM218=LDIE_I4 - Ldebug_info_start
 	.long LDIFF_SYM218
 	.byte 0,11
-	.asciz "V_2"
+	.asciz "V_1"
 
 LDIFF_SYM219=LDIE_I4 - Ldebug_info_start
 	.long LDIFF_SYM219
 	.byte 0,11
+	.asciz "V_2"
+
+LDIFF_SYM220=LDIE_I4 - Ldebug_info_start
+	.long LDIFF_SYM220
+	.byte 0,11
 	.asciz "V_3"
 
-LDIFF_SYM220=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM220
+LDIFF_SYM221=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM221
 	.byte 2,123,8,11
 	.asciz "V_4"
 
-LDIFF_SYM221=LDIE_I4 - Ldebug_info_start
-	.long LDIFF_SYM221
+LDIFF_SYM222=LDIE_I4 - Ldebug_info_start
+	.long LDIFF_SYM222
 	.byte 1,86,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM222=Lfde33_end - Lfde33_start
-	.long LDIFF_SYM222
+LDIFF_SYM223=Lfde33_end - Lfde33_start
+	.long LDIFF_SYM223
 Lfde33_start:
 
 	.long 0
 	.align 2
 	.long _wrapper_managed_to_native_ApiDefinition_Messaging_IntPtr_objc_msgSend_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr
 
-LDIFF_SYM223=Lme_26 - _wrapper_managed_to_native_ApiDefinition_Messaging_IntPtr_objc_msgSend_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr
-	.long LDIFF_SYM223
+LDIFF_SYM224=Lme_26 - _wrapper_managed_to_native_ApiDefinition_Messaging_IntPtr_objc_msgSend_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr
+	.long LDIFF_SYM224
 	.byte 12,13,0,72,14,8,135,2,72,14,48,132,12,133,11,134,10,136,8,137,7,138,6,139,5,140,4,142,3,68,14,128
 	.byte 1,68,13,11
 	.align 2
@@ -3983,72 +3988,72 @@ Lfde33_end:
 	.byte 2,118,16,3
 	.asciz "param0"
 
-LDIFF_SYM224=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM224
+LDIFF_SYM225=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM225
 	.byte 2,123,12,3
 	.asciz "param1"
 
-LDIFF_SYM225=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM225
+LDIFF_SYM226=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM226
 	.byte 2,123,16,3
 	.asciz "param2"
 
-LDIFF_SYM226=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM226
+LDIFF_SYM227=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM227
 	.byte 2,123,20,3
 	.asciz "param3"
 
-LDIFF_SYM227=LDIE_BOOLEAN - Ldebug_info_start
-	.long LDIFF_SYM227
+LDIFF_SYM228=LDIE_BOOLEAN - Ldebug_info_start
+	.long LDIFF_SYM228
 	.byte 2,123,24,3
 	.asciz "param4"
 
-LDIFF_SYM228=LDIE_I4 - Ldebug_info_start
-	.long LDIFF_SYM228
+LDIFF_SYM229=LDIE_I4 - Ldebug_info_start
+	.long LDIFF_SYM229
 	.byte 2,123,28,3
 	.asciz "param5"
 
-LDIFF_SYM229=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM229
+LDIFF_SYM230=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM230
 	.byte 2,123,32,11
 	.asciz "V_0"
-
-LDIFF_SYM230=LDIE_I4 - Ldebug_info_start
-	.long LDIFF_SYM230
-	.byte 0,11
-	.asciz "V_1"
 
 LDIFF_SYM231=LDIE_I4 - Ldebug_info_start
 	.long LDIFF_SYM231
 	.byte 0,11
-	.asciz "V_2"
+	.asciz "V_1"
 
 LDIFF_SYM232=LDIE_I4 - Ldebug_info_start
 	.long LDIFF_SYM232
 	.byte 0,11
+	.asciz "V_2"
+
+LDIFF_SYM233=LDIE_I4 - Ldebug_info_start
+	.long LDIFF_SYM233
+	.byte 0,11
 	.asciz "V_3"
 
-LDIFF_SYM233=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM233
+LDIFF_SYM234=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM234
 	.byte 2,123,8,11
 	.asciz "V_4"
 
-LDIFF_SYM234=LDIE_I4 - Ldebug_info_start
-	.long LDIFF_SYM234
+LDIFF_SYM235=LDIE_I4 - Ldebug_info_start
+	.long LDIFF_SYM235
 	.byte 1,86,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM235=Lfde34_end - Lfde34_start
-	.long LDIFF_SYM235
+LDIFF_SYM236=Lfde34_end - Lfde34_start
+	.long LDIFF_SYM236
 Lfde34_start:
 
 	.long 0
 	.align 2
 	.long _wrapper_managed_to_native_ApiDefinition_Messaging_IntPtr_objc_msgSendSuper_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr
 
-LDIFF_SYM236=Lme_27 - _wrapper_managed_to_native_ApiDefinition_Messaging_IntPtr_objc_msgSendSuper_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr
-	.long LDIFF_SYM236
+LDIFF_SYM237=Lme_27 - _wrapper_managed_to_native_ApiDefinition_Messaging_IntPtr_objc_msgSendSuper_IntPtr_bool_int_IntPtr_intptr_intptr_intptr_bool_int_intptr
+	.long LDIFF_SYM237
 	.byte 12,13,0,72,14,8,135,2,72,14,48,132,12,133,11,134,10,136,8,137,7,138,6,139,5,140,4,142,3,68,14,128
 	.byte 1,68,13,11
 	.align 2
@@ -4064,67 +4069,67 @@ Lfde34_end:
 	.byte 2,118,16,3
 	.asciz "param0"
 
-LDIFF_SYM237=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM237
+LDIFF_SYM238=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM238
 	.byte 2,123,8,3
 	.asciz "param1"
 
-LDIFF_SYM238=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM238
+LDIFF_SYM239=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM239
 	.byte 2,123,12,3
 	.asciz "param2"
 
-LDIFF_SYM239=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM239
+LDIFF_SYM240=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM240
 	.byte 2,123,16,3
 	.asciz "param3"
 
-LDIFF_SYM240=LDIE_BOOLEAN - Ldebug_info_start
-	.long LDIFF_SYM240
+LDIFF_SYM241=LDIE_BOOLEAN - Ldebug_info_start
+	.long LDIFF_SYM241
 	.byte 2,123,20,3
 	.asciz "param4"
 
-LDIFF_SYM241=LDIE_BOOLEAN - Ldebug_info_start
-	.long LDIFF_SYM241
+LDIFF_SYM242=LDIE_BOOLEAN - Ldebug_info_start
+	.long LDIFF_SYM242
 	.byte 2,123,24,11
 	.asciz "V_0"
-
-LDIFF_SYM242=LDIE_I4 - Ldebug_info_start
-	.long LDIFF_SYM242
-	.byte 0,11
-	.asciz "V_1"
 
 LDIFF_SYM243=LDIE_I4 - Ldebug_info_start
 	.long LDIFF_SYM243
 	.byte 0,11
-	.asciz "V_2"
+	.asciz "V_1"
 
 LDIFF_SYM244=LDIE_I4 - Ldebug_info_start
 	.long LDIFF_SYM244
 	.byte 0,11
-	.asciz "V_3"
+	.asciz "V_2"
 
 LDIFF_SYM245=LDIE_I4 - Ldebug_info_start
 	.long LDIFF_SYM245
-	.byte 1,84,11
-	.asciz "V_4"
+	.byte 0,11
+	.asciz "V_3"
 
 LDIFF_SYM246=LDIE_I4 - Ldebug_info_start
 	.long LDIFF_SYM246
+	.byte 1,84,11
+	.asciz "V_4"
+
+LDIFF_SYM247=LDIE_I4 - Ldebug_info_start
+	.long LDIFF_SYM247
 	.byte 1,90,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM247=Lfde35_end - Lfde35_start
-	.long LDIFF_SYM247
+LDIFF_SYM248=Lfde35_end - Lfde35_start
+	.long LDIFF_SYM248
 Lfde35_start:
 
 	.long 0
 	.align 2
 	.long _wrapper_managed_to_native_ApiDefinition_Messaging_void_objc_msgSend_IntPtr_bool_bool_intptr_intptr_intptr_bool_bool
 
-LDIFF_SYM248=Lme_28 - _wrapper_managed_to_native_ApiDefinition_Messaging_void_objc_msgSend_IntPtr_bool_bool_intptr_intptr_intptr_bool_bool
-	.long LDIFF_SYM248
+LDIFF_SYM249=Lme_28 - _wrapper_managed_to_native_ApiDefinition_Messaging_void_objc_msgSend_IntPtr_bool_bool_intptr_intptr_intptr_bool_bool
+	.long LDIFF_SYM249
 	.byte 12,13,0,72,14,8,135,2,72,14,48,132,12,133,11,134,10,136,8,137,7,138,6,139,5,140,4,142,3,68,14,120
 	.byte 68,13,11
 	.align 2
@@ -4140,67 +4145,67 @@ Lfde35_end:
 	.byte 2,118,16,3
 	.asciz "param0"
 
-LDIFF_SYM249=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM249
+LDIFF_SYM250=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM250
 	.byte 2,123,8,3
 	.asciz "param1"
 
-LDIFF_SYM250=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM250
+LDIFF_SYM251=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM251
 	.byte 2,123,12,3
 	.asciz "param2"
 
-LDIFF_SYM251=LDIE_I - Ldebug_info_start
-	.long LDIFF_SYM251
+LDIFF_SYM252=LDIE_I - Ldebug_info_start
+	.long LDIFF_SYM252
 	.byte 2,123,16,3
 	.asciz "param3"
 
-LDIFF_SYM252=LDIE_BOOLEAN - Ldebug_info_start
-	.long LDIFF_SYM252
+LDIFF_SYM253=LDIE_BOOLEAN - Ldebug_info_start
+	.long LDIFF_SYM253
 	.byte 2,123,20,3
 	.asciz "param4"
 
-LDIFF_SYM253=LDIE_BOOLEAN - Ldebug_info_start
-	.long LDIFF_SYM253
+LDIFF_SYM254=LDIE_BOOLEAN - Ldebug_info_start
+	.long LDIFF_SYM254
 	.byte 2,123,24,11
 	.asciz "V_0"
-
-LDIFF_SYM254=LDIE_I4 - Ldebug_info_start
-	.long LDIFF_SYM254
-	.byte 0,11
-	.asciz "V_1"
 
 LDIFF_SYM255=LDIE_I4 - Ldebug_info_start
 	.long LDIFF_SYM255
 	.byte 0,11
-	.asciz "V_2"
+	.asciz "V_1"
 
 LDIFF_SYM256=LDIE_I4 - Ldebug_info_start
 	.long LDIFF_SYM256
 	.byte 0,11
-	.asciz "V_3"
+	.asciz "V_2"
 
 LDIFF_SYM257=LDIE_I4 - Ldebug_info_start
 	.long LDIFF_SYM257
-	.byte 1,84,11
-	.asciz "V_4"
+	.byte 0,11
+	.asciz "V_3"
 
 LDIFF_SYM258=LDIE_I4 - Ldebug_info_start
 	.long LDIFF_SYM258
+	.byte 1,84,11
+	.asciz "V_4"
+
+LDIFF_SYM259=LDIE_I4 - Ldebug_info_start
+	.long LDIFF_SYM259
 	.byte 1,90,0
 
 .section __DWARF, __debug_frame,regular,debug
 
-LDIFF_SYM259=Lfde36_end - Lfde36_start
-	.long LDIFF_SYM259
+LDIFF_SYM260=Lfde36_end - Lfde36_start
+	.long LDIFF_SYM260
 Lfde36_start:
 
 	.long 0
 	.align 2
 	.long _wrapper_managed_to_native_ApiDefinition_Messaging_void_objc_msgSendSuper_IntPtr_bool_bool_intptr_intptr_intptr_bool_bool
 
-LDIFF_SYM260=Lme_29 - _wrapper_managed_to_native_ApiDefinition_Messaging_void_objc_msgSendSuper_IntPtr_bool_bool_intptr_intptr_intptr_bool_bool
-	.long LDIFF_SYM260
+LDIFF_SYM261=Lme_29 - _wrapper_managed_to_native_ApiDefinition_Messaging_void_objc_msgSendSuper_IntPtr_bool_bool_intptr_intptr_intptr_bool_bool
+	.long LDIFF_SYM261
 	.byte 12,13,0,72,14,8,135,2,72,14,48,132,12,133,11,134,10,136,8,137,7,138,6,139,5,140,4,142,3,68,14,120
 	.byte 68,13,11
 	.align 2

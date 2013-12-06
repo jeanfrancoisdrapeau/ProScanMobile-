@@ -103,7 +103,10 @@ namespace ProScanMobile
 			var filename = Path.Combine (documents, f);
 
 			_fileOut = new FileStream (filename, FileMode.Create);
+
 			_writeToFile = true;
+
+			Console.WriteLine ("------ DID PrepareOutputToFile");
 		}
 
 		public void StopOutputToFile()
@@ -114,6 +117,8 @@ namespace ProScanMobile
 				_fileOut.Close ();
 				_fileOut.Dispose ();
 			}
+
+			Console.WriteLine ("----- DID StopOutputToFile");
 		}
 
 		public void processData(byte[] message, int messageLength)
@@ -177,8 +182,10 @@ namespace ProScanMobile
 
 					_streamingPlayer.ParseBytes (outbuf, m_frameSize, true);
 
-					if (_writeToFile)
+					if (_writeToFile) {
 						_fileOut.Write (outbuf, 0, m_frameSize);
+					Console.WriteLine ("----- DID WRITETOFILE");
+					}
 
 				} else {
 					// The 4 left-most bytes are not a header

@@ -239,6 +239,7 @@ namespace ProScanMobile
 			btnRec.Layer.MasksToBounds = true;
 			btnRec.ClipsToBounds = true;
 			btnRec.SetImage(UIImage.FromBundle("Images/rec_activate_button.jpg"), UIControlState.Normal);
+			btnRec.SetImage(UIImage.FromBundle("Images/rec_deactivate_button.jpg"), UIControlState.Selected);
 			btnRec.TouchUpInside += btnRecTouchUpInside_Event;
 
 			// Play button
@@ -663,6 +664,9 @@ namespace ProScanMobile
 					_scannerAudio = new ScannerAudio ();
 					_scannerScreen = new ScannerScreen ();
 
+					if (_recordAudio) 
+						_scannerAudio.PrepareOutputToFile ();
+
 					_startTime = DateTime.Now;
 					_timerCounter = DateTime.Now;
 					_timer.Start ();
@@ -691,26 +695,23 @@ namespace ProScanMobile
 		{
 			_recordAudio = _recordAudio == true ? false : true;
 
-			string img = string.Empty;
 			if (_recordAudio) {
 				if (_scannerAudio != null) {
 					_scannerAudio.PrepareOutputToFile ();
 				}
-					
-				img = "rec_deactivate_button.jpg";
 			} else {
 				if (_scannerAudio != null) {
 					_scannerAudio.StopOutputToFile ();
 				}
-
-				img = "rec_activate_button.jpg";
 			}
-			btnRec.SetImage(UIImage.FromBundle("Images/" + img), UIControlState.Normal);
+			btnRec.Selected = _recordAudio;
 		}
 
 		private void btnStopTouchUpInside_Event(object sender, EventArgs e)
 		{
 			_soundDisconnected.PlaySystemSound ();
+
+			_scannerAudio.StopOutputToFile ();
 
 			_timer.Stop ();
 
@@ -722,6 +723,8 @@ namespace ProScanMobile
 
 			networkConnection.Close ();
 			networkConnection.closeDone.WaitOne ();
+
+			lblRecording.Text = string.Empty;
 
 			btnPlay.Enabled = true;
 			btnStop.Enabled = false;
