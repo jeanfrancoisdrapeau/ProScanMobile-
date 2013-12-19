@@ -1,0 +1,8 @@
+<map id="ProScanMobile.vcMainScreen.messageBoxShow" name="ProScanMobile.vcMainScreen.messageBoxShow">
+<area shape="rect" id="node2" href="$class_pro_scan_mobile_1_1vc_main_screen.html#a44b4e3c5d3064bb11497009afafd443c" title="ProScanMobile.vcMainScreen.btn\lScannerTouchUpInside_Event" alt="" coords="611,63,834,105"/>
+<area shape="rect" id="node5" href="$class_pro_scan_mobile_1_1vc_main_screen.html#a4302f14fe763abbfc8c76ca0e4449057" title="ProScanMobile.vcMainScreen.connect\lToHostAndBeginPlayback" alt="" coords="312,129,563,170"/>
+<area shape="rect" id="node7" href="$class_pro_scan_mobile_1_1vc_main_screen.html#a494c1341f7373a01bbc6fcea082108d0" title="ProScanMobile.vcMainScreen.timer\lElapsed" alt="" coords="321,5,554,46"/>
+<area shape="rect" id="node3" href="$class_pro_scan_mobile_1_1vc_main_screen.html#a2c4009952bdf9a3da0c81c836ee273c3" title="ProScanMobile.vcMainScreen.init\lInterface" alt="" coords="883,97,1104,138"/>
+<area shape="rect" id="node4" href="$class_pro_scan_mobile_1_1vc_main_screen.html#addeb6f027f32ef219faaf3875da59ada" title="ProScanMobile.vcMainScreen.\lViewDidLoad" alt="" coords="1153,142,1357,183"/>
+<area shape="rect" id="node6" href="$class_pro_scan_mobile_1_1vc_main_screen.html#a227826ee412ebba541fc60619dd75f04" title="ProScanMobile.vcMainScreen.btn\lPlayTouchUpInside_Event" alt="" coords="611,129,834,170"/>
+</map>

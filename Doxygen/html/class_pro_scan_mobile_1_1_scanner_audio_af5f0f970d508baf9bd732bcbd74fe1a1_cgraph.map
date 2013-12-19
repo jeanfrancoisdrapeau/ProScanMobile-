@@ -1,0 +1,13 @@
+<map id="ProScanMobile.ScannerAudio.processData" name="ProScanMobile.ScannerAudio.processData">
+<area shape="rect" id="node2" href="$class_pro_scan_mobile_1_1_scanner_audio.html#ad0d1fa9f0d27db865258464b0afb67ff" title="ProScanMobile.ScannerAudio.is\lValidHeader" alt="" coords="352,233,565,274"/>
+<area shape="rect" id="node11" href="$class_pro_scan_mobile_1_1_read_write_buffer.html#a1220f96aede4304e1815b03e55855f77" title="ProScanMobile.ReadWriteBuffer.Read" alt="" coords="333,299,584,325"/>
+<area shape="rect" id="node12" href="$class_pro_scan_mobile_1_1_scanner_audio.html#abf42cfe5717721739c9f6f079f8ff4a0" title="ProScanMobile.ScannerAudio.get\lFrameSize" alt="" coords="347,350,570,391"/>
+<area shape="rect" id="node3" href="$class_pro_scan_mobile_1_1_scanner_audio.html#ad22380f3bd22e30e3bee5dac0adc204c" title="ProScanMobile.ScannerAudio.get\lFrameSync" alt="" coords="633,5,855,46"/>
+<area shape="rect" id="node4" href="$class_pro_scan_mobile_1_1_scanner_audio.html#a6f70008948bc5e113e7d157f1c4dbc41" title="ProScanMobile.ScannerAudio.get\lVersionIndex" alt="" coords="633,70,855,111"/>
+<area shape="rect" id="node5" href="$class_pro_scan_mobile_1_1_scanner_audio.html#a5d1f5e4c03cdc1ca5a1ae577df0b1309" title="ProScanMobile.ScannerAudio.get\lLayerIndex" alt="" coords="633,135,855,177"/>
+<area shape="rect" id="node6" href="$class_pro_scan_mobile_1_1_scanner_audio.html#ae2664b8f6a2eef69fbe280fec4ea03e9" title="ProScanMobile.ScannerAudio.get\lBitrateIndex" alt="" coords="633,201,855,242"/>
+<area shape="rect" id="node7" href="$class_pro_scan_mobile_1_1_scanner_audio.html#a6d666a6b757a89ae3b75d272ef154e08" title="ProScanMobile.ScannerAudio.get\lProtectionIndex" alt="" coords="633,266,855,307"/>
+<area shape="rect" id="node8" href="$class_pro_scan_mobile_1_1_scanner_audio.html#a28f8ba38aa6667d0c2a13180700d2564" title="ProScanMobile.ScannerAudio.get\lOriginalIndex" alt="" coords="633,331,855,373"/>
+<area shape="rect" id="node9" href="$class_pro_scan_mobile_1_1_scanner_audio.html#a3cd192966bfa388b0d9a72f408c67f7d" title="ProScanMobile.ScannerAudio.get\lEmphasisIndex" alt="" coords="633,397,855,438"/>
+<area shape="rect" id="node10" href="$class_pro_scan_mobile_1_1_scanner_audio.html#af9bd70f505ed924eba89fbbef20d5aab" title="ProScanMobile.ScannerAudio.get\lFrequencyIndex" alt="" coords="633,462,855,503"/>
+</map>

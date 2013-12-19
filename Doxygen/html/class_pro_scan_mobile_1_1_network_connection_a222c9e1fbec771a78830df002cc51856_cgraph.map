@@ -1,0 +1,9 @@
+<map id="ProScanMobile.NetworkConnection.Login" name="ProScanMobile.NetworkConnection.Login">
+<area shape="rect" id="node2" href="$class_pro_scan_mobile_1_1_network_connection.html#a9e9909205cd8025e1453548986f90cdf" title="Send the specified message to the TCP socket. " alt="" coords="291,48,557,75"/>
+<area shape="rect" id="node4" href="$class_pro_scan_mobile_1_1_network_connection.html#ac32dfe0dd604e5edee730a24afc8ce48" title="Receive data on the TCP connection " alt="" coords="306,135,542,177"/>
+<area shape="rect" id="node6" href="$class_pro_scan_mobile_1_1_network_connection.html#abec8d2a02c642618c0d6c85e64994634" title="Bytes to string " alt="" coords="934,133,1202,174"/>
+<area shape="rect" id="node8" href="$class_pro_scan_mobile_1_1_read_write_buffer.html#a1220f96aede4304e1815b03e55855f77" title="ProScanMobile.ReadWriteBuffer.Read" alt="" coords="299,252,549,279"/>
+<area shape="rect" id="node3" href="$class_pro_scan_mobile_1_1_network_connection.html#a7663e9e189d67c1c7f8a6f538add0f39" title="Send callback " alt="" coords="613,5,878,46"/>
+<area shape="rect" id="node5" href="$class_pro_scan_mobile_1_1_network_connection.html#a55001590c9fa7987ee279e6e8a2c5d7f" title="Callback method to receive a HTTP response " alt="" coords="606,70,885,111"/>
+<area shape="rect" id="node7" href="$class_pro_scan_mobile_1_1_network_connection.html#aaf3181bb8fa7ba8cecfe5c370391957a" title="Callback method to receive DATA " alt="" coords="606,135,885,177"/>
+</map>

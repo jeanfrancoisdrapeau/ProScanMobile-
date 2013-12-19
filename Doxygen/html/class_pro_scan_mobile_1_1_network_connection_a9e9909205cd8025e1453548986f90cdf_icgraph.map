@@ -1,0 +1,4 @@
+<map id="ProScanMobile.NetworkConnection.Send" name="ProScanMobile.NetworkConnection.Send">
+<area shape="rect" id="node2" href="$class_pro_scan_mobile_1_1_network_connection.html#a222c9e1fbec771a78830df002cc51856" title="Send login message to a PSM server " alt="" coords="321,5,557,46"/>
+<area shape="rect" id="node3" href="$class_pro_scan_mobile_1_1_network_connection.html#ab3102cf9e24372b296b5ded2fc528304" title="Send logout message to a PSM server " alt="" coords="321,70,557,111"/>
+</map>

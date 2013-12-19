@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Threading;
 using System.Net;
 using System.IO;
+using System.Xml;
 using System.Xml.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -13,6 +14,9 @@ using GCDiscreetNotification;
 
 namespace ProScanMobile
 {
+	/// <summary>
+	/// Class of the Options Screen
+	/// </summary>
 	public partial class vcOptionsScreen : UIViewController
 	{
 		GCDiscreetNotificationView notificationView;
@@ -226,13 +230,13 @@ namespace ProScanMobile
 					if (line != null) {
 						string[] str = line.Split (',');
 						ServerDetails sd = new ServerDetails ();
-						sd.host = str [0].Substring (3);
-						sd.port = str [1].Substring (5);
-						sd.desc =    str [2].Substring (5);
-						sd.country = str [13];
-						sd.state = str [14];
-						sd.county = str [15];
-						sd.open = str [7].Substring (6);
+						sd.host = str [0].Substring (3).Trim();
+						sd.port = str [1].Substring (5).Trim();
+						sd.desc = str [2].Substring (5).Trim();
+						sd.country = str [13].Trim();
+						sd.state = str [14].Trim();
+						sd.county = str [15].Trim();
+						sd.open = str [7].Substring (6).Trim();
 						s.ServerList.Add (sd);
 					}
 				} while (line != null);
@@ -275,10 +279,27 @@ namespace ProScanMobile
 			var documents = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
 			var filename = Path.Combine (documents, "proscanmobile_servers.xml");
 
+			Servers s_tmp = new Servers ();
+			s_tmp.ServerList = new List<ServerDetails> ();
+
+			foreach (ServerDetails sd_tmp in s.ServerList) {
+				s_tmp.ServerList.Add (new ServerDetails () {
+					host = XmlConvert.EncodeName(sd_tmp.host),
+					port = XmlConvert.EncodeName(sd_tmp.port),
+					desc = XmlConvert.EncodeName(sd_tmp.desc),
+					country = XmlConvert.EncodeName(sd_tmp.country),
+					state = XmlConvert.EncodeName(sd_tmp.state),
+					county = XmlConvert.EncodeName(sd_tmp.county),
+					open = XmlConvert.EncodeName(sd_tmp.open)
+				});
+			}
+
 			XmlSerializer serializer = new XmlSerializer (typeof(Servers));
 			TextWriter textWriter = new StreamWriter (filename);
-			serializer.Serialize (textWriter, s);
+			serializer.Serialize (textWriter, s_tmp);
 			textWriter.Close ();
+
+			s_tmp = null;
 
 			si = new Settings ();
 			si.SettingsList = new List<SettingsDetails> ();
@@ -309,10 +330,29 @@ namespace ProScanMobile
 
 				stripIllegalXMLChars (filename);
 
+				Servers s_tmp = new Servers ();
+
 				XmlSerializer deserializer = new XmlSerializer (typeof(Servers));
 				TextReader textReader = new StreamReader (filename, Encoding.UTF8);
-				s = (Servers)deserializer.Deserialize (textReader);
+				s_tmp = (Servers)deserializer.Deserialize (textReader);
 				textReader.Close ();
+
+				s = new Servers ();
+				s.ServerList = new List<ServerDetails> ();
+
+				foreach (ServerDetails sd_tmp in s_tmp.ServerList) {
+					s.ServerList.Add (new ServerDetails () {
+						host = XmlConvert.DecodeName(sd_tmp.host),
+						port = XmlConvert.DecodeName(sd_tmp.port),
+						desc = XmlConvert.DecodeName(sd_tmp.desc),
+						country = XmlConvert.DecodeName(sd_tmp.country),
+						state = XmlConvert.DecodeName(sd_tmp.state),
+						county = XmlConvert.DecodeName(sd_tmp.county),
+						open = XmlConvert.DecodeName(sd_tmp.open)
+					});
+				}
+
+				s_tmp = null;
 			}
 
 			filename = Path.Combine (documents, "proscanmobile_settings.xml");

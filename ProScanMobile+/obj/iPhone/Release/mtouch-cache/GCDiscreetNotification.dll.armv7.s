@@ -16,7 +16,7 @@ Ldebug_info_begin:
 	.short 2
 	.long 0
 	.byte 4,1
-	.asciz "Mono AOT Compiler 3.2.3 (mtvs-1.8-series/bfa7186 Mon Nov 11 15:53:20 EST 2013)"
+	.asciz "Mono AOT Compiler 3.2.3 (mtvs-1.8-series/50d4088 Mon Dec  2 19:53:19 EST 2013)"
 	.asciz "JITted code"
 	.asciz ""
 
@@ -2057,7 +2057,7 @@ image_table:
 
 	.long 1,0,0,0,0
 	.asciz "mscorlib"
-	.asciz "E3F22CEB-454B-4F21-8D65-5E22A00B8616"
+	.asciz "5C44A156-FD9D-4BF1-9123-1097987FD38B"
 	.asciz ""
 	.asciz "7cec85d7bea7798e"
 	.align 3

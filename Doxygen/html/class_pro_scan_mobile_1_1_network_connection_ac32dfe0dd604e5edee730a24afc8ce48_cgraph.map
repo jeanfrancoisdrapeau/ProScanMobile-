@@ -1,0 +1,5 @@
+<map id="ProScanMobile.NetworkConnection.Receive" name="ProScanMobile.NetworkConnection.Receive">
+<area shape="rect" id="node2" href="$class_pro_scan_mobile_1_1_network_connection.html#a55001590c9fa7987ee279e6e8a2c5d7f" title="Callback method to receive a HTTP response " alt="" coords="291,5,570,46"/>
+<area shape="rect" id="node4" href="$class_pro_scan_mobile_1_1_network_connection.html#aaf3181bb8fa7ba8cecfe5c370391957a" title="Callback method to receive DATA " alt="" coords="291,70,570,111"/>
+<area shape="rect" id="node3" href="$class_pro_scan_mobile_1_1_network_connection.html#abec8d2a02c642618c0d6c85e64994634" title="Bytes to string " alt="" coords="619,5,887,46"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="ProScanMobile.StreamingPlaybackV2.Start" name="ProScanMobile.StreamingPlaybackV2.Start">
+<area shape="rect" id="node2" href="$class_pro_scan_mobile_1_1_streaming_playback_v2.html#aa974970f0eb250f20dafabb9497dd88a" title="ProScanMobile.StreamingPlayback\lV2.StreamPropertyListenerProc" alt="" coords="286,5,517,46"/>
+<area shape="rect" id="node4" href="$class_pro_scan_mobile_1_1_streaming_playback_v2.html#a9ca4791ff29560dbec89cdf96a7eccf5" title="ProScanMobile.StreamingPlayback\lV2.StreamPacketsProc" alt="" coords="286,70,517,111"/>
+<area shape="rect" id="node3" href="$class_pro_scan_mobile_1_1_streaming_playback_v2.html#a3cf4c47bb8caa1533f2b0aecf18e1974" title="ProScanMobile.StreamingPlayback\lV2.HandleOutputCompleted" alt="" coords="566,5,797,46"/>
+</map>

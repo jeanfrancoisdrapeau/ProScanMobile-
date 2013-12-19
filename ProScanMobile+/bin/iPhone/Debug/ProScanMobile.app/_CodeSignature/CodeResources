@@ -40,9 +40,25 @@
 		<data>
 		DLz8D6+LFL+Y4BAHWIbI3hVeVdA=
 		</data>
+		<key>Images/folder_button.png</key>
+		<data>
+		kcOWe7ftuWy2EPVgAyO33TqBSuA=
+		</data>
 		<key>Images/green_button.jpg</key>
 		<data>
 		cOJDA+PNu3gdr+cMfrBdhbBPR/g=
+		</data>
+		<key>Images/network_button.png</key>
+		<data>
+		GMMooODSC4Dtua5KsUtuVKdK7Cg=
+		</data>
+		<key>Images/rec_activate_button.jpg</key>
+		<data>
+		NUhDe42Y/2f9sjcm7QFM7T7nP8s=
+		</data>
+		<key>Images/rec_deactivate_button.jpg</key>
+		<data>
+		Zg5oBRXg31FGpLbojfaRkiYTiuc=
 		</data>
 		<key>Images/red_button.jpg</key>
 		<data>
@@ -164,6 +180,10 @@
 		<data>
 		8UMOy9TP+hCuRFB0kjH8Rk1NUYc=
 		</data>
+		<key>Images/slider_thumb.png</key>
+		<data>
+		Er8Mav353MNOy4Raorhnq5Nl198=
+		</data>
 		<key>Images/state_off.png</key>
 		<data>
 		xlypTpe5u6gFheV0DZG6i3m1JV8=
@@ -174,7 +194,7 @@
 		</data>
 		<key>MonoTouchDebugConfiguration.txt</key>
 		<data>
-		CHpicDyUwmA0So63bmtoFvmxd8w=
+		NHHWdiIwj2P6lUCjwATdcOmlOfw=
 		</data>
 		<key>NOTICE</key>
 		<data>
@@ -186,11 +206,11 @@
 		</data>
 		<key>ProScanMobile.exe</key>
 		<data>
-		V+d83BKYSVtnEn/Li5jO1S8IIQM=
+		5K3BGADor1CgJzfVJixY7+ws99c=
 		</data>
 		<key>ProScanMobile.exe.mdb</key>
 		<data>
-		HXAs65jIMb4kkFYE58nsAFEb2MI=
+		UsznZgt8gvBwQ2HI5bWclYzW1wQ=
 		</data>
 		<key>Settings.bundle/Root.plist</key>
 		<data>
@@ -206,27 +226,27 @@
 		</data>
 		<key>System.Core.dll</key>
 		<data>
-		oQfNuceFGS9iOFp+zTTrLj3xToI=
+		r2EKJonLz3868uN59BDs7U3tE7Y=
 		</data>
 		<key>System.Core.dll.mdb</key>
 		<data>
-		3FnpdEaNy5pEeuiuJzm/zascUJM=
+		ho/+4VzDdkf6uV9GyRsYQP3CtKo=
 		</data>
 		<key>System.Xml.dll</key>
 		<data>
-		xkquEyEvZXyrOmuLnoGEOX71FmA=
+		BcJBBXTBiohQOOxXotmw87+TYTw=
 		</data>
 		<key>System.Xml.dll.mdb</key>
 		<data>
-		28e8UEQK7PQfUdsLletm0aBGbb4=
+		6QlaB0jmeKRZyPcw7CvwBL3r13M=
 		</data>
 		<key>System.dll</key>
 		<data>
-		v2sXxk7Gc3Rtc/6usGJUPVJ+7hM=
+		2g6rsLjTZyHjrv2U3ajTv9hy64Q=
 		</data>
 		<key>System.dll.mdb</key>
 		<data>
-		UdvHUGSR4CmpPyoM2qUlBJj/ot4=
+		NrUI7Ev6oFptq/cTtEtQS5m4AlM=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
@@ -238,19 +258,19 @@
 		</data>
 		<key>monotouch.dll</key>
 		<data>
-		wtmCciHIQpfq7waG30ZsaWbwQEw=
+		jD/w45BePgnbnBjxOWh0GQWvcls=
 		</data>
 		<key>monotouch.dll.mdb</key>
 		<data>
-		ChpLUK5HZAs5sh5/Kje2R6za1SY=
+		Y1ix7HVVXn4KWPLyxirqvKHqpuI=
 		</data>
 		<key>mscorlib.dll</key>
 		<data>
-		DnbKwYX7zOVwATzepCERdBM/HoM=
+		mTX36xVVMgE7AB0SQVbjJLTgFTU=
 		</data>
 		<key>mscorlib.dll.mdb</key>
 		<data>
-		PKXpN/nwjIMLiuj4k0Qi3ygjcps=
+		87imIJ3PqRAq7xVTsFHCMUWgYMY=
 		</data>
 		<key>vcMainScreen.nib</key>
 		<data>
@@ -259,6 +279,10 @@
 		<key>vcOptionsScreen.nib</key>
 		<data>
 		Cb2xZ9U/llg73VZEYG4U51dzgKk=
+		</data>
+		<key>vcRecordingsScreen.nib</key>
+		<data>
+		AE+Noj8ZONtoVsgHLJAS4IjfGfM=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -299,9 +323,25 @@
 		<data>
 		DLz8D6+LFL+Y4BAHWIbI3hVeVdA=
 		</data>
+		<key>Images/folder_button.png</key>
+		<data>
+		kcOWe7ftuWy2EPVgAyO33TqBSuA=
+		</data>
 		<key>Images/green_button.jpg</key>
 		<data>
 		cOJDA+PNu3gdr+cMfrBdhbBPR/g=
+		</data>
+		<key>Images/network_button.png</key>
+		<data>
+		GMMooODSC4Dtua5KsUtuVKdK7Cg=
+		</data>
+		<key>Images/rec_activate_button.jpg</key>
+		<data>
+		NUhDe42Y/2f9sjcm7QFM7T7nP8s=
+		</data>
+		<key>Images/rec_deactivate_button.jpg</key>
+		<data>
+		Zg5oBRXg31FGpLbojfaRkiYTiuc=
 		</data>
 		<key>Images/red_button.jpg</key>
 		<data>
@@ -423,6 +463,10 @@
 		<data>
 		8UMOy9TP+hCuRFB0kjH8Rk1NUYc=
 		</data>
+		<key>Images/slider_thumb.png</key>
+		<data>
+		Er8Mav353MNOy4Raorhnq5Nl198=
+		</data>
 		<key>Images/state_off.png</key>
 		<data>
 		xlypTpe5u6gFheV0DZG6i3m1JV8=
@@ -433,7 +477,7 @@
 		</data>
 		<key>MonoTouchDebugConfiguration.txt</key>
 		<data>
-		CHpicDyUwmA0So63bmtoFvmxd8w=
+		NHHWdiIwj2P6lUCjwATdcOmlOfw=
 		</data>
 		<key>NOTICE</key>
 		<data>
@@ -445,11 +489,11 @@
 		</data>
 		<key>ProScanMobile.exe</key>
 		<data>
-		V+d83BKYSVtnEn/Li5jO1S8IIQM=
+		5K3BGADor1CgJzfVJixY7+ws99c=
 		</data>
 		<key>ProScanMobile.exe.mdb</key>
 		<data>
-		HXAs65jIMb4kkFYE58nsAFEb2MI=
+		UsznZgt8gvBwQ2HI5bWclYzW1wQ=
 		</data>
 		<key>Settings.bundle/Root.plist</key>
 		<data>
@@ -465,27 +509,27 @@
 		</data>
 		<key>System.Core.dll</key>
 		<data>
-		oQfNuceFGS9iOFp+zTTrLj3xToI=
+		r2EKJonLz3868uN59BDs7U3tE7Y=
 		</data>
 		<key>System.Core.dll.mdb</key>
 		<data>
-		3FnpdEaNy5pEeuiuJzm/zascUJM=
+		ho/+4VzDdkf6uV9GyRsYQP3CtKo=
 		</data>
 		<key>System.Xml.dll</key>
 		<data>
-		xkquEyEvZXyrOmuLnoGEOX71FmA=
+		BcJBBXTBiohQOOxXotmw87+TYTw=
 		</data>
 		<key>System.Xml.dll.mdb</key>
 		<data>
-		28e8UEQK7PQfUdsLletm0aBGbb4=
+		6QlaB0jmeKRZyPcw7CvwBL3r13M=
 		</data>
 		<key>System.dll</key>
 		<data>
-		v2sXxk7Gc3Rtc/6usGJUPVJ+7hM=
+		2g6rsLjTZyHjrv2U3ajTv9hy64Q=
 		</data>
 		<key>System.dll.mdb</key>
 		<data>
-		UdvHUGSR4CmpPyoM2qUlBJj/ot4=
+		NrUI7Ev6oFptq/cTtEtQS5m4AlM=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
@@ -497,19 +541,19 @@
 		</data>
 		<key>monotouch.dll</key>
 		<data>
-		wtmCciHIQpfq7waG30ZsaWbwQEw=
+		jD/w45BePgnbnBjxOWh0GQWvcls=
 		</data>
 		<key>monotouch.dll.mdb</key>
 		<data>
-		ChpLUK5HZAs5sh5/Kje2R6za1SY=
+		Y1ix7HVVXn4KWPLyxirqvKHqpuI=
 		</data>
 		<key>mscorlib.dll</key>
 		<data>
-		DnbKwYX7zOVwATzepCERdBM/HoM=
+		mTX36xVVMgE7AB0SQVbjJLTgFTU=
 		</data>
 		<key>mscorlib.dll.mdb</key>
 		<data>
-		PKXpN/nwjIMLiuj4k0Qi3ygjcps=
+		87imIJ3PqRAq7xVTsFHCMUWgYMY=
 		</data>
 		<key>vcMainScreen.nib</key>
 		<data>
@@ -518,6 +562,10 @@
 		<key>vcOptionsScreen.nib</key>
 		<data>
 		Cb2xZ9U/llg73VZEYG4U51dzgKk=
+		</data>
+		<key>vcRecordingsScreen.nib</key>
+		<data>
+		AE+Noj8ZONtoVsgHLJAS4IjfGfM=
 		</data>
 	</dict>
 	<key>rules</key>

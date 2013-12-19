@@ -48,6 +48,12 @@ namespace ProScanMobile
 			ContentView.Add (progressBar);
 		}
 
+		/// <summary>
+		/// Updates the cell.
+		/// </summary>
+		/// <description>
+		/// </description>
+		/// <param name="fileName">File name.</param>
 		public void UpdateCell (string fileName)
 		{
 			fileNameLabel.Text = fileName;

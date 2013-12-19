@@ -9,6 +9,9 @@ using MonoTouch.AVFoundation;
 
 namespace ProScanMobile
 {
+	/// <summary>
+	/// Class of the Recorder Screen
+	/// </summary>
 	public partial class vcRecordingsScreen : UIViewController
 	{
 		UITableView _tvMp3;

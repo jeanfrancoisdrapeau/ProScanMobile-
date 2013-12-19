@@ -1,0 +1,5 @@
+<map id="ProScanMobile.Reachability.LocalWifiConnectionStatus" name="ProScanMobile.Reachability.LocalWifiConnectionStatus">
+<area shape="rect" id="node2" href="$class_pro_scan_mobile_1_1_reachability.html#ad7f64d749016ef75443dbc2cde45c107" title="ProScanMobile.Reachability.\lIsAdHocWiFiNetworkAvailable" alt="" coords="245,38,448,79"/>
+<area shape="rect" id="node3" href="$class_pro_scan_mobile_1_1_reachability.html#a854967333b240923de24a1a299907ac9" title="ProScanMobile.Reachability.\lOnChange" alt="" coords="533,5,725,46"/>
+<area shape="rect" id="node4" href="$class_pro_scan_mobile_1_1_reachability.html#aca4e5642fbc69da6495be1c6e51baec7" title="ProScanMobile.Reachability.\lIsReachableWithoutRequiringConnection" alt="" coords="497,70,762,111"/>
+</map>

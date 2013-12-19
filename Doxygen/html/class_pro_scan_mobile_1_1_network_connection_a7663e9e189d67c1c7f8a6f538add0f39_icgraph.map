@@ -1,0 +1,5 @@
+<map id="ProScanMobile.NetworkConnection.sendCallback" name="ProScanMobile.NetworkConnection.sendCallback">
+<area shape="rect" id="node2" href="$class_pro_scan_mobile_1_1_network_connection.html#a9e9909205cd8025e1453548986f90cdf" title="Send the specified message to the TCP socket. " alt="" coords="320,45,587,72"/>
+<area shape="rect" id="node3" href="$class_pro_scan_mobile_1_1_network_connection.html#a222c9e1fbec771a78830df002cc51856" title="Send login message to a PSM server " alt="" coords="635,5,871,46"/>
+<area shape="rect" id="node4" href="$class_pro_scan_mobile_1_1_network_connection.html#ab3102cf9e24372b296b5ded2fc528304" title="Send logout message to a PSM server " alt="" coords="635,70,871,111"/>
+</map>

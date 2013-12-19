@@ -9,7 +9,13 @@ using System.Net;
 using System.Threading;
 
 namespace ProScanMobile
-{
+{	
+	/// <summary>
+	/// Class for the Network connection.
+	/// </summary>
+	/// <description>
+	/// This class is used to maintain a connection to a PSM server
+	/// </description>
 	public class NetworkConnection
 	{
 		private Socket _tcpSocket;
@@ -98,6 +104,14 @@ namespace ProScanMobile
 
 		private const string CONST_HTTP_OK = "HTTP/1.0 200 OK";
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ProScanMobile.NetworkConnection"/> class.
+		/// </summary>
+		/// <description>
+		/// Creates a new _tcpSocket and tries to connect to Host/Port 
+		/// </description>
+		/// <param name="host">Host</param>
+		/// <param name="port">Port</param>
 		public NetworkConnection (string host, int port)
 		{
 			_connectDone.Reset ();
@@ -141,6 +155,16 @@ namespace ProScanMobile
 			}
 		}
 
+		/// <summary>
+		/// Send login message to a PSM server
+		/// </summary>
+		/// <description>
+		/// You can login to a PSM server in two ways:
+		/// 1. Anonymous : You will only hear the scanner sound playback and see the scanner screen.
+		/// 2. Admin : You will have full control over the scanner
+		/// </description>
+		/// <param name="m">Message</param>
+		/// <seealso cref="ProScanMobile.Encryption"/>
 		public void Login(string m)
 		{
 			_loginDone.Reset ();
@@ -182,6 +206,17 @@ namespace ProScanMobile
 			_loginDone.Set ();
 		}
 
+		/// <summary>
+		/// Send logout message to a PSM server
+		/// </summary>
+		/// <description>
+		/// This method sends a message to the PSM server to logout.
+		/// This is usually followed by <see cref="Close"/>
+		/// </description>
+		/// <param name="m">Message</param>
+		/// <example>
+		/// LogOut("STARTDAT 00026 PS05 ENDDAT"): Typical logout message
+		/// </example>
 		public void LogOut(string m)
 		{
 			_logoutDone.Reset ();
@@ -195,6 +230,12 @@ namespace ProScanMobile
 			_logoutDone.Set ();
 		}
 
+		/// <summary>
+		/// Close this instance.
+		/// </summary>
+		/// <description>
+		/// Close the connection to the PSM server
+		/// </description>
 		public void Close()
 		{
 			_closeDone.Reset ();
@@ -217,6 +258,15 @@ namespace ProScanMobile
 			_closeDone.Set ();
 		}
 
+		/// <summary>
+		/// Receive data on the TCP connection
+		/// </summary>
+		/// <description>
+		/// This method has two sections based on what we want to receive (<see cref="ReceiveType"/>)
+		/// 1. HTTP : We want to receive a HTTP response from the server
+		/// 2. DATA : We are waiting data from the server
+		/// </description>
+		/// <param name="rt">Receive Type</param>
 		private void Receive(ReceiveType rt) 
 		{
 			_receiveDone.Reset ();
@@ -236,6 +286,10 @@ namespace ProScanMobile
 			}
 		}
 
+		/// <summary>
+		/// Callback method to receive a HTTP response
+		/// </summary>
+		/// <param name="ar">Async Result</param>
 		private void receiveCallBackHttp( IAsyncResult ar ) {
 			try {
 				StateObject state = (StateObject) ar.AsyncState;
@@ -257,6 +311,10 @@ namespace ProScanMobile
 			}
 		}
 
+		/// <summary>
+		/// Callback method to receive DATA
+		/// </summary>
+		/// <param name="ar">Async Result</param>
 		private void receiveCallBackData( IAsyncResult ar ) {
 			try {
 				_receiveDataStatus = SendStatus.Ok;
@@ -293,6 +351,10 @@ namespace ProScanMobile
 			}
 		}
 
+		/// <summary>
+		/// Send the specified message to the TCP socket.
+		/// </summary>
+		/// <param name="m">Message</param>
 		public void Send(string m)
 		{
 			_sendDone.Reset ();
@@ -303,6 +365,10 @@ namespace ProScanMobile
 				new AsyncCallback(sendCallback), _tcpSocket);
 		}
 
+		/// <summary>
+		/// Send callback
+		/// </summary>
+		/// <param name="ar">Async Result</param>
 		private void sendCallback(IAsyncResult ar) 
 		{
 			try
@@ -320,12 +386,27 @@ namespace ProScanMobile
 			}
 		}
 
+		/// <summary>
+		/// Bytes to string
+		/// </summary>
+		/// <description>
+		/// Converts a bytes array to a string
+		/// </description>
+		/// <returns>ASCII encoded string</returns>
+		/// <param name="b">Bytes array</param>
 		private string bytesTostring(byte[] b)
 		{
 			// Return a string encoded byte array
 			return System.Text.Encoding.ASCII.GetString (b);
 		}
 
+		/// <summary>
+		/// Updates the network status
+		/// </summary>
+		/// <description>
+		/// Check for network errors/connectivity
+		/// </description>
+		/// <see cref="ProScanMobile.Reachability"/>
 		private void updateNetworkStatus ()
 		{
 			_remoteHostStatus = Reachability.RemoteHostStatus ();

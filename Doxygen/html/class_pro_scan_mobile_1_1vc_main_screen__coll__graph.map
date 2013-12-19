@@ -1,0 +1,11 @@
+<map id="ProScanMobile.vcMainScreen" name="ProScanMobile.vcMainScreen">
+<area shape="rect" id="node6" href="$class_pro_scan_mobile_1_1vc_options_screen.html" title="Class of the Options Screen " alt="" coords="442,150,659,176"/>
+<area shape="rect" id="node3" href="$class_pro_scan_mobile_1_1_scanner_audio.html" title="ProScanMobile.ScannerAudio" alt="" coords="451,292,651,319"/>
+<area shape="rect" id="node4" href="$class_pro_scan_mobile_1_1_streaming_playback_v2.html" title="ProScanMobile.StreamingPlaybackV2" alt="" coords="6,299,253,326"/>
+<area shape="rect" id="node5" href="$class_pro_scan_mobile_1_1_read_write_buffer.html" title="ProScanMobile.ReadWriteBuffer" alt="" coords="22,366,237,392"/>
+<area shape="rect" id="node11" href="$class_pro_scan_mobile_1_1_network_connection.html" title="Class for the Network connection. " alt="" coords="435,343,667,370"/>
+<area shape="rect" id="node8" href="$class_pro_scan_mobile_1_1_encryption.html" title="Class for the Encryption. " alt="" coords="40,116,219,143"/>
+<area shape="rect" id="node9" href="$class_pro_scan_mobile_1_1vc_options_screen_1_1_settings.html" title="ProScanMobile.vcOptionsScreen.\lSettings" alt="" coords="19,168,240,209"/>
+<area shape="rect" id="node10" href="$class_pro_scan_mobile_1_1vc_options_screen_1_1_servers.html" title="ProScanMobile.vcOptionsScreen.\lServers" alt="" coords="19,233,240,274"/>
+<area shape="rect" id="node12" href="$class_pro_scan_mobile_1_1_scanner_screen.html" title="ProScanMobile.ScannerScreen" alt="" coords="447,394,655,420"/>
+</map>

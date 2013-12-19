@@ -1,0 +1,7 @@
+<map id="ProScanMobile.CustomRecCell.clearPlayer" name="ProScanMobile.CustomRecCell.clearPlayer">
+<area shape="rect" id="node2" href="$class_pro_scan_mobile_1_1_custom_rec_cell.html#a05028863d8a16d4549220917c16a2244" title="ProScanMobile.CustomRecCell.audio\lPlayerFinishedPlaying_Event" alt="" coords="296,5,541,46"/>
+<area shape="rect" id="node5" href="$class_pro_scan_mobile_1_1_custom_rec_cell.html#a1a3f6f587f1c1b5a15b64294252a90f2" title="ProScanMobile.CustomRecCell.\lCellChanged" alt="" coords="313,70,525,111"/>
+<area shape="rect" id="node6" href="$class_pro_scan_mobile_1_1_custom_rec_cell.html#addbe5ea871b695ed27dd388a4fe2f46a" title="ProScanMobile.CustomRecCell.player\lStopButtonTouchUpInside_Event" alt="" coords="590,99,839,141"/>
+<area shape="rect" id="node3" href="$class_pro_scan_mobile_1_1_custom_rec_cell.html#ae9b6c04cf8c0791ef952fc406e3133d9" title="ProScanMobile.CustomRecCell.player\lPlayButtonTouchUpInside_Event" alt="" coords="590,19,839,61"/>
+<area shape="rect" id="node4" href="$class_pro_scan_mobile_1_1_custom_rec_cell.html#a0d7e96ccd9839150b405e35e4f77ceee" title="ProScanMobile.CustomRecCell.\lCustomRecCell" alt="" coords="889,59,1101,101"/>
+</map>

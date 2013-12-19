@@ -1,0 +1,5 @@
+<map id="ProScanMobile.Reachability.InternetConnectionStatus" name="ProScanMobile.Reachability.InternetConnectionStatus">
+<area shape="rect" id="node2" href="$class_pro_scan_mobile_1_1_reachability.html#a169eaf064afcd956e84b331a5891d3cc" title="ProScanMobile.Reachability.\lIsNetworkAvailable" alt="" coords="245,38,437,79"/>
+<area shape="rect" id="node3" href="$class_pro_scan_mobile_1_1_reachability.html#a854967333b240923de24a1a299907ac9" title="ProScanMobile.Reachability.\lOnChange" alt="" coords="523,5,715,46"/>
+<area shape="rect" id="node4" href="$class_pro_scan_mobile_1_1_reachability.html#aca4e5642fbc69da6495be1c6e51baec7" title="ProScanMobile.Reachability.\lIsReachableWithoutRequiringConnection" alt="" coords="486,70,751,111"/>
+</map>

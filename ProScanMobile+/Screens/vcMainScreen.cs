@@ -10,8 +10,12 @@ using MonoTouch.AVFoundation;
 
 namespace ProScanMobile
 {
+	/// <summary>
+	/// Class of the Main Screen
+	/// </summary>
 	public partial class vcMainScreen : UIViewController
 	{
+
 		GCDiscreetNotificationView notificationView;
 
 		SystemSound _soundConnected;
