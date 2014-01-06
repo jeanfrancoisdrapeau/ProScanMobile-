@@ -4,6 +4,18 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>AppIcons-157x57.png</key>
+		<data>
+		RNlgBK928FgHMxWM65S4WjGye3U=
+		</data>
+		<key>AppIcons-157x57@2x.png</key>
+		<data>
+		9dTvPya4/wiUBvwwZIyBg5Ls50Y=
+		</data>
+		<key>AppIcons-160x60@2x.png</key>
+		<data>
+		O3eoSAJd4KJZf1c9qDuZQTDxAQQ=
+		</data>
 		<key>Default-568h@2x.png</key>
 		<data>
 		kxSMjK9A9yQXm2rexU1m/IdDAW8=
@@ -18,7 +30,7 @@
 		</data>
 		<key>GCDiscreetNotification.dll</key>
 		<data>
-		AQd+kT8nJZ+IuqouE/irhT3MswY=
+		S1Gciu4/PeYOCcVC+N7ep4z0OP4=
 		</data>
 		<key>Icon-60@2x.png</key>
 		<data>
@@ -188,6 +200,18 @@
 		<data>
 		j9jL/qkY2jKGfBtDppsggfCpUQQ=
 		</data>
+		<key>LaunchImage-568h@2x.png</key>
+		<data>
+		exU50AmHyUBrEl7vzn8dO2BSbHA=
+		</data>
+		<key>LaunchImage.png</key>
+		<data>
+		HSh2/Y4nPOr8JTIQf6NsqoJ0K2k=
+		</data>
+		<key>LaunchImage@2x.png</key>
+		<data>
+		MfueyDiyMvgKDM/DvhJPha7NUbo=
+		</data>
 		<key>NOTICE</key>
 		<data>
 		udRFZiUn5Wu+JuryWRjPAicxwsE=
@@ -198,7 +222,7 @@
 		</data>
 		<key>ProScanMobile.exe</key>
 		<data>
-		+Rmzp3f7fn+7H+ZopO+dp1IFNtQ=
+		3/U30zx8In+bzIYwUNcQ+EpbW+Q=
 		</data>
 		<key>Sounds/connected.mp3</key>
 		<data>
@@ -210,19 +234,19 @@
 		</data>
 		<key>System.Core.dll</key>
 		<data>
-		S5VD2WhT8TyZ2ecItQc4OQdqMns=
+		FJsW55hCVWHuQgRjnyZFGwmh09E=
 		</data>
 		<key>System.Xml.dll</key>
 		<data>
-		L78LYpGFUYHCdFxALSS8g8NN6Xc=
+		NH7QKRovY1oxujJJt5Ai4gs1fek=
 		</data>
 		<key>System.dll</key>
 		<data>
-		6UNyqGY8y/1ezEnHPQDTNCwN8I8=
+		8RDw93UdjluEiUdM1cauC/G5vrA=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		/vjus6Qw3ZBzQKgSKPaC+GC2K6s=
+		qZE2UVKu+t8Dp/xoiHweCRpCmk0=
 		</data>
 		<key>led_display-7.ttf</key>
 		<data>
@@ -230,11 +254,11 @@
 		</data>
 		<key>monotouch.dll</key>
 		<data>
-		l4kl8EmL7kXrZKXlFW+rdG+ieQ4=
+		RXAO8IEjdNslMc7A0/PXAqDhR74=
 		</data>
 		<key>mscorlib.dll</key>
 		<data>
-		1tqDo7ZNiqBN23vqyj6G14YCnIY=
+		3LEPhZLq3cPCC8IKMrojzJlg7lA=
 		</data>
 		<key>vcMainScreen.nib</key>
 		<data>
@@ -251,6 +275,18 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>AppIcons-157x57.png</key>
+		<data>
+		RNlgBK928FgHMxWM65S4WjGye3U=
+		</data>
+		<key>AppIcons-157x57@2x.png</key>
+		<data>
+		9dTvPya4/wiUBvwwZIyBg5Ls50Y=
+		</data>
+		<key>AppIcons-160x60@2x.png</key>
+		<data>
+		O3eoSAJd4KJZf1c9qDuZQTDxAQQ=
+		</data>
 		<key>Default-568h@2x.png</key>
 		<data>
 		kxSMjK9A9yQXm2rexU1m/IdDAW8=
@@ -265,7 +301,7 @@
 		</data>
 		<key>GCDiscreetNotification.dll</key>
 		<data>
-		AQd+kT8nJZ+IuqouE/irhT3MswY=
+		S1Gciu4/PeYOCcVC+N7ep4z0OP4=
 		</data>
 		<key>Icon-60@2x.png</key>
 		<data>
@@ -435,6 +471,18 @@
 		<data>
 		j9jL/qkY2jKGfBtDppsggfCpUQQ=
 		</data>
+		<key>LaunchImage-568h@2x.png</key>
+		<data>
+		exU50AmHyUBrEl7vzn8dO2BSbHA=
+		</data>
+		<key>LaunchImage.png</key>
+		<data>
+		HSh2/Y4nPOr8JTIQf6NsqoJ0K2k=
+		</data>
+		<key>LaunchImage@2x.png</key>
+		<data>
+		MfueyDiyMvgKDM/DvhJPha7NUbo=
+		</data>
 		<key>NOTICE</key>
 		<data>
 		udRFZiUn5Wu+JuryWRjPAicxwsE=
@@ -445,7 +493,7 @@
 		</data>
 		<key>ProScanMobile.exe</key>
 		<data>
-		+Rmzp3f7fn+7H+ZopO+dp1IFNtQ=
+		3/U30zx8In+bzIYwUNcQ+EpbW+Q=
 		</data>
 		<key>Sounds/connected.mp3</key>
 		<data>
@@ -457,19 +505,19 @@
 		</data>
 		<key>System.Core.dll</key>
 		<data>
-		S5VD2WhT8TyZ2ecItQc4OQdqMns=
+		FJsW55hCVWHuQgRjnyZFGwmh09E=
 		</data>
 		<key>System.Xml.dll</key>
 		<data>
-		L78LYpGFUYHCdFxALSS8g8NN6Xc=
+		NH7QKRovY1oxujJJt5Ai4gs1fek=
 		</data>
 		<key>System.dll</key>
 		<data>
-		6UNyqGY8y/1ezEnHPQDTNCwN8I8=
+		8RDw93UdjluEiUdM1cauC/G5vrA=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		/vjus6Qw3ZBzQKgSKPaC+GC2K6s=
+		qZE2UVKu+t8Dp/xoiHweCRpCmk0=
 		</data>
 		<key>led_display-7.ttf</key>
 		<data>
@@ -477,11 +525,11 @@
 		</data>
 		<key>monotouch.dll</key>
 		<data>
-		l4kl8EmL7kXrZKXlFW+rdG+ieQ4=
+		RXAO8IEjdNslMc7A0/PXAqDhR74=
 		</data>
 		<key>mscorlib.dll</key>
 		<data>
-		1tqDo7ZNiqBN23vqyj6G14YCnIY=
+		3LEPhZLq3cPCC8IKMrojzJlg7lA=
 		</data>
 		<key>vcMainScreen.nib</key>
 		<data>

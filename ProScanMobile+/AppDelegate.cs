@@ -16,7 +16,9 @@ namespace ProScanMobile
 		UIWindow window;
 		UITabBarController tabController;
 		vcMainScreen viewControllerMainScreen;
+		#if PLUS_VERSION
 		vcRecordingsScreen viewControllerRecordingsScreen;
+		#endif
 
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this
@@ -35,16 +37,26 @@ namespace ProScanMobile
 			tabController = new UITabBarController ();
 
 			viewControllerMainScreen = new vcMainScreen ();
+			#if PLUS_VERSION
 			viewControllerRecordingsScreen = new vcRecordingsScreen ();
+			#endif
 
+			#if PLUS_VERSION
 			tabController.ViewControllers = new UIViewController[] {
 				viewControllerMainScreen,
 				viewControllerRecordingsScreen
 			};
+			#else
+			tabController.ViewControllers = new UIViewController[] {
+				viewControllerMainScreen
+			};
+			#endif
 			tabController.ViewControllers [0].TabBarItem.Title = "Live";
 			tabController.ViewControllers [0].TabBarItem.Image = UIImage.FromBundle ("Images/network_button");
+			#if PLUS_VERSION
 			tabController.ViewControllers [1].TabBarItem.Title = "Recordings";
 			tabController.ViewControllers [1].TabBarItem.Image = UIImage.FromBundle ("Images/folder_button");
+			#endif
 
 			rootNavigationController.PushViewController(tabController, false); 
 			

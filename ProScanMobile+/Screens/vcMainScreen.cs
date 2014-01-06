@@ -15,7 +15,6 @@ namespace ProScanMobile
 	/// </summary>
 	public partial class vcMainScreen : UIViewController
 	{
-
 		GCDiscreetNotificationView notificationView;
 
 		SystemSound _soundConnected;
@@ -34,7 +33,11 @@ namespace ProScanMobile
 		UILabel lblRecording;
 		UILabel lblAppVersion, lblAppCreator;
 
+		#if PLUS_VERSION
 		UIButton btnPlay, btnRec, btnStop, btnOptions;
+		#else
+		UIButton btnPlay, btnStop, btnOptions;
+		#endif
 
 		NetworkConnection networkConnection;
 
@@ -219,7 +222,9 @@ namespace ProScanMobile
 				Frame = new RectangleF (140, UIScreen.MainScreen.Bounds.Height - 71, 180, 17)
 			};
 			lblAppVersion.TextAlignment = UITextAlignment.Right;
-			lblAppVersion.Text = string.Format("ProScanMobile+ {0}", NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion").ToString());
+			lblAppVersion.Text = string.Format("{0} {1}", 
+				NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(), 
+				NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion").ToString());
 			lblAppVersion.Font = UIFont.FromName("LED Display7", 8f);
 
 			lblAppCreator = new UILabel {
@@ -235,6 +240,7 @@ namespace ProScanMobile
 				Image = UIImage.FromBundle("Images/scanner_display.jpg")
 			};
 
+			#if PLUS_VERSION
 			// Rec button
 			btnRec = new UIButton {
 				Frame = new RectangleF(5, 0, 40, 40)
@@ -266,6 +272,28 @@ namespace ProScanMobile
 			btnStop.ClipsToBounds = true;
 			btnStop.SetImage(UIImage.FromBundle("Images/red_button.jpg"), UIControlState.Normal);
 			btnStop.TouchUpInside += btnStopTouchUpInside_Event;
+			#else
+			// Play button
+			btnPlay = new UIButton {
+				Frame = new RectangleF(5, 0, 40, 40)
+			};
+			btnPlay.Layer.CornerRadius = 9.5f;
+			btnPlay.Layer.MasksToBounds = true;
+			btnPlay.ClipsToBounds = true;
+			btnPlay.SetImage(UIImage.FromBundle("Images/green_button.jpg"), UIControlState.Normal);
+			btnPlay.TouchUpInside += btnPlayTouchUpInside_Event;
+
+			// Stop button
+			btnStop = new UIButton {
+				Frame = new RectangleF(50, 0, 40, 40)
+			};
+			btnStop.Enabled = false;
+			btnStop.Layer.CornerRadius = 9.5f;
+			btnStop.Layer.MasksToBounds = true;
+			btnStop.ClipsToBounds = true;
+			btnStop.SetImage(UIImage.FromBundle("Images/red_button.jpg"), UIControlState.Normal);
+			btnStop.TouchUpInside += btnStopTouchUpInside_Event;
+			#endif
 
 			// Options button
 			btnOptions = new UIButton {
@@ -279,6 +307,7 @@ namespace ProScanMobile
 				this.NavigationController.PushViewController(optionScreen, true);
 			};
 
+			#if PLUS_VERSION
 			// Scanner buttons
 			UIButton btnScanner_Func = new UIButton {
 				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 20, 0, 55, 25)
@@ -499,12 +528,17 @@ namespace ProScanMobile
 			btnScanner_Push.ClipsToBounds = true;
 			btnScanner_Push.SetImage(UIImage.FromBundle("Images/scanner_button_push.jpg"), UIControlState.Normal);
 			btnScanner_Push.TouchUpInside += btnScannerTouchUpInside_Event;
+			#endif
 
 			// Scrollview for Play, Stop, Options and Scanner controls
 			_scrollView = new UIScrollView {
 				Frame = new RectangleF (0, 275, UIScreen.MainScreen.Bounds.Width,
 					125),
+				#if PLUS_VERSION
 				ContentSize = new SizeF (UIScreen.MainScreen.Bounds.Width * 2, 125),
+				#else
+				ContentSize = new SizeF (UIScreen.MainScreen.Bounds.Width, 125),
+				#endif
 				BackgroundColor = UIColor.White,
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth,
 				PagingEnabled = true,
@@ -517,16 +551,24 @@ namespace ProScanMobile
 			//_scrollView.Layer.ShadowRadius = 1.0f;
 			//_scrollView.Layer.ShadowOffset = new System.Drawing.SizeF(0f, 3f);
 
+			#if PLUS_VERSION
 			_scrollView.AddSubviews (new UIView[] { btnPlay, btnRec,
 				btnStop, 
 				btnOptions });
+			#else
+			_scrollView.AddSubviews (new UIView[] { btnPlay,
+				btnStop, 
+				btnOptions });
+			#endif
 
+			#if PLUS_VERSION
 			_scrollView.AddSubviews (new UIView[] { btnScanner_Func, btnScanner_1, btnScanner_2, btnScanner_3, btnScanner_Scan,
 				btnScanner_Menu, btnScanner_4, btnScanner_5, btnScanner_6, btnScanner_Hold, 
 				btnScanner_LO, btnScanner_7, btnScanner_8, btnScanner_9, 
 				btnScanner_Left, btnScanner_No, btnScanner_0, btnScanner_Eyes, btnScanner_Right,
 				btnScanner_FuncH, btnScanner_FuncR, btnScanner_Push
-			 });
+			});
+			#endif
 
 			// Add everything to current view
 			View.AddSubviews (new UIView[] { ivScannerDisplay, lblScannerType, ivScannerBars,
@@ -624,7 +666,8 @@ namespace ProScanMobile
 			networkConnection.Send (message);
 			networkConnection.sendDone.WaitOne ();
 			if (networkConnection.sendStatus != NetworkConnection.SendStatus.Ok)
-				messageBoxShow ("ProScanMobile+", networkConnection._sendStatusMessage);
+				messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
+					networkConnection._sendStatusMessage);
 		}
 
 		private void btnPlayTouchUpInside_Event(object sender, EventArgs e)
@@ -679,7 +722,8 @@ namespace ProScanMobile
 					if (!notificationView.Hidden)
 						notificationView.Hide (animated: true);
 
-					messageBoxShow ("ProScanMobile+", networkConnection._loginStatusMessage);
+					messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
+						networkConnection._loginStatusMessage);
 
 					networkConnection.LogOut ("STARTDAT 00026 PS05 ENDDAT");
 					networkConnection.logoutDone.WaitOne ();
@@ -691,10 +735,12 @@ namespace ProScanMobile
 				if (!notificationView.Hidden)
 					notificationView.Hide (animated: true);
 
-				messageBoxShow ("ProScanMobile+", networkConnection._connectionStatusMessage);
+				messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
+					networkConnection._connectionStatusMessage);
 			}
 		}
 
+		#if PLUS_VERSION
 		private void btnRecTouchUpInside_Event(object sender, EventArgs e)
 		{
 			_recordAudio = _recordAudio == true ? false : true;
@@ -710,6 +756,7 @@ namespace ProScanMobile
 			}
 			btnRec.Selected = _recordAudio;
 		}
+		#endif
 
 		private void btnStopTouchUpInside_Event(object sender, EventArgs e)
 		{
@@ -754,7 +801,8 @@ namespace ProScanMobile
 						_soundDisconnected.PlaySystemSound ();
 
 						if (networkConnection.receiveDataStatus == NetworkConnection.SendStatus.Error)
-							messageBoxShow ("ProScanMobile+", networkConnection._receiveDataStatusMessage);
+							messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
+								networkConnection._receiveDataStatusMessage);
 
 						_scannerAudio.Dispose ();
 						_scannerScreen.Dispose ();
@@ -864,7 +912,8 @@ namespace ProScanMobile
 					});
 				}
 			} catch (Exception ex) {
-				//messageBoxShow ("ProScanMobile+", ex.Message);
+				//messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
+				//	ex.Message);
 				Console.WriteLine (ex.Message);
 			}
 		}

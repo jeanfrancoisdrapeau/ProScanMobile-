@@ -106,7 +106,7 @@ namespace ProScanMobile
 
 			_writeToFile = true;
 
-			Console.WriteLine ("------ DID PrepareOutputToFile");
+			//Console.WriteLine ("------ DID PrepareOutputToFile");
 		}
 
 		public void StopOutputToFile()
@@ -118,7 +118,7 @@ namespace ProScanMobile
 				_fileOut.Dispose ();
 			}
 
-			Console.WriteLine ("----- DID StopOutputToFile");
+			//Console.WriteLine ("----- DID StopOutputToFile");
 		}
 
 		public void processData(byte[] message, int messageLength)
@@ -184,7 +184,7 @@ namespace ProScanMobile
 
 					if (_writeToFile) {
 						_fileOut.Write (outbuf, 0, m_frameSize);
-					Console.WriteLine ("----- DID WRITETOFILE");
+					//Console.WriteLine ("----- DID WRITETOFILE");
 					}
 
 				} else {

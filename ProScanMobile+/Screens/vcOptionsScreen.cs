@@ -23,7 +23,9 @@ namespace ProScanMobile
 
 		UITextField _txtServerHost;
 		UITextField _txtServerPort;
+		#if PLUS_VERSION
 		UITextField _txtServerPassword;
+		#endif
 		UISwitch _swAutoConnect;
 		UITableView _tvServers;
 
@@ -72,7 +74,9 @@ namespace ProScanMobile
 		private Servers s;
 		private List<TableItem> tableItems;
 
+		#if PLUS_VERSION
 		private Encryption enc;
+		#endif
 
 		public string ServerHostName { get { return (si == null ? string.Empty : si.SettingsList [0].host); } }
 		public int ServerHostPort { get { return (si == null ? 0 : si.SettingsList [0].port); } }
@@ -82,7 +86,9 @@ namespace ProScanMobile
 		public vcOptionsScreen () : base ("vcOptionsScreen", null)
 		{
 			Title = "Options and Servers";
+			#if PLUS_VERSION
 			enc = new Encryption ();
+			#endif
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -138,6 +144,7 @@ namespace ProScanMobile
 				return true; 
 			};
 
+			#if PLUS_VERSION
 			_txtServerPassword = new UITextField {
 				Frame = new RectangleF (85, 98, 215, 25)
 			};
@@ -151,6 +158,7 @@ namespace ProScanMobile
 				textField.ResignFirstResponder();
 				return true; 
 			};
+			#endif
 
 			UILabel lblAutoConnect = new UILabel {
 				Frame = new RectangleF (5, 130, 200, 17)
@@ -175,14 +183,23 @@ namespace ProScanMobile
 			btnRefresh.SetImage(UIImage.FromBundle("Images/refresh_servers_button.jpg"), UIControlState.Normal);
 			btnRefresh.TouchUpInside += btnRefreshTouchUpInside_Event;
 
+			#if PLUS_VERSION
 			View.AddSubviews (new UIView[] { _txtServerHost, _txtServerPort, _txtServerPassword,
 				lblAutoConnect, _swAutoConnect,
 				_tvServers, btnRefresh
 			});
+			#else
+			View.AddSubviews (new UIView[] { _txtServerHost, _txtServerPort,
+				lblAutoConnect, _swAutoConnect,
+				_tvServers, btnRefresh
+			});
+			#endif
 
 			txtSH = _txtServerHost;
 			txtSP = _txtServerPort;
+			#if PLUS_VERSION
 			txtPW = _txtServerPassword;
+			#endif
 		}
 
 		private void btnRefreshTouchUpInside_Event (object sender, EventArgs e)
@@ -312,7 +329,11 @@ namespace ProScanMobile
 
 			sid.port = port;
 			sid.auto = _swAutoConnect.On;
+			#if PLUS_VERSION
 			sid.pass = enc.Encrypt(_txtServerPassword.Text);
+			#else
+			sid.pass = string.Empty;
+			#endif
 			si.SettingsList.Add (sid);
 
 			serializer = new XmlSerializer (typeof(Settings));
@@ -408,8 +429,10 @@ namespace ProScanMobile
 			if (si != null) {
 				_txtServerHost.Text = si.SettingsList[0].host;
 				_txtServerPort.Text = si.SettingsList[0].port.ToString();
+				#if PLUS_VERSION
 				_txtServerPassword.Text = (si.SettingsList [0].pass == null ? string.Empty : 
 					enc.Decrypt (si.SettingsList [0].pass));
+				#endif
 				_swAutoConnect.On = si.SettingsList [0].auto;
 			}
 		}

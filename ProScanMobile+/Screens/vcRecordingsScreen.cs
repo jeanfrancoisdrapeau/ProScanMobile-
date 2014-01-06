@@ -55,6 +55,8 @@ namespace ProScanMobile
 				fileonly.Add (file.Name);
 			}
 
+			_tvMp3.RowHeight = 20.0f;
+			_tvMp3.AllowsMultipleSelection = false;
 			_tvMp3.Source = new RecTableSource (fileonly.ToArray());
 			_tvMp3.ReloadData ();
 		}

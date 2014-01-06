@@ -40,6 +40,7 @@ namespace ProScanMobile
 			playerStopButton.TouchUpInside += playerStopButtonTouchUpInside_Event;
 
 			progressBar = new UISlider ();
+			progressBar.Enabled = false;
 			progressBar.SetThumbImage (UIImage.FromBundle("Images/slider_thumb"), UIControlState.Normal);
 
 			ContentView.Add (fileNameLabel);
