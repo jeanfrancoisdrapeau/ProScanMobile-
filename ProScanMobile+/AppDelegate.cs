@@ -16,6 +16,7 @@ namespace ProScanMobile
 		UIWindow window;
 		UITabBarController tabController;
 		vcMainScreen viewControllerMainScreen;
+		vcOptionsScreen viewControlerServersScreen;
 		#if PLUS_VERSION
 		vcRecordingsScreen viewControllerRecordingsScreen;
 		#endif
@@ -31,12 +32,11 @@ namespace ProScanMobile
 		{
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
-			var rootNavigationController = new UINavigationController(); 
 
 			tabController = new UITabBarController ();
 
 			viewControllerMainScreen = new vcMainScreen ();
+			viewControlerServersScreen = new vcOptionsScreen ();
 			#if PLUS_VERSION
 			viewControllerRecordingsScreen = new vcRecordingsScreen ();
 			#endif
@@ -44,22 +44,28 @@ namespace ProScanMobile
 			#if PLUS_VERSION
 			tabController.ViewControllers = new UIViewController[] {
 				viewControllerMainScreen,
+				viewControlerServersScreen,
 				viewControllerRecordingsScreen
 			};
 			#else
 			tabController.ViewControllers = new UIViewController[] {
-				viewControllerMainScreen
+				viewControllerMainScreen,
+				viewControlerServersScreen
 			};
 			#endif
 			tabController.ViewControllers [0].TabBarItem.Title = "Live";
 			tabController.ViewControllers [0].TabBarItem.Image = UIImage.FromBundle ("Images/network_button");
+			tabController.ViewControllers [1].TabBarItem.Title = "Servers";
+			tabController.ViewControllers [1].TabBarItem.Image = UIImage.FromBundle ("Images/servers_button");
 			#if PLUS_VERSION
-			tabController.ViewControllers [1].TabBarItem.Title = "Recordings";
-			tabController.ViewControllers [1].TabBarItem.Image = UIImage.FromBundle ("Images/folder_button");
+			tabController.ViewControllers [2].TabBarItem.Title = "Recordings";
+			tabController.ViewControllers [2].TabBarItem.Image = UIImage.FromBundle ("Images/folder_button");
 			#endif
 
-			rootNavigationController.PushViewController(tabController, false); 
-			
+			tabController.SelectedViewController = viewControllerMainScreen;
+
+			UINavigationController rootNavigationController = new UINavigationController(tabController);
+
 			// make the window visible
 			window.RootViewController = rootNavigationController; 
 			window.MakeKeyAndVisible ();

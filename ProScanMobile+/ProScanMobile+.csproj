@@ -103,7 +103,6 @@
     <BundleResource Include="Images\scanner_display.jpg" />
     <BundleResource Include="Images\green_button.jpg" />
     <BundleResource Include="Images\red_button.jpg" />
-    <BundleResource Include="Images\config_button.jpg" />
     <BundleResource Include="Images\scanner_button_func.jpg" />
     <BundleResource Include="Images\scanner_button_funch.jpg" />
     <BundleResource Include="Images\scanner_button_left.jpg" />
@@ -128,7 +127,6 @@
     <BundleResource Include="Resources\led_display-7.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
-    <BundleResource Include="Images\refresh_servers_button.jpg" />
     <BundleResource Include="Images\state_off.png" />
     <BundleResource Include="Images\state_on.png" />
     <BundleResource Include="Images\signal_0.png" />
@@ -144,6 +142,9 @@
     <BundleResource Include="Images\rec_activate_button.jpg" />
     <BundleResource Include="Images\rec_deactivate_button.jpg" />
     <BundleResource Include="Images\slider_thumb.png" />
+    <BundleResource Include="Images\arrow_left.png" />
+    <BundleResource Include="Images\arrow_right.png" />
+    <BundleResource Include="Images\servers_button.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

@@ -19,8 +19,6 @@ namespace ProScanMobile
 	/// </summary>
 	public partial class vcOptionsScreen : UIViewController
 	{
-		GCDiscreetNotificationView notificationView;
-
 		UITextField _txtServerHost;
 		UITextField _txtServerPort;
 		#if PLUS_VERSION
@@ -28,6 +26,7 @@ namespace ProScanMobile
 		#endif
 		UISwitch _swAutoConnect;
 		UITableView _tvServers;
+		UIRefreshControl _rcRefreshControl;
 
 		public static MonoTouch.UIKit.UITextField txtSH;
 		public static MonoTouch.UIKit.UITextField txtSP;
@@ -48,6 +47,7 @@ namespace ProScanMobile
 			public int port { get; set; }
 			public bool auto { get; set; }
 			public string pass { get; set; }
+			public string location { get; set; }
 		}
 
 		[Serializable]
@@ -78,11 +78,6 @@ namespace ProScanMobile
 		private Encryption enc;
 		#endif
 
-		public string ServerHostName { get { return (si == null ? string.Empty : si.SettingsList [0].host); } }
-		public int ServerHostPort { get { return (si == null ? 0 : si.SettingsList [0].port); } }
-		public bool ServerAutoConnect { get { return (si == null ? false : si.SettingsList [0].auto); } }
-		public string ServerPassWord { get { return (si == null ? string.Empty : si.SettingsList [0].pass); } }
-
 		public vcOptionsScreen () : base ("vcOptionsScreen", null)
 		{
 			Title = "Options and Servers";
@@ -105,21 +100,19 @@ namespace ProScanMobile
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			this.NavigationController.SetNavigationBarHidden (false, animated);
 			UpdateSettings ();
 		}
 
 		public override void ViewWillDisappear (bool animated)
 		{
 			base.ViewWillDisappear (animated);
-			this.NavigationController.SetNavigationBarHidden (true, animated);
 			SaveSettings ();
 		}
 
 		private void initInterface()
 		{
 			_txtServerHost = new UITextField {
-				Frame = new RectangleF (20, 72, 280, 25)
+				Frame = new RectangleF (20, 23, 280, 25)
 			};
 			_txtServerHost.Placeholder = "Server hostname";
 			_txtServerHost.BorderStyle = UITextBorderStyle.RoundedRect;
@@ -132,7 +125,7 @@ namespace ProScanMobile
 			};
 
 			_txtServerPort = new UITextField {
-				Frame = new RectangleF (20, 98, 65, 25)
+				Frame = new RectangleF (20, 49, 65, 25)
 			};
 			_txtServerPort.Placeholder = "Port";
 			_txtServerPort.BorderStyle = UITextBorderStyle.RoundedRect;
@@ -146,7 +139,7 @@ namespace ProScanMobile
 
 			#if PLUS_VERSION
 			_txtServerPassword = new UITextField {
-				Frame = new RectangleF (85, 98, 215, 25)
+				Frame = new RectangleF (85, 49, 215, 25)
 			};
 			_txtServerPassword.Placeholder = "Password (optional)";
 			_txtServerPassword.BorderStyle = UITextBorderStyle.RoundedRect;
@@ -161,37 +154,33 @@ namespace ProScanMobile
 			#endif
 
 			UILabel lblAutoConnect = new UILabel {
-				Frame = new RectangleF (5, 130, 200, 17)
+				Frame = new RectangleF (5, 82, 200, 17)
 			};
 			lblAutoConnect.TextAlignment = UITextAlignment.Right;
 			lblAutoConnect.Text = "Auto-connect at startup";
 
 			_swAutoConnect = new UISwitch {
-				Frame = new RectangleF (250, 123, 49, 31)
+				Frame = new RectangleF (250, 75, 49, 31)
 			};
 
 			_tvServers = new UITableView {
-				Frame = new RectangleF (0, 155, UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height - 185)
+				Frame = new RectangleF (0, 111, UIScreen.MainScreen.Bounds.Width, 
+					UIScreen.MainScreen.Bounds.Height - 160)
 			};
-
-			UIButton btnRefresh = new UIButton {
-				Frame = new RectangleF(261, UIScreen.MainScreen.Bounds.Height - 30, 55, 25)
-			};
-			btnRefresh.Layer.CornerRadius = 11.0f;
-			btnRefresh.Layer.MasksToBounds = true;
-			btnRefresh.ClipsToBounds = true;
-			btnRefresh.SetImage(UIImage.FromBundle("Images/refresh_servers_button.jpg"), UIControlState.Normal);
-			btnRefresh.TouchUpInside += btnRefreshTouchUpInside_Event;
+			 
+			_rcRefreshControl = new UIRefreshControl();
+			_rcRefreshControl.ValueChanged += (sender, e) => { doRefreshServers(); };
+			_tvServers.AddSubview (_rcRefreshControl);
 
 			#if PLUS_VERSION
 			View.AddSubviews (new UIView[] { _txtServerHost, _txtServerPort, _txtServerPassword,
 				lblAutoConnect, _swAutoConnect,
-				_tvServers, btnRefresh
+				_tvServers
 			});
 			#else
 			View.AddSubviews (new UIView[] { _txtServerHost, _txtServerPort,
 				lblAutoConnect, _swAutoConnect,
-				_tvServers, btnRefresh
+				_tvServers
 			});
 			#endif
 
@@ -202,23 +191,9 @@ namespace ProScanMobile
 			#endif
 		}
 
-		private void btnRefreshTouchUpInside_Event (object sender, EventArgs e)
-		{
-			doRefreshServers();
-		}
-
 		private void doRefreshServers()
 		{
 			_tvServers.AllowsSelection = false;
-
-			notificationView = new GCDiscreetNotificationView (
-				text: "Refreshing servers...",
-				activity: true,
-				presentationMode: GCDNPresentationMode.Bottom,
-				view: View
-			);
-
-			notificationView.Show (animated: false);
 
 			// Connect to proscan.org server and fetch listed servers
 			try{
@@ -228,7 +203,7 @@ namespace ProScanMobile
 
 			} catch {
 				MessageBoxShow("ProScanMobile", "Unable to fetch servers from database.");
-			} 
+			}
 		}
 
 		private void DownloadStringCallback(object sender, DownloadStringCompletedEventArgs e)
@@ -287,8 +262,8 @@ namespace ProScanMobile
 
 			BeginInvokeOnMainThread (delegate {
 				_tvServers.AllowsSelection = true;
+				_rcRefreshControl.EndRefreshing();
 			});
-			BeginInvokeOnMainThread (delegate {notificationView.Hide (animated: true); });
 		}
 
 		private void SaveSettings()
@@ -329,6 +304,7 @@ namespace ProScanMobile
 
 			sid.port = port;
 			sid.auto = _swAutoConnect.On;
+			sid.location = getLocationFromHost (sid.host);
 			#if PLUS_VERSION
 			sid.pass = enc.Encrypt(_txtServerPassword.Text);
 			#else
@@ -437,7 +413,7 @@ namespace ProScanMobile
 			}
 		}
 
-		public string getLocationFromHost(string h)
+		private string getLocationFromHost(string h)
 		{
 			if (s != null) {
 				int index = s.ServerList.FindIndex (r => r.host.Equals (h));
