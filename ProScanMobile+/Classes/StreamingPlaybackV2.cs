@@ -1,9 +1,12 @@
 using System;
 using System.Threading;
+using System.IO;
+using System.Xml.Serialization;
 using MonoTouch.Foundation;
 using MonoTouch.AudioToolbox;
 using MonoTouch.CoreFoundation;
 using MonoTouch.AudioUnit;
+using MonoTouch.UIKit;
 
 namespace ProScanMobile
 {
@@ -35,6 +38,7 @@ namespace ProScanMobile
 			}
 
 			audioQueue = new OutputAudioQueue (dataFormat);
+			audioQueue.VolumeRampTime = 2.0f;
 			audioQueue.OutputCompleted += HandleOutputCompleted;
 		}
 
@@ -69,8 +73,6 @@ namespace ProScanMobile
 
 				buffer->AudioDataByteSize = (uint)args.Bytes;
 				buffer->CopyToAudioData (args.InputData, args.Bytes);
-
-				//audioQueue.Volume = 1.0f;
 
 				if (audioQueue.EnqueueBuffer (buffer, args.PacketDescriptions) != AudioQueueStatus.Ok)
 					throw new ApplicationException ();

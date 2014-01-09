@@ -19,8 +19,6 @@ namespace ProScanMobile
 		vcOptionsScreen viewControlerServersScreen;
 		#if PLUS_VERSION
 		vcRecordingsScreen viewControllerRecordingsScreen;
-		vcAlertsScreen viewControllerAlertsScreen;
-
 		#endif
 
 		//
@@ -41,15 +39,13 @@ namespace ProScanMobile
 			viewControlerServersScreen = new vcOptionsScreen ();
 			#if PLUS_VERSION
 			viewControllerRecordingsScreen = new vcRecordingsScreen ();
-			viewControllerAlertsScreen = new vcAlertsScreen ();
 			#endif
 
 			#if PLUS_VERSION
 			tabController.ViewControllers = new UIViewController[] {
 				viewControllerMainScreen,
 				viewControlerServersScreen,
-				viewControllerRecordingsScreen,
-				viewControllerAlertsScreen
+				viewControllerRecordingsScreen
 			};
 			#else
 			tabController.ViewControllers = new UIViewController[] {
@@ -64,8 +60,6 @@ namespace ProScanMobile
 			#if PLUS_VERSION
 			tabController.ViewControllers [2].TabBarItem.Title = "Recordings";
 			tabController.ViewControllers [2].TabBarItem.Image = UIImage.FromBundle ("Images/folder_button");
-			tabController.ViewControllers [3].TabBarItem.Title = "Alerts";
-			tabController.ViewControllers [3].TabBarItem.Image = UIImage.FromBundle ("Images/alert_button");
 			#endif
 
 			tabController.SelectedViewController = viewControllerMainScreen;

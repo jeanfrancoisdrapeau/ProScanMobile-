@@ -4,41 +4,33 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Default-568h@2x.png</key>
+		<key>AppIcons-157x57.png</key>
 		<data>
-		kxSMjK9A9yQXm2rexU1m/IdDAW8=
+		RNlgBK928FgHMxWM65S4WjGye3U=
 		</data>
-		<key>Default.png</key>
+		<key>AppIcons-157x57@2x.png</key>
 		<data>
-		NGcrzGhmkQcHyW2g+4Nm/X9mcNE=
+		9dTvPya4/wiUBvwwZIyBg5Ls50Y=
 		</data>
-		<key>Default@2x.png</key>
+		<key>AppIcons-160x60@2x.png</key>
 		<data>
-		X3vzixEa3RuGpUS5ApQgtXI3w8k=
+		O3eoSAJd4KJZf1c9qDuZQTDxAQQ=
 		</data>
 		<key>GCDiscreetNotification.dll</key>
 		<data>
-		o7ZnQRJv5HtVJvPFwx40Bo8Gza8=
+		heHTiecdofWq5At6vHl3HpBv0e4=
 		</data>
 		<key>GCDiscreetNotification.dll.mdb</key>
 		<data>
-		ynzQ44CghoIh3QknWqeF297DLNI=
+		uwA7OlfogWGy/7LLRKvnB9sFcFo=
 		</data>
-		<key>Icon-60@2x.png</key>
+		<key>Images/arrow_left.png</key>
 		<data>
-		czTyw/LraYqDH1AfEis6yOS/J8U=
+		kcm+rBy5BmIRb9s5HFr1CHO2Gx0=
 		</data>
-		<key>Icon.png</key>
+		<key>Images/arrow_right.png</key>
 		<data>
-		Nu6swg10RqKjyOkLcbtqQrNRVDU=
-		</data>
-		<key>Icon@2x.png</key>
-		<data>
-		Vse3SPPbpok2tH1JE7ZbpjF86d0=
-		</data>
-		<key>Images/config_button.jpg</key>
-		<data>
-		DLz8D6+LFL+Y4BAHWIbI3hVeVdA=
+		DREJpqiGJgun9VFUvSNZtQVuQpY=
 		</data>
 		<key>Images/folder_button.png</key>
 		<data>
@@ -63,10 +55,6 @@
 		<key>Images/red_button.jpg</key>
 		<data>
 		6mvPsroAQB3umQv06aQm/flqY7o=
-		</data>
-		<key>Images/refresh_servers_button.jpg</key>
-		<data>
-		WkbYT5ZUWA6nlBOxp3jQeGFm18w=
 		</data>
 		<key>Images/scanner_button_0.jpg</key>
 		<data>
@@ -156,6 +144,10 @@
 		<data>
 		daXoHz4b3hF0XbvCRrN3RxVxkKI=
 		</data>
+		<key>Images/servers_button.png</key>
+		<data>
+		vMXtO8V2kv4G0vpZysOFAeciRA0=
+		</data>
 		<key>Images/signal_0.png</key>
 		<data>
 		Vfn/YWPDDyqbhyp1E2qXvhKkLmc=
@@ -192,6 +184,18 @@
 		<data>
 		j9jL/qkY2jKGfBtDppsggfCpUQQ=
 		</data>
+		<key>LaunchImage-568h@2x.png</key>
+		<data>
+		exU50AmHyUBrEl7vzn8dO2BSbHA=
+		</data>
+		<key>LaunchImage.png</key>
+		<data>
+		HSh2/Y4nPOr8JTIQf6NsqoJ0K2k=
+		</data>
+		<key>LaunchImage@2x.png</key>
+		<data>
+		MfueyDiyMvgKDM/DvhJPha7NUbo=
+		</data>
 		<key>MonoTouchDebugConfiguration.txt</key>
 		<data>
 		NHHWdiIwj2P6lUCjwATdcOmlOfw=
@@ -206,11 +210,11 @@
 		</data>
 		<key>ProScanMobile.exe</key>
 		<data>
-		5aOH5ODJtFZL6mgh+CK8uHYXCUU=
+		eWgbbQOPjmLAdqW/k0KSPkU6SM8=
 		</data>
 		<key>ProScanMobile.exe.mdb</key>
 		<data>
-		B7iMk4PzL13hLiL+Zvm/ODXt9rY=
+		IceesiDmBXCNNfyS/Pmv4hD1nUo=
 		</data>
 		<key>Settings.bundle/Root.plist</key>
 		<data>
@@ -226,27 +230,27 @@
 		</data>
 		<key>System.Core.dll</key>
 		<data>
-		r2EKJonLz3868uN59BDs7U3tE7Y=
+		jqSnA2hIWsaZROYIcs8tessAxTU=
 		</data>
 		<key>System.Core.dll.mdb</key>
 		<data>
-		ho/+4VzDdkf6uV9GyRsYQP3CtKo=
+		yJlscEBJdkfw2YCQ8IA3xzB7+4U=
 		</data>
 		<key>System.Xml.dll</key>
 		<data>
-		BcJBBXTBiohQOOxXotmw87+TYTw=
+		EztdpAWLjRvaQo9nXXNi87RudKA=
 		</data>
 		<key>System.Xml.dll.mdb</key>
 		<data>
-		6QlaB0jmeKRZyPcw7CvwBL3r13M=
+		v4SzWl5hpgZkR91cftZuGz53FVo=
 		</data>
 		<key>System.dll</key>
 		<data>
-		2g6rsLjTZyHjrv2U3ajTv9hy64Q=
+		KyqmiQMH9h5dGskv319m8yAYOXA=
 		</data>
 		<key>System.dll.mdb</key>
 		<data>
-		NrUI7Ev6oFptq/cTtEtQS5m4AlM=
+		gbyHvVEPOwVP3JkYtubNn7BqxFk=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
@@ -258,70 +262,62 @@
 		</data>
 		<key>monotouch.dll</key>
 		<data>
-		jD/w45BePgnbnBjxOWh0GQWvcls=
+		ekfPOZ177vkXY3GRl1y8AvE9BiA=
 		</data>
 		<key>monotouch.dll.mdb</key>
 		<data>
-		Y1ix7HVVXn4KWPLyxirqvKHqpuI=
+		6GuX57Ulr3qAYhbWVI6YO0sV6ho=
 		</data>
 		<key>mscorlib.dll</key>
 		<data>
-		mTX36xVVMgE7AB0SQVbjJLTgFTU=
+		67o2a+d7Bq5/IvECMBLZqK3CCk8=
 		</data>
 		<key>mscorlib.dll.mdb</key>
 		<data>
-		87imIJ3PqRAq7xVTsFHCMUWgYMY=
+		bhHtDTPXhglsB1SYpkBg378SrcE=
 		</data>
 		<key>vcMainScreen.nib</key>
 		<data>
-		VCvluiPVN06X5esvnE4tVdyAvMY=
+		PTmtjxNqoVkdlSh6GYazA+YRasc=
 		</data>
 		<key>vcOptionsScreen.nib</key>
 		<data>
-		Cb2xZ9U/llg73VZEYG4U51dzgKk=
+		JnvmkwNO0AjPbVvZZ/quWtqn9HU=
 		</data>
 		<key>vcRecordingsScreen.nib</key>
 		<data>
-		AE+Noj8ZONtoVsgHLJAS4IjfGfM=
+		KLPnJdVdooiSbAtesS0zZlqS9Fw=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Default-568h@2x.png</key>
+		<key>AppIcons-157x57.png</key>
 		<data>
-		kxSMjK9A9yQXm2rexU1m/IdDAW8=
+		RNlgBK928FgHMxWM65S4WjGye3U=
 		</data>
-		<key>Default.png</key>
+		<key>AppIcons-157x57@2x.png</key>
 		<data>
-		NGcrzGhmkQcHyW2g+4Nm/X9mcNE=
+		9dTvPya4/wiUBvwwZIyBg5Ls50Y=
 		</data>
-		<key>Default@2x.png</key>
+		<key>AppIcons-160x60@2x.png</key>
 		<data>
-		X3vzixEa3RuGpUS5ApQgtXI3w8k=
+		O3eoSAJd4KJZf1c9qDuZQTDxAQQ=
 		</data>
 		<key>GCDiscreetNotification.dll</key>
 		<data>
-		o7ZnQRJv5HtVJvPFwx40Bo8Gza8=
+		heHTiecdofWq5At6vHl3HpBv0e4=
 		</data>
 		<key>GCDiscreetNotification.dll.mdb</key>
 		<data>
-		ynzQ44CghoIh3QknWqeF297DLNI=
+		uwA7OlfogWGy/7LLRKvnB9sFcFo=
 		</data>
-		<key>Icon-60@2x.png</key>
+		<key>Images/arrow_left.png</key>
 		<data>
-		czTyw/LraYqDH1AfEis6yOS/J8U=
+		kcm+rBy5BmIRb9s5HFr1CHO2Gx0=
 		</data>
-		<key>Icon.png</key>
+		<key>Images/arrow_right.png</key>
 		<data>
-		Nu6swg10RqKjyOkLcbtqQrNRVDU=
-		</data>
-		<key>Icon@2x.png</key>
-		<data>
-		Vse3SPPbpok2tH1JE7ZbpjF86d0=
-		</data>
-		<key>Images/config_button.jpg</key>
-		<data>
-		DLz8D6+LFL+Y4BAHWIbI3hVeVdA=
+		DREJpqiGJgun9VFUvSNZtQVuQpY=
 		</data>
 		<key>Images/folder_button.png</key>
 		<data>
@@ -346,10 +342,6 @@
 		<key>Images/red_button.jpg</key>
 		<data>
 		6mvPsroAQB3umQv06aQm/flqY7o=
-		</data>
-		<key>Images/refresh_servers_button.jpg</key>
-		<data>
-		WkbYT5ZUWA6nlBOxp3jQeGFm18w=
 		</data>
 		<key>Images/scanner_button_0.jpg</key>
 		<data>
@@ -439,6 +431,10 @@
 		<data>
 		daXoHz4b3hF0XbvCRrN3RxVxkKI=
 		</data>
+		<key>Images/servers_button.png</key>
+		<data>
+		vMXtO8V2kv4G0vpZysOFAeciRA0=
+		</data>
 		<key>Images/signal_0.png</key>
 		<data>
 		Vfn/YWPDDyqbhyp1E2qXvhKkLmc=
@@ -475,6 +471,18 @@
 		<data>
 		j9jL/qkY2jKGfBtDppsggfCpUQQ=
 		</data>
+		<key>LaunchImage-568h@2x.png</key>
+		<data>
+		exU50AmHyUBrEl7vzn8dO2BSbHA=
+		</data>
+		<key>LaunchImage.png</key>
+		<data>
+		HSh2/Y4nPOr8JTIQf6NsqoJ0K2k=
+		</data>
+		<key>LaunchImage@2x.png</key>
+		<data>
+		MfueyDiyMvgKDM/DvhJPha7NUbo=
+		</data>
 		<key>MonoTouchDebugConfiguration.txt</key>
 		<data>
 		NHHWdiIwj2P6lUCjwATdcOmlOfw=
@@ -489,11 +497,11 @@
 		</data>
 		<key>ProScanMobile.exe</key>
 		<data>
-		5aOH5ODJtFZL6mgh+CK8uHYXCUU=
+		eWgbbQOPjmLAdqW/k0KSPkU6SM8=
 		</data>
 		<key>ProScanMobile.exe.mdb</key>
 		<data>
-		B7iMk4PzL13hLiL+Zvm/ODXt9rY=
+		IceesiDmBXCNNfyS/Pmv4hD1nUo=
 		</data>
 		<key>Settings.bundle/Root.plist</key>
 		<data>
@@ -509,27 +517,27 @@
 		</data>
 		<key>System.Core.dll</key>
 		<data>
-		r2EKJonLz3868uN59BDs7U3tE7Y=
+		jqSnA2hIWsaZROYIcs8tessAxTU=
 		</data>
 		<key>System.Core.dll.mdb</key>
 		<data>
-		ho/+4VzDdkf6uV9GyRsYQP3CtKo=
+		yJlscEBJdkfw2YCQ8IA3xzB7+4U=
 		</data>
 		<key>System.Xml.dll</key>
 		<data>
-		BcJBBXTBiohQOOxXotmw87+TYTw=
+		EztdpAWLjRvaQo9nXXNi87RudKA=
 		</data>
 		<key>System.Xml.dll.mdb</key>
 		<data>
-		6QlaB0jmeKRZyPcw7CvwBL3r13M=
+		v4SzWl5hpgZkR91cftZuGz53FVo=
 		</data>
 		<key>System.dll</key>
 		<data>
-		2g6rsLjTZyHjrv2U3ajTv9hy64Q=
+		KyqmiQMH9h5dGskv319m8yAYOXA=
 		</data>
 		<key>System.dll.mdb</key>
 		<data>
-		NrUI7Ev6oFptq/cTtEtQS5m4AlM=
+		gbyHvVEPOwVP3JkYtubNn7BqxFk=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
@@ -541,31 +549,31 @@
 		</data>
 		<key>monotouch.dll</key>
 		<data>
-		jD/w45BePgnbnBjxOWh0GQWvcls=
+		ekfPOZ177vkXY3GRl1y8AvE9BiA=
 		</data>
 		<key>monotouch.dll.mdb</key>
 		<data>
-		Y1ix7HVVXn4KWPLyxirqvKHqpuI=
+		6GuX57Ulr3qAYhbWVI6YO0sV6ho=
 		</data>
 		<key>mscorlib.dll</key>
 		<data>
-		mTX36xVVMgE7AB0SQVbjJLTgFTU=
+		67o2a+d7Bq5/IvECMBLZqK3CCk8=
 		</data>
 		<key>mscorlib.dll.mdb</key>
 		<data>
-		87imIJ3PqRAq7xVTsFHCMUWgYMY=
+		bhHtDTPXhglsB1SYpkBg378SrcE=
 		</data>
 		<key>vcMainScreen.nib</key>
 		<data>
-		VCvluiPVN06X5esvnE4tVdyAvMY=
+		PTmtjxNqoVkdlSh6GYazA+YRasc=
 		</data>
 		<key>vcOptionsScreen.nib</key>
 		<data>
-		Cb2xZ9U/llg73VZEYG4U51dzgKk=
+		JnvmkwNO0AjPbVvZZ/quWtqn9HU=
 		</data>
 		<key>vcRecordingsScreen.nib</key>
 		<data>
-		AE+Noj8ZONtoVsgHLJAS4IjfGfM=
+		KLPnJdVdooiSbAtesS0zZlqS9Fw=
 		</data>
 	</dict>
 	<key>rules</key>

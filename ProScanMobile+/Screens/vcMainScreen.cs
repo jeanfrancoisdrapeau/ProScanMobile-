@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Timers;
 using System.IO;
+using System.Threading;
 using System.Xml.Serialization;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
@@ -65,11 +66,7 @@ namespace ProScanMobile
 		ScannerAudio _scannerAudio;
 		ScannerScreen _scannerScreen;
 
-		#if PLUS_VERSION
-		ScannerLog _scannerLog;
-		#endif
-
-		private Timer _timer;
+		private System.Timers.Timer _timer;
 		private DateTime _timerCounter;
 		private DateTime _startTime;
 
@@ -706,7 +703,7 @@ namespace ProScanMobile
 			return si;
 		}
 
-		private void connectToHostAndBeginPlayback()
+		private void connectToHostAndBeginPlayback(bool reconnect = false)
 		{
 			_appSettings = getSettings();
 
@@ -723,34 +720,45 @@ namespace ProScanMobile
 				view: _ivScannerDisplay
 			);
 
+			notificationView.SetTextLabel ("Connecting...", false);
 			notificationView.Show (animated: false);
 
-			networkConnection = new NetworkConnection (_appSettings.SettingsList[0].host, _appSettings.SettingsList[0].port);
-			networkConnection.connectDone.WaitOne ();
+			for (int retries = 0; retries < 5; retries++) {
+				networkConnection = new NetworkConnection (_appSettings.SettingsList[0].host, _appSettings.SettingsList[0].port);
+				networkConnection.connectDone.WaitOne ();
 
-			string password = _appSettings.SettingsList[0].pass;
+				if (networkConnection.connectionStatus != NetworkConnection.ConnectionStatus.Connected) {
+					notificationView.SetTextLabel (string.Format("Connecting ({0})...", retries), false);
+					notificationView.Show (animated: false);
+					Thread.Sleep (1000);
+				} else {
+					break;
+				}
+			}
 
 			if (networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected) {
 
+				string password = _appSettings.SettingsList[0].pass;
+
 				notificationView.SetTextLabel ("Login in...", false);
+				notificationView.Show (animated: false);
 				networkConnection.Login (string.Format("STARTDAT 00048 PS17,VERSION=6.6,PASSWORD={0} ENDDAT", 
 					password.Length == 0 ? string.Empty : password));
 				networkConnection.loginDone.WaitOne ();
 
 				if (networkConnection.loginStatus == NetworkConnection.LoginStatus.LoggedIn) {
 
-					_soundConnected.PlaySystemSound ();
+					if (!reconnect)
+						_soundConnected.PlaySystemSound ();
 
 					notificationView.SetTextLabel ("Preparing...", false);
+					notificationView.Show (animated: false);
 
 					_scannerAudio = new ScannerAudio ();
 					_scannerScreen = new ScannerScreen ();
 
-					#if PLUS_VERSION
-					_scannerLog = new ScannerLog();
-					#endif
-
 					notificationView.SetTextLabel ("Buffering...", false);
+					notificationView.Show (animated: false);
 
 					btnPlay.Enabled = false;
 					btnStop.Enabled = true;
@@ -822,10 +830,6 @@ namespace ProScanMobile
 
 			lblRecording.Text = string.Empty;
 
-			#if PLUS_VERSION
-			ScannerLog.SaveLogs ();
-			#endif
-
 			btnPlay.Enabled = true;
 			btnStop.Enabled = false;
 		}
@@ -846,28 +850,28 @@ namespace ProScanMobile
 					if (ts.TotalSeconds > 5 ||
 						networkConnection.receiveDataStatus == NetworkConnection.SendStatus.Error) {
 
-						_soundDisconnected.PlaySystemSound ();
+						/*_soundDisconnected.PlaySystemSound ();
 
 						if (networkConnection.receiveDataStatus == NetworkConnection.SendStatus.Error)
 							messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
-								networkConnection._receiveDataStatusMessage);
+								networkConnection._receiveDataStatusMessage); */
 
 						_scannerAudio.Dispose ();
 						_scannerScreen.Dispose ();
-
-						#if PLUS_VERSION
-						_scannerLog.Dispose ();
-						#endif
 
 						networkConnection.Close ();
 						networkConnection.closeDone.WaitOne ();
 
 						_timer.Stop ();
 
-						BeginInvokeOnMainThread (delegate {
+						/*BeginInvokeOnMainThread (delegate {
 							btnPlay.Enabled = true;
 							btnStop.Enabled = false;
-						});
+						});*/
+
+						BeginInvokeOnMainThread (delegate { connectToHostAndBeginPlayback(true); });
+
+						return;
 					}
 
 					if (networkConnection.connectionBuffer.Count > 0)
@@ -909,9 +913,6 @@ namespace ProScanMobile
 									break;
 								case MESSAGE_TYPE_STARTDAT:
 									_scannerScreen.processData(messageReceived, i_messageLength);
-									#if PLUS_VERSION
-									_scannerLog.processData(messageReceived, i_messageLength);
-									#endif
 									break;
 								}
 
@@ -957,33 +958,12 @@ namespace ProScanMobile
 
 						if (_scannerAudio.scannerAudio_Buffering)
 						{
-							notificationView.SetTextLabel ("Buffering...", false);
-							notificationView.Show (animated: true);
+							//notificationView.SetTextLabel ("Buffering...", false);
+							//notificationView.Show (animated: true);
 						} else {
 							if (!notificationView.Hidden)
 								notificationView.Hide (animated: true);
 						}
-
-						#if PLUS_VERSION
-						if (ScannerLog.CurrentAlert_Alert == true)
-						{
-							if (UIApplication.SharedApplication.ApplicationState != UIApplicationState.Active)
-							{
-								var notification = new UILocalNotification();
-
-								notification.FireDate = DateTime.Now;
-
-								notification.AlertAction = "ProScanMobile+ Alert";
-								notification.AlertBody = string.Format("High activity detected in {0}", ScannerLog.CurrentAlert_Sysgrp);
-
-								notification.SoundName = UILocalNotification.DefaultSoundName;
-
-								UIApplication.SharedApplication.ScheduleLocalNotification(notification);
-							}
-
-							ScannerLog.CurrentAlert_Alert = false;
-						}
-						#endif
 					});
 				}
 			} catch (Exception ex) {

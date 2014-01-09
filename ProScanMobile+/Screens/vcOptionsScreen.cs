@@ -10,7 +10,6 @@ using System.Text.RegularExpressions;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Collections.Generic;
-using GCDiscreetNotification;
 
 namespace ProScanMobile
 {
