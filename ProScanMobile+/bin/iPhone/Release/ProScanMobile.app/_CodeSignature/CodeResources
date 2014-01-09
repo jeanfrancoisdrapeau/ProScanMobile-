@@ -16,10 +16,6 @@
 		<data>
 		O3eoSAJd4KJZf1c9qDuZQTDxAQQ=
 		</data>
-		<key>GCDiscreetNotification.dll</key>
-		<data>
-		u1LDTvKgEbimYDMTCV20nm4JskY=
-		</data>
 		<key>Images/arrow_left.png</key>
 		<data>
 		kcm+rBy5BmIRb9s5HFr1CHO2Gx0=
@@ -192,6 +188,10 @@
 		<data>
 		MfueyDiyMvgKDM/DvhJPha7NUbo=
 		</data>
+		<key>MBProgressHUD.dll</key>
+		<data>
+		Mw10dte1wvttCj5EuwWNdc1bbgw=
+		</data>
 		<key>NOTICE</key>
 		<data>
 		udRFZiUn5Wu+JuryWRjPAicxwsE=
@@ -202,7 +202,7 @@
 		</data>
 		<key>ProScanMobile.exe</key>
 		<data>
-		4bSCP+wrYm33D/8T4MP0WtXjess=
+		wsX2gYl9e4CRM2xv8oppnVMUTPs=
 		</data>
 		<key>Sounds/connected.mp3</key>
 		<data>
@@ -214,15 +214,15 @@
 		</data>
 		<key>System.Core.dll</key>
 		<data>
-		1E/Wn3YAaX3k/N4RJ/lbxb00PEk=
+		/XJ8LwiXQJ/rVdsOodM5G+zVCJ4=
 		</data>
 		<key>System.Xml.dll</key>
 		<data>
-		Ixi+hXRn9XTA1YnL80B39/Llqas=
+		miUun5rWAAoUbdcr2TX/Ds+k8rw=
 		</data>
 		<key>System.dll</key>
 		<data>
-		qZPYrKBB5T5n6pxFuN+NJc7g7UE=
+		hMLvd3r8oX+8Gz6sEfRobhDEvjc=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
@@ -234,23 +234,23 @@
 		</data>
 		<key>monotouch.dll</key>
 		<data>
-		Fjo8RHwC1tRGOjeoI2r2LNRs/6o=
+		fDzzzlN0ydH6NWf7ybvDZidcosc=
 		</data>
 		<key>mscorlib.dll</key>
 		<data>
-		VanZi/H3NuykAAT55ubw+lN8k6w=
+		Pps0cjoobVHXzZk2VJIPwvbuCH4=
 		</data>
 		<key>vcMainScreen.nib</key>
 		<data>
-		pfKYmP+DHBIOj4896+zKqVpXGm4=
+		1GiZ04ur6cAndwxUOcXfHdz9oGg=
 		</data>
 		<key>vcOptionsScreen.nib</key>
 		<data>
-		OIZEH/YrRauVX7IGkrRfw8uSemc=
+		0WEjAigeGI3lBcV5n0rJSDA7O24=
 		</data>
 		<key>vcRecordingsScreen.nib</key>
 		<data>
-		6gPf89/h7XLzPK34TPztunVlLWE=
+		MmzLUoLOIZsFvZl4aw6whVCSXcc=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -267,10 +267,6 @@
 		<data>
 		O3eoSAJd4KJZf1c9qDuZQTDxAQQ=
 		</data>
-		<key>GCDiscreetNotification.dll</key>
-		<data>
-		u1LDTvKgEbimYDMTCV20nm4JskY=
-		</data>
 		<key>Images/arrow_left.png</key>
 		<data>
 		kcm+rBy5BmIRb9s5HFr1CHO2Gx0=
@@ -443,6 +439,10 @@
 		<data>
 		MfueyDiyMvgKDM/DvhJPha7NUbo=
 		</data>
+		<key>MBProgressHUD.dll</key>
+		<data>
+		Mw10dte1wvttCj5EuwWNdc1bbgw=
+		</data>
 		<key>NOTICE</key>
 		<data>
 		udRFZiUn5Wu+JuryWRjPAicxwsE=
@@ -453,7 +453,7 @@
 		</data>
 		<key>ProScanMobile.exe</key>
 		<data>
-		4bSCP+wrYm33D/8T4MP0WtXjess=
+		wsX2gYl9e4CRM2xv8oppnVMUTPs=
 		</data>
 		<key>Sounds/connected.mp3</key>
 		<data>
@@ -465,15 +465,15 @@
 		</data>
 		<key>System.Core.dll</key>
 		<data>
-		1E/Wn3YAaX3k/N4RJ/lbxb00PEk=
+		/XJ8LwiXQJ/rVdsOodM5G+zVCJ4=
 		</data>
 		<key>System.Xml.dll</key>
 		<data>
-		Ixi+hXRn9XTA1YnL80B39/Llqas=
+		miUun5rWAAoUbdcr2TX/Ds+k8rw=
 		</data>
 		<key>System.dll</key>
 		<data>
-		qZPYrKBB5T5n6pxFuN+NJc7g7UE=
+		hMLvd3r8oX+8Gz6sEfRobhDEvjc=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
@@ -485,23 +485,23 @@
 		</data>
 		<key>monotouch.dll</key>
 		<data>
-		Fjo8RHwC1tRGOjeoI2r2LNRs/6o=
+		fDzzzlN0ydH6NWf7ybvDZidcosc=
 		</data>
 		<key>mscorlib.dll</key>
 		<data>
-		VanZi/H3NuykAAT55ubw+lN8k6w=
+		Pps0cjoobVHXzZk2VJIPwvbuCH4=
 		</data>
 		<key>vcMainScreen.nib</key>
 		<data>
-		pfKYmP+DHBIOj4896+zKqVpXGm4=
+		1GiZ04ur6cAndwxUOcXfHdz9oGg=
 		</data>
 		<key>vcOptionsScreen.nib</key>
 		<data>
-		OIZEH/YrRauVX7IGkrRfw8uSemc=
+		0WEjAigeGI3lBcV5n0rJSDA7O24=
 		</data>
 		<key>vcRecordingsScreen.nib</key>
 		<data>
-		6gPf89/h7XLzPK34TPztunVlLWE=
+		MmzLUoLOIZsFvZl4aw6whVCSXcc=
 		</data>
 	</dict>
 	<key>rules</key>

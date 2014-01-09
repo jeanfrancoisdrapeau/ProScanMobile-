@@ -95,8 +95,8 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-    <Reference Include="GCDiscreetNotification">
-      <HintPath>..\..\..\Downloads\gcdiscreetnotification-1.0\lib\ios\GCDiscreetNotification.dll</HintPath>
+    <Reference Include="MBProgressHUD">
+      <HintPath>..\..\..\Downloads\mbprogresshud-0.8\lib\ios\MBProgressHUD.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -7,9 +7,9 @@ using System.Threading;
 using System.Xml.Serialization;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using GCDiscreetNotification;
 using MonoTouch.AudioToolbox;
 using MonoTouch.AVFoundation;
+using MBProgressHUD;
 
 namespace ProScanMobile
 {
@@ -18,10 +18,15 @@ namespace ProScanMobile
 	/// </summary>
 	public partial class vcMainScreen : UIViewController
 	{
-		GCDiscreetNotificationView notificationView;
-
 		SystemSound _soundConnected;
 		SystemSound _soundDisconnected;
+
+		static MTMBProgressHUD _progressHud;
+		public static MTMBProgressHUD ProgressHud {
+			get {
+				return _progressHud;
+			}
+		}
 
 		UIScrollView _scrollView;
 
@@ -117,6 +122,8 @@ namespace ProScanMobile
 
 		private void initInterface()
 		{
+			_progressHud = new MTMBProgressHUD (this.View);
+
 			_timer = new System.Timers.Timer ();
 
 			_timer.Interval = 100;
@@ -588,7 +595,8 @@ namespace ProScanMobile
 				lblTime, lblBytes,
 				lblRecording,
 				_scrollView,
-				lblAppVersion, lblAppCreator
+				lblAppVersion, lblAppCreator,
+				_progressHud
 			});
 		}
 
@@ -713,23 +721,18 @@ namespace ProScanMobile
 				return;
 			}
 
-			notificationView = new GCDiscreetNotificationView (
-				text: "Connecting...",
-				activity: true,
-				presentationMode: GCDNPresentationMode.Bottom,
-				view: _ivScannerDisplay
-			);
-
-			notificationView.SetTextLabel ("Connecting...", false);
-			notificationView.Show (animated: false);
+			_progressHud.Mode = MBProgressHUDMode.Indeterminate;
+			_progressHud.LabelText = "Connecting...";
+			_progressHud.Show(true);
+			NSRunLoop.Current.RunUntil(DateTime.Now.AddMilliseconds(1));
 
 			for (int retries = 0; retries < 5; retries++) {
 				networkConnection = new NetworkConnection (_appSettings.SettingsList[0].host, _appSettings.SettingsList[0].port);
 				networkConnection.connectDone.WaitOne ();
 
 				if (networkConnection.connectionStatus != NetworkConnection.ConnectionStatus.Connected) {
-					notificationView.SetTextLabel (string.Format("Connecting ({0})...", retries), false);
-					notificationView.Show (animated: false);
+					_progressHud.LabelText = string.Format("Connecting... (Attempt #{0})", retries + 1);
+					NSRunLoop.Current.RunUntil(DateTime.Now.AddMilliseconds(1));
 					Thread.Sleep (1000);
 				} else {
 					break;
@@ -738,27 +741,25 @@ namespace ProScanMobile
 
 			if (networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected) {
 
+				_progressHud.LabelText = "Authenticating...";
+				NSRunLoop.Current.RunUntil(DateTime.Now.AddMilliseconds(1));
+
 				string password = _appSettings.SettingsList[0].pass;
 
-				notificationView.SetTextLabel ("Login in...", false);
-				notificationView.Show (animated: false);
 				networkConnection.Login (string.Format("STARTDAT 00048 PS17,VERSION=6.6,PASSWORD={0} ENDDAT", 
 					password.Length == 0 ? string.Empty : password));
 				networkConnection.loginDone.WaitOne ();
 
 				if (networkConnection.loginStatus == NetworkConnection.LoginStatus.LoggedIn) {
 
+					_progressHud.LabelText = "Buffering...";
+					NSRunLoop.Current.RunUntil(DateTime.Now.AddMilliseconds(1));
+
 					if (!reconnect)
 						_soundConnected.PlaySystemSound ();
 
-					notificationView.SetTextLabel ("Preparing...", false);
-					notificationView.Show (animated: false);
-
 					_scannerAudio = new ScannerAudio ();
 					_scannerScreen = new ScannerScreen ();
-
-					notificationView.SetTextLabel ("Buffering...", false);
-					notificationView.Show (animated: false);
 
 					btnPlay.Enabled = false;
 					btnStop.Enabled = true;
@@ -771,9 +772,6 @@ namespace ProScanMobile
 					_timer.Start ();
 
 				} else {
-					if (!notificationView.Hidden)
-						notificationView.Hide (animated: true);
-
 					messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
 						networkConnection._loginStatusMessage);
 
@@ -784,13 +782,12 @@ namespace ProScanMobile
 					networkConnection.closeDone.WaitOne ();
 				}
 			} else {
-				if (!notificationView.Hidden) {
-					notificationView.Hide (animated: true);
-				}
-
 				messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
 					networkConnection._connectionStatusMessage);
 			}
+
+			_progressHud.Hide(true);
+			NSRunLoop.Current.RunUntil(DateTime.Now.AddMilliseconds(1));
 		}
 
 		#if PLUS_VERSION
@@ -850,12 +847,6 @@ namespace ProScanMobile
 					if (ts.TotalSeconds > 5 ||
 						networkConnection.receiveDataStatus == NetworkConnection.SendStatus.Error) {
 
-						/*_soundDisconnected.PlaySystemSound ();
-
-						if (networkConnection.receiveDataStatus == NetworkConnection.SendStatus.Error)
-							messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
-								networkConnection._receiveDataStatusMessage); */
-
 						_scannerAudio.Dispose ();
 						_scannerScreen.Dispose ();
 
@@ -863,11 +854,6 @@ namespace ProScanMobile
 						networkConnection.closeDone.WaitOne ();
 
 						_timer.Stop ();
-
-						/*BeginInvokeOnMainThread (delegate {
-							btnPlay.Enabled = true;
-							btnStop.Enabled = false;
-						});*/
 
 						BeginInvokeOnMainThread (delegate { connectToHostAndBeginPlayback(true); });
 
@@ -956,14 +942,14 @@ namespace ProScanMobile
 						lblMpegFrequency.Text = _scannerAudio.scannerAudio_Freq;
 						lblMpegRate.Text = _scannerAudio.scannerAudio_Rate;
 
-						if (_scannerAudio.scannerAudio_Buffering)
+						/*if (_scannerAudio.scannerAudio_Buffering)
 						{
-							//notificationView.SetTextLabel ("Buffering...", false);
-							//notificationView.Show (animated: true);
+							notificationView.TitleText = "Buffering...";
+							notificationView.Show (animated: true);
 						} else {
 							if (!notificationView.Hidden)
 								notificationView.Hide (animated: true);
-						}
+						}*/
 					});
 				}
 			} catch (Exception ex) {
