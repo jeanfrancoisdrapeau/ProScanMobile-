@@ -65,6 +65,10 @@ namespace ProScanMobile
 		ScannerAudio _scannerAudio;
 		ScannerScreen _scannerScreen;
 
+		#if PLUS_VERSION
+		ScannerLog _scannerLog;
+		#endif
+
 		private Timer _timer;
 		private DateTime _timerCounter;
 		private DateTime _startTime;
@@ -118,7 +122,7 @@ namespace ProScanMobile
 		{
 			_timer = new System.Timers.Timer ();
 
-			_timer.Interval = 250;
+			_timer.Interval = 100;
 			_timer.Elapsed += new System.Timers.ElapsedEventHandler(timerElapsed);
 
 			_soundConnected = SystemSound.FromFile ("Sounds/connected.mp3");
@@ -737,13 +741,19 @@ namespace ProScanMobile
 
 					_soundConnected.PlaySystemSound ();
 
+					notificationView.SetTextLabel ("Preparing...", false);
+
+					_scannerAudio = new ScannerAudio ();
+					_scannerScreen = new ScannerScreen ();
+
+					#if PLUS_VERSION
+					_scannerLog = new ScannerLog();
+					#endif
+
 					notificationView.SetTextLabel ("Buffering...", false);
 
 					btnPlay.Enabled = false;
 					btnStop.Enabled = true;
-
-					_scannerAudio = new ScannerAudio ();
-					_scannerScreen = new ScannerScreen ();
 
 					if (_recordAudio) 
 						_scannerAudio.PrepareOutputToFile ();
@@ -812,6 +822,10 @@ namespace ProScanMobile
 
 			lblRecording.Text = string.Empty;
 
+			#if PLUS_VERSION
+			ScannerLog.SaveLogs ();
+			#endif
+
 			btnPlay.Enabled = true;
 			btnStop.Enabled = false;
 		}
@@ -840,6 +854,10 @@ namespace ProScanMobile
 
 						_scannerAudio.Dispose ();
 						_scannerScreen.Dispose ();
+
+						#if PLUS_VERSION
+						_scannerLog.Dispose ();
+						#endif
 
 						networkConnection.Close ();
 						networkConnection.closeDone.WaitOne ();
@@ -891,6 +909,9 @@ namespace ProScanMobile
 									break;
 								case MESSAGE_TYPE_STARTDAT:
 									_scannerScreen.processData(messageReceived, i_messageLength);
+									#if PLUS_VERSION
+									_scannerLog.processData(messageReceived, i_messageLength);
+									#endif
 									break;
 								}
 
@@ -942,6 +963,27 @@ namespace ProScanMobile
 							if (!notificationView.Hidden)
 								notificationView.Hide (animated: true);
 						}
+
+						#if PLUS_VERSION
+						if (ScannerLog.CurrentAlert_Alert == true)
+						{
+							if (UIApplication.SharedApplication.ApplicationState != UIApplicationState.Active)
+							{
+								var notification = new UILocalNotification();
+
+								notification.FireDate = DateTime.Now;
+
+								notification.AlertAction = "ProScanMobile+ Alert";
+								notification.AlertBody = string.Format("High activity detected in {0}", ScannerLog.CurrentAlert_Sysgrp);
+
+								notification.SoundName = UILocalNotification.DefaultSoundName;
+
+								UIApplication.SharedApplication.ScheduleLocalNotification(notification);
+							}
+
+							ScannerLog.CurrentAlert_Alert = false;
+						}
+						#endif
 					});
 				}
 			} catch (Exception ex) {

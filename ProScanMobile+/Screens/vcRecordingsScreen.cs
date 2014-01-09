@@ -43,7 +43,6 @@ namespace ProScanMobile
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			this.NavigationController.SetNavigationBarHidden (true, animated);
 
 			var documents = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
 			var orderedFiles = Directory.GetFiles (documents, "proscanmobile_*.mp3")

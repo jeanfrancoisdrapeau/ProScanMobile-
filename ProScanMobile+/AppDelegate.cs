@@ -19,6 +19,8 @@ namespace ProScanMobile
 		vcOptionsScreen viewControlerServersScreen;
 		#if PLUS_VERSION
 		vcRecordingsScreen viewControllerRecordingsScreen;
+		vcAlertsScreen viewControllerAlertsScreen;
+
 		#endif
 
 		//
@@ -39,13 +41,15 @@ namespace ProScanMobile
 			viewControlerServersScreen = new vcOptionsScreen ();
 			#if PLUS_VERSION
 			viewControllerRecordingsScreen = new vcRecordingsScreen ();
+			viewControllerAlertsScreen = new vcAlertsScreen ();
 			#endif
 
 			#if PLUS_VERSION
 			tabController.ViewControllers = new UIViewController[] {
 				viewControllerMainScreen,
 				viewControlerServersScreen,
-				viewControllerRecordingsScreen
+				viewControllerRecordingsScreen,
+				viewControllerAlertsScreen
 			};
 			#else
 			tabController.ViewControllers = new UIViewController[] {
@@ -60,6 +64,8 @@ namespace ProScanMobile
 			#if PLUS_VERSION
 			tabController.ViewControllers [2].TabBarItem.Title = "Recordings";
 			tabController.ViewControllers [2].TabBarItem.Image = UIImage.FromBundle ("Images/folder_button");
+			tabController.ViewControllers [3].TabBarItem.Title = "Alerts";
+			tabController.ViewControllers [3].TabBarItem.Image = UIImage.FromBundle ("Images/alert_button");
 			#endif
 
 			tabController.SelectedViewController = viewControllerMainScreen;
@@ -70,16 +76,16 @@ namespace ProScanMobile
 			window.RootViewController = rootNavigationController; 
 			window.MakeKeyAndVisible ();
 
-			UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval (UIApplication.BackgroundFetchIntervalMinimum);
-
 			return true;
 		}
 
-		public override void PerformFetch (UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
+		#if PLUS_VERSION
+		public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
 		{
-			// check for new data, and display it
-			completionHandler (UIBackgroundFetchResult.NewData);
+			// show an alert
+			new UIAlertView(notification.AlertAction, notification.AlertBody, null, "OK", null).Show();
 		}
+		#endif
 	}
 }
 

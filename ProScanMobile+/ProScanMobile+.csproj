@@ -145,6 +145,7 @@
     <BundleResource Include="Images\arrow_left.png" />
     <BundleResource Include="Images\arrow_right.png" />
     <BundleResource Include="Images\servers_button.png" />
+    <BundleResource Include="Images\alert_button.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -178,12 +179,21 @@
     <Compile Include="Classes\RecTableSource.cs" />
     <Compile Include="Classes\RecTableCell.cs" />
     <Compile Include="Classes\RecTableItem.cs" />
+    <Compile Include="Classes\ScannerLog.cs" />
+    <Compile Include="Screens\vcAlertsScreen.cs" />
+    <Compile Include="Screens\vcAlertsScreen.designer.cs">
+      <DependentUpon>vcAlertsScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\AlertTableSource.cs" />
+    <Compile Include="Classes\AlertTableItem.cs" />
+    <Compile Include="Classes\AlertTableCell.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="Screens\vcMainScreen.xib" />
     <InterfaceDefinition Include="Screens\vcOptionsScreen.xib" />
     <InterfaceDefinition Include="Screens\vcRecordingsScreen.xib" />
+    <InterfaceDefinition Include="Screens\vcAlertsScreen.xib" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Screens\" />

@@ -70,6 +70,8 @@ namespace ProScanMobile
 				buffer->AudioDataByteSize = (uint)args.Bytes;
 				buffer->CopyToAudioData (args.InputData, args.Bytes);
 
+				//audioQueue.Volume = 1.0f;
+
 				if (audioQueue.EnqueueBuffer (buffer, args.PacketDescriptions) != AudioQueueStatus.Ok)
 					throw new ApplicationException ();
 			}

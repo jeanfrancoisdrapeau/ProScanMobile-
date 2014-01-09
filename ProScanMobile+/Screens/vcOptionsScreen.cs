@@ -245,7 +245,7 @@ namespace ProScanMobile
 						Description = sd.desc.Length == 0 ? " " : sd.desc,
 						Country = sd.country,
 						State = sd.state,
-						County = sd.county 
+						County = sd.county
 					});
 				}
 

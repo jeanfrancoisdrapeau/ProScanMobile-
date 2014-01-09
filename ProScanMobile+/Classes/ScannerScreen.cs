@@ -64,6 +64,8 @@ namespace ProScanMobile
 						string sdata = bytesToString (data).Trim ();
 						string scase = sdata.Substring (15, 4);
 
+						//Console.WriteLine(sdata);
+
 						string[] ps01;
 						string[] ps02;
 						string[] ps30;
@@ -97,6 +99,7 @@ namespace ProScanMobile
 							// Line 5: Activated groups per system
 
 							ps30 = sdata.Split ('\r');
+
 							ps30_system_details = ps30 [6].Split (',');
 
 							int.TryParse(ps30_system_details[1].Trim(), out _scannerScreen_Signal);

@@ -7,9 +7,9 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.jfdrapeau.proscanmobileplus</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.01.06</string>
+	<string>1.01.19</string>
 	<key>CFBundleVersion</key>
-	<string>1.01.06</string>
+	<string>1.01.19</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -33,7 +33,6 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
-		<string>fetch</string>
 	</array>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>

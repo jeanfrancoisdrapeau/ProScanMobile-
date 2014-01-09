@@ -1,10 +1,24 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhoneRetina4.7.0" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhoneRetina.7.0" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ProScanMobile+/Classes/ScannerLog.cs">
+    <Files>
+      <File FileName="ProScanMobile+/Screens/vcMainScreen.cs" Line="707" Column="4" />
+      <File FileName="ProScanMobile+/Classes/ScannerLog.cs" Line="171" Column="37" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>_log</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="ProScanMobile+/Classes/Log.cs" line="34" offsetX="758" offsetY="307" expression="ProScanMobile.Log._log" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.ItemProperties.ProScanMobile_22B>
     <MonoDevelop.MacDev.AppleDevelopmentTeam DeveloperId="L6E984PA5R" TeamId="DLQS56544R" />
   </MonoDevelop.Ide.ItemProperties.ProScanMobile_22B>
