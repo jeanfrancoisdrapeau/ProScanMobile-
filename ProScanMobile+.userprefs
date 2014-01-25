@@ -1,17 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhoneRetina.7.0" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ProScanMobile+/Classes/ScannerLog.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhoneRetina4.7.0" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ProScanMobile+/Screens/vcMainScreen.cs">
     <Files>
-      <File FileName="ProScanMobile+/Screens/vcMainScreen.cs" Line="707" Column="4" />
-      <File FileName="ProScanMobile+/Classes/ScannerLog.cs" Line="171" Column="37" />
+      <File FileName="ProScanMobile+/Screens/vcMainScreen.cs" Line="761" Column="11" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>_log</Value>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

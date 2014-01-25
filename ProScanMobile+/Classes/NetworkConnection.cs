@@ -48,6 +48,10 @@ namespace ProScanMobile
 		public SendStatus receiveHttpStatus { get { return _receiveHttpStatus; } }
 		public string _receiveHttpStatusMessage;
 
+		private SendStatus _receiveAlertStatus;
+		public SendStatus receiveAlertStatus { get { return _receiveAlertStatus; } }
+		public string _receiveAlertStatusMessage;
+
 		private SendStatus _receiveDataStatus;
 		public SendStatus receiveDataStatus { get { return _receiveDataStatus; } }
 		public string _receiveDataStatusMessage;
@@ -62,9 +66,10 @@ namespace ProScanMobile
 		public LoginStatus loginStatus { get { return _loginStatus; } }
 		public string _loginStatusMessage;
 
-		private enum ReceiveType
+		public enum ReceiveType
 		{
 			Http,
+			Alert,
 			Data
 		}
 
@@ -73,15 +78,19 @@ namespace ProScanMobile
 
 		private ManualResetEvent _connectDone = new ManualResetEvent(false);
 		public ManualResetEvent connectDone { get { return _connectDone; } }
+
 		private ManualResetEvent _closeDone = new ManualResetEvent(false);
 		public ManualResetEvent closeDone { get { return _closeDone; } }
 
 		private ManualResetEvent _sendDone = new ManualResetEvent(false);
 		public ManualResetEvent sendDone { get { return _sendDone; } }
+
 		private ManualResetEvent _receiveDone = new ManualResetEvent(false);
+		public ManualResetEvent receiveDone { get { return _receiveDone; } }
 
 		private ManualResetEvent _loginDone = new ManualResetEvent(false);
 		public ManualResetEvent loginDone { get { return _loginDone; } }
+
 		private ManualResetEvent _logoutDone = new ManualResetEvent(false);
 		public ManualResetEvent logoutDone { get { return _logoutDone; } }
 
@@ -95,6 +104,7 @@ namespace ProScanMobile
 		}
 
 		private string _httpResponse = string.Empty;
+		private string _alertResponse = string.Empty;
 
 		private int _bytesReceived;
 		public int bytesReceived { get { return _bytesReceived; } }
@@ -267,7 +277,7 @@ namespace ProScanMobile
 		/// 2. DATA : We are waiting data from the server
 		/// </description>
 		/// <param name="rt">Receive Type</param>
-		private void Receive(ReceiveType rt) 
+		public void Receive(ReceiveType rt) 
 		{
 			_receiveDone.Reset ();
 
@@ -280,9 +290,35 @@ namespace ProScanMobile
 				_receiveHttpStatus = SendStatus.Ok;
 				_tcpSocket.BeginReceive (state.buffer, 0, StateObject.BufferSize, 0,
 					new AsyncCallback (receiveCallBackHttp), state);
+			} else if (rt == ReceiveType.Alert) {
+				_receiveAlertStatus = SendStatus.Ok;
+				_tcpSocket.BeginReceive (state.buffer, 0, StateObject.BufferSize, 0,
+					new AsyncCallback (receiveCallBackAlert), state);
 			} else {
 				_tcpSocket.BeginReceive (state.buffer, 0, StateObject.BufferSize, 0,
 					new AsyncCallback (receiveCallBackData), state);
+			}
+		}
+
+		private void receiveCallBackAlert( IAsyncResult ar ) {
+			try {
+				StateObject state = (StateObject) ar.AsyncState;
+				Socket client = state.workSocket;
+
+				int bytesRead = client.EndReceive(ar);
+
+				if (bytesRead > 0) {
+					byte[] tmpdata = new byte[15];
+					Array.Copy(state.buffer, tmpdata, 15);
+
+					_alertResponse = bytesTostring(tmpdata);
+				}
+			} catch {
+				_receiveAlertStatus = SendStatus.Error;
+				_receiveAlertStatusMessage = "An error occured receiving alert response.";
+			} finally {
+				_receiveAlertStatusMessage = _alertResponse;
+				_receiveDone.Set();
 			}
 		}
 

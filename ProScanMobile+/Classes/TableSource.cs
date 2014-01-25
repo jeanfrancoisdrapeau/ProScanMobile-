@@ -2,11 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace ProScanMobile {
-	public class TableSource : UITableViewSource {
+namespace ProScanMobile 
+{
+	public class TableSource : UITableViewSource 
+	{
+		NSIndexPath _selectRowIndex;
 
 		Dictionary<string, List<TableItem>> indexedTableItems;
 		string[] keys;
@@ -30,6 +34,14 @@ namespace ProScanMobile {
 
 		public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 		{
+			#if PLUS_VERSION
+			if (_selectRowIndex != null) {
+				if (indexPath.Row == _selectRowIndex.Row &
+					indexPath.Section == _selectRowIndex.Section) {
+						return ROW_HEIGHT + 20;
+					}
+			}
+			#endif
 			return ROW_HEIGHT;
 		}
 
@@ -52,10 +64,15 @@ namespace ProScanMobile {
 		{
 			vcOptionsScreen.txtSH.Text = indexedTableItems [keys [indexPath.Section]] [indexPath.Row].Host;
 			vcOptionsScreen.txtSP.Text = indexedTableItems [keys [indexPath.Section]] [indexPath.Row].Port;
+
 			#if PLUS_VERSION
 			vcOptionsScreen.txtPW.Text = string.Empty;
 			#endif
-			tableView.DeselectRow (indexPath, true);
+
+			_selectRowIndex = indexPath;
+			tableView.BeginUpdates ();
+			tableView.EndUpdates ();
+			//tableView.DeselectRow (indexPath, true);
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)

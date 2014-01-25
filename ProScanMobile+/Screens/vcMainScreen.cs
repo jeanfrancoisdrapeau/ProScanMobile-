@@ -772,16 +772,18 @@ namespace ProScanMobile
 					_timer.Start ();
 
 				} else {
-					messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
-						networkConnection._loginStatusMessage);
-
 					networkConnection.LogOut ("STARTDAT 00026 PS05 ENDDAT");
 					networkConnection.logoutDone.WaitOne ();
 
 					networkConnection.Close ();
 					networkConnection.closeDone.WaitOne ();
+
+					messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
+						networkConnection._loginStatusMessage);
 				}
 			} else {
+				_soundDisconnected.PlaySystemSound ();
+
 				messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
 					networkConnection._connectionStatusMessage);
 			}

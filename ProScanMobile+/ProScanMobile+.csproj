@@ -53,6 +53,9 @@
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>ARMv7</MtouchArch>
+    <CodesignProvision>7AB7D270-B838-48F8-9922-EF05FA6A64C6</CodesignProvision>
+    <IpaPackageName>
+    </IpaPackageName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <Optimize>true</Optimize>
@@ -145,6 +148,7 @@
     <BundleResource Include="Images\arrow_left.png" />
     <BundleResource Include="Images\arrow_right.png" />
     <BundleResource Include="Images\servers_button.png" />
+    <BundleResource Include="Images\alert_button.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
