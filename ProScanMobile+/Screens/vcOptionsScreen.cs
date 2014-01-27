@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Collections.Generic;
+using MBProgressHUD;
 
 namespace ProScanMobile
 {
@@ -26,6 +27,13 @@ namespace ProScanMobile
 		UISwitch _swAutoConnect;
 		UITableView _tvServers;
 		UIRefreshControl _rcRefreshControl;
+
+		static MTMBProgressHUD _progressHud;
+		public static MTMBProgressHUD ProgressHud {
+			get {
+				return _progressHud;
+			}
+		}
 
 		public static MonoTouch.UIKit.UITextField txtSH;
 		public static MonoTouch.UIKit.UITextField txtSP;
@@ -110,6 +118,8 @@ namespace ProScanMobile
 
 		private void initInterface()
 		{
+			_progressHud = new MTMBProgressHUD (this.View);
+
 			_txtServerHost = new UITextField {
 				Frame = new RectangleF (20, 23, 280, 25)
 			};
@@ -174,7 +184,8 @@ namespace ProScanMobile
 			#if PLUS_VERSION
 			View.AddSubviews (new UIView[] { _txtServerHost, _txtServerPort, _txtServerPassword,
 				lblAutoConnect, _swAutoConnect,
-				_tvServers
+				_tvServers,
+				_progressHud
 			});
 			#else
 			View.AddSubviews (new UIView[] { _txtServerHost, _txtServerPort,

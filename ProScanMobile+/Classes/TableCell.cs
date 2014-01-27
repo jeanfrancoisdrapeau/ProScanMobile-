@@ -3,6 +3,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.CoreGraphics;
 using System.Drawing;
+using MBProgressHUD;
 
 namespace ProScanMobile
 {
@@ -97,9 +98,14 @@ namespace ProScanMobile
 
 		private void regOrUnregAlertService (bool unreg = false)
 		{
+			vcOptionsScreen.ProgressHud.Mode = MBProgressHUDMode.Indeterminate;
+			vcOptionsScreen.ProgressHud.LabelText = "Registering...";
+			vcOptionsScreen.ProgressHud.Show(true);
+			NSRunLoop.Current.RunUntil(DateTime.Now.AddMilliseconds(1));
+
 			if (string.IsNullOrEmpty(NSUserDefaults.StandardUserDefaults.StringForKey ("PushDeviceToken"))) {
 				messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
-					"Cannot retrieve Device Notifications Key. Please make sure the application allowed to receive notifications.");
+					"Cannot retrieve Device Notifications Key. Please make sure the application is allowed to receive notifications.");
 				return;
 			}
 
@@ -108,7 +114,7 @@ namespace ProScanMobile
 
 			if (networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected) {
 
-				string prefix = (unreg ? "UNREG": "REG" );
+				string prefix = (unreg ? "UNREG,": "REG," );
 				string message = string.Concat(prefix, NSUserDefaults.StandardUserDefaults.StringForKey("PushDeviceToken"));
 
 				networkConnection.Send (message);
@@ -124,6 +130,10 @@ namespace ProScanMobile
 				messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
 					networkConnection._connectionStatusMessage);
 			}
+				
+			vcOptionsScreen.ProgressHud.Hide (true);
+			NSRunLoop.Current.RunUntil(DateTime.Now.AddMilliseconds(1));
+
 		}
 
 		private void messageBoxShow(string Title, string Message)

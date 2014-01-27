@@ -308,10 +308,7 @@ namespace ProScanMobile
 				int bytesRead = client.EndReceive(ar);
 
 				if (bytesRead > 0) {
-					byte[] tmpdata = new byte[15];
-					Array.Copy(state.buffer, tmpdata, 15);
-
-					_alertResponse = bytesTostring(tmpdata);
+					_alertResponse = bytesTostring(state.buffer);
 				}
 			} catch {
 				_receiveAlertStatus = SendStatus.Error;
