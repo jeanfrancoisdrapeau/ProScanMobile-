@@ -24,6 +24,8 @@ namespace ProScanMobile
 		vcRecordingsScreen viewControllerRecordingsScreen;
 		#endif
 
+		NSObject foregroundObserver;
+
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this
 		// method you should instantiate the window, load the UI into it and then make the window
@@ -33,6 +35,9 @@ namespace ProScanMobile
 		//
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
+			foregroundObserver = NSNotificationCenter.DefaultCenter.AddObserver (
+				UIApplication.DidBecomeActiveNotification, foregroundObserver_Notify);
+
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
@@ -80,13 +85,26 @@ namespace ProScanMobile
 				| UIRemoteNotificationType.Sound);
 			#endif
 
-			UIApplication.SharedApplication.ApplicationIconBadgeNumber = -1;
-			UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
-
 			Self = this;
 			this.MainNavController = rootNavigationController; // pass the nav controller's root controller in the constructor
 
 			return true;
+		}
+
+		public override void WillTerminate (UIApplication application)
+		{
+			if (foregroundObserver != null) {
+				NSNotificationCenter.DefaultCenter.RemoveObserver (foregroundObserver);
+				foregroundObserver = null;
+			}
+		}
+
+		public void foregroundObserver_Notify(NSNotification notification)
+		{
+			Console.WriteLine("Did become active.");
+
+			UIApplication.SharedApplication.ApplicationIconBadgeNumber = -1;
+			UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
 		}
 
 		public override void RegisteredForRemoteNotifications (UIApplication application, NSData deviceToken)

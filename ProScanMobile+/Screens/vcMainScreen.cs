@@ -154,39 +154,39 @@ namespace ProScanMobile
 			#endif
 
 			lblScannerDisplay1 = new UILabel {
-				Frame = new RectangleF (5, 50, 310, 35)
+				Frame = new RectangleF (4, 50, 315, 35)
 			};
 			lblScannerDisplay1.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay1.Text = "System";
-			lblScannerDisplay1.Font = UIFont.FromName("LED Display7", 30f);
+			lblScannerDisplay1.Font = UIFont.FromName("LED Display7", 27f);
 
 			lblScannerDisplay2 = new UILabel {
-				Frame = new RectangleF (5, 75, 310, 35)
+				Frame = new RectangleF (4, 75, 315, 35)
 			};
 			lblScannerDisplay2.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay2.Text = "Group";
-			lblScannerDisplay2.Font = UIFont.FromName("LED Display7", 30f);
+			lblScannerDisplay2.Font = UIFont.FromName("LED Display7", 27f);
 
 			lblScannerDisplay3 = new UILabel {
-				Frame = new RectangleF (5, 100, 310, 35)
+				Frame = new RectangleF (4, 100, 315, 35)
 			};
 			lblScannerDisplay3.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay3.Text = "123.456";
-			lblScannerDisplay3.Font = UIFont.FromName("LED Display7", 30f);
+			lblScannerDisplay3.Font = UIFont.FromName("LED Display7", 27f);
 
 			lblScannerDisplay4 = new UILabel {
-				Frame = new RectangleF (5, 125, 310, 35)
+				Frame = new RectangleF (4, 125, 315, 35)
 			};
 			lblScannerDisplay4.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay4.Text = "S1:1234567890";
-			lblScannerDisplay4.Font = UIFont.FromName("LED Display7", 30f);
+			lblScannerDisplay4.Font = UIFont.FromName("LED Display7", 27f);
 
 			lblScannerDisplay5 = new UILabel {
-				Frame = new RectangleF (5, 150, 310, 35)
+				Frame = new RectangleF (4, 150, 315, 35)
 			};
 			lblScannerDisplay5.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay5.Text = "GRP1234567890";
-			lblScannerDisplay5.Font = UIFont.FromName("LED Display7", 30f);
+			lblScannerDisplay5.Font = UIFont.FromName("LED Display7", 27f);
 
 			lblServerHostname = new UILabel {
 				Frame = new RectangleF (10, 180, 305, 35)
@@ -263,7 +263,7 @@ namespace ProScanMobile
 
 			// Scanner display
 			_ivScannerDisplay = new UIImageView {
-				Frame = new RectangleF (5, 23, UIScreen.MainScreen.Bounds.Width - 10, 249),
+				Frame = new RectangleF (3, 23, UIScreen.MainScreen.Bounds.Width - 7, 245),
 				Image = UIImage.FromBundle("Images/scanner_display.jpg")
 			};
 
@@ -624,7 +624,7 @@ namespace ProScanMobile
 				message = "STARTDAT 00034 PS31 KEY,2,P ENDDAT";
 				break;
 			case 4: //"btnScanner_3":
-				message = "STARTDAT 00034 PS31 KEY,2,P ENDDAT";
+				message = "STARTDAT 00034 PS31 KEY,3,P ENDDAT";
 				break;
 			case 5: //"btnScanner_Scan":
 				message = "STARTDAT 00034 PS31 KEY,S,P ENDDAT";
@@ -675,7 +675,7 @@ namespace ProScanMobile
 				message = "STARTDAT 00034 PS31 KEY,F,H ENDDAT";
 				break;
 			case 21: //"btnScanner_FuncR":
-				message = "STARTDAT 00042 PS31 KEY,F,R\nKEY,F,P ENDDAT";
+				message = "STARTDAT 00042 PS31 KEY,F,R\rKEY,F,P ENDDAT";
 				break;
 			case 22: //"btnScanner_Push":
 				break;
@@ -992,15 +992,17 @@ namespace ProScanMobile
 
 		private string getSignalBars(int signal)
 		{
-			if (signal >= 0 && signal < 150)
+			//Console.WriteLine ("SIGNAL: " + signal.ToString ());
+
+			if (signal >= 0 && signal < 225)
 				return "signal_0";
-			if (signal >= 150 && signal < 225)
-				return "signal_1";
 			if (signal >= 225 && signal < 250)
-				return "signal_2";
+				return "signal_1";
 			if (signal >= 250 && signal < 300)
+				return "signal_2";
+			if (signal >= 300 && signal < 325)
 				return "signal_3";
-			if (signal >= 300 && signal < 350)
+			if (signal >= 325 && signal < 350)
 				return "signal_4";
 			if (signal >= 350)
 				return "signal_5";

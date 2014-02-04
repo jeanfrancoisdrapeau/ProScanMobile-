@@ -10989,20 +10989,20 @@ class_name_table:
 	.short 0, 0, 0, 0, 0, 12, 0, 8
 	.short 74, 36, 0, 0, 0, 0, 0, 15
 	.short 75, 11, 0, 0, 0, 25, 0, 0
-	.short 0, 0, 0, 22, 0, 17, 80, 3
-	.short 0, 0, 0, 0, 0, 0, 0, 38
-	.short 0, 0, 0, 24, 0, 0, 0, 0
-	.short 0, 32, 0, 0, 0, 37, 0, 0
+	.short 0, 0, 0, 22, 0, 17, 82, 3
+	.short 0, 0, 0, 0, 0, 0, 0, 0
+	.short 0, 0, 0, 24, 81, 0, 0, 0
+	.short 0, 32, 0, 39, 0, 37, 0, 0
 	.short 0, 0, 0, 4, 0, 34, 0, 10
 	.short 0, 0, 0, 0, 0, 0, 0, 5
 	.short 0, 0, 0, 0, 0, 0, 0, 0
 	.short 0, 0, 0, 14, 0, 0, 0, 23
-	.short 76, 0, 0, 19, 0, 29, 0, 16
+	.short 76, 0, 0, 19, 0, 29, 80, 16
 	.short 0, 6, 0, 18, 0, 21, 0, 0
 	.short 0, 7, 0, 35, 0, 0, 0, 13
-	.short 79, 39, 0, 2, 0, 9, 78, 26
-	.short 81, 27, 0, 28, 0, 30, 0, 31
-	.short 0, 40, 0, 41, 0
+	.short 79, 0, 0, 2, 0, 9, 78, 26
+	.short 0, 27, 0, 28, 0, 30, 0, 31
+	.short 0, 38, 0, 40, 0, 41, 0
 .section __TEXT, __const
 	.align 3
 got_info_offsets:
@@ -12904,7 +12904,7 @@ image_table:
 
 	.long 7
 	.asciz "ProScanMobile"
-	.asciz "939D1208-68B2-4255-B612-9BA2BFD3755D"
+	.asciz "3B409E74-6F35-4D91-AC6A-587973637EF9"
 	.asciz ""
 	.asciz ""
 	.align 3
@@ -12960,7 +12960,7 @@ got_end:
 .section __TEXT, __const
 	.align 2
 assembly_guid:
-	.asciz "939D1208-68B2-4255-B612-9BA2BFD3755D"
+	.asciz "3B409E74-6F35-4D91-AC6A-587973637EF9"
 .section __TEXT, __const
 	.align 2
 runtime_version:

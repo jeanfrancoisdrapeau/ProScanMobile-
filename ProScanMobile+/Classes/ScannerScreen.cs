@@ -108,12 +108,16 @@ namespace ProScanMobile
 							_scannerScreen_Line1 = ps30_system_details [4].Trim (); 
 
 							string line2 = ps30_system_details [6];
-							line2 = line2.Substring(0, line2.Length - 3);
-							_scannerScreen_Line2 = line2; 
+							//0x3F a flusher
+							_scannerScreen_Line2 = line2.Replace((char)0x3f, ' '); 
 
-							_scannerScreen_Line3 = ps30_system_details [8].Trim (); 
-							_scannerScreen_Line4 = ps30_system_details [10].Trim ();
-							_scannerScreen_Line5 = ps30_system_details [12].Trim ();
+							_scannerScreen_Line3 = ps30_system_details [8].Trim ();
+
+							string line4 = ps30_system_details [10].Trim () == "0" ? string.Empty: ps30_system_details [10].Trim ();
+							_scannerScreen_Line4 = line4;
+
+							string line5 = ps30_system_details [12].Trim () == "0" ? string.Empty: ps30_system_details [12].Trim ();
+							_scannerScreen_Line5 = line5;
 							break;
 						}
 					} catch {
