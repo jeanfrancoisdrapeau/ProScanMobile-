@@ -72,10 +72,15 @@ namespace ProScanMobile
 						string[] ps01_system_details;
 						string[] ps02_system_details;
 						string[] ps30_system_details;
+						string[] ps30_system_details_glg;
+						string[] ps30_system_details_pwr;
 
 						// Based on the metadata type
 						switch (scase) {
 						case "PS01":
+
+							//Console.WriteLine(sdata);
+
 							ps01 = sdata.Split ('\r');
 							ps01_system_details = ps01 [0].Split (',');
 
@@ -83,6 +88,9 @@ namespace ProScanMobile
 
 							break;
 						case "PS02":
+
+							//Console.WriteLine(sdata);
+
 							ps02 = sdata.Split ('\r');
 							ps02_system_details = ps02 [0].Split (',');
 
@@ -98,6 +106,8 @@ namespace ProScanMobile
 							// Line 4: Activated systems
 							// Line 5: Activated groups per system
 
+							//Console.WriteLine(sdata);
+
 							ps30 = sdata.Split ('\r');
 
 							ps30_system_details = ps30 [6].Split (',');
@@ -105,19 +115,50 @@ namespace ProScanMobile
 							int.TryParse(ps30_system_details[1].Trim(), out _scannerScreen_Signal);
 
 							ps30_system_details = ps30 [2].Split (',');
-							_scannerScreen_Line1 = ps30_system_details [4].Trim (); 
 
-							string line2 = ps30_system_details [6];
-							//0x3F a flusher
-							_scannerScreen_Line2 = line2.Replace((char)0x3f, ' '); 
+							if (ps30_system_details [3] == "________________")
+							{
+								_scannerScreen_Line1 = ps30_system_details [2].Trim ();
+								_scannerScreen_Line2 = ps30_system_details [5].Trim () == string.Empty ? 
+								                       ps30_system_details [4].Trim () : 
+								                       "[" + ps30_system_details [4].Trim () + "]";
+								_scannerScreen_Line3 = ps30_system_details [7].Trim () == string.Empty ? 
+								                       ps30_system_details [6].Trim () : 
+								                       "[" + ps30_system_details [6].Trim () + "]";
+								_scannerScreen_Line4 = ps30_system_details [9].Trim () == string.Empty ? 
+								                       ps30_system_details [8].Trim () : 
+								                       "[" + ps30_system_details [8].Trim () + "]";
+								_scannerScreen_Line5 = string.Empty;
+							}
+							else {
 
-							_scannerScreen_Line3 = ps30_system_details [8].Trim ();
+								//Console.WriteLine(BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes( ps30_system_details [2])));
 
-							string line4 = ps30_system_details [10].Trim () == "0" ? string.Empty: ps30_system_details [10].Trim ();
-							_scannerScreen_Line4 = line4;
+								ps30_system_details_glg = ps30 [3].Split(',');
+								ps30_system_details_pwr = ps30 [6].Split(',');
 
-							string line5 = ps30_system_details [12].Trim () == "0" ? string.Empty: ps30_system_details [12].Trim ();
-							_scannerScreen_Line5 = line5;
+								_scannerScreen_Line1 = ps30_system_details [4].Trim (); 
+
+								string line2 = ps30_system_details [6];
+								//0x3F a flusher
+								_scannerScreen_Line2 = line2.Replace((char)0x3f, ' '); 
+
+								string glgType = ps30_system_details_glg[2].Trim();
+								string pwrFreq = ps30_system_details_pwr[2].Trim();
+
+								if (pwrFreq != string.Empty)
+									pwrFreq = string.Format("{0}.{1}", 
+										pwrFreq.Substring(0,4).TrimStart('0'),
+										pwrFreq.Substring(4,4));
+
+								_scannerScreen_Line3 = string.Format("{0} {1}",
+									glgType,
+									pwrFreq);
+
+								_scannerScreen_Line4 = ps30_system_details [10].Trim ();
+
+								_scannerScreen_Line5 = ps30_system_details [12].Trim ();
+							}
 							break;
 						}
 					} catch {

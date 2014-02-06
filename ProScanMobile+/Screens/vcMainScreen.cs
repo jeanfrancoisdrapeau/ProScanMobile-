@@ -5,6 +5,8 @@ using System.Timers;
 using System.IO;
 using System.Threading;
 using System.Xml.Serialization;
+using System.Xml;
+using System.Text;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.AudioToolbox;
@@ -53,7 +55,7 @@ namespace ProScanMobile
 
 		UIImageView _ivScannerDisplay;
 
-		NetworkConnection networkConnection;
+		NetworkConnection _networkConnection;
 
 		const int INDEX_MESSAGE_TYPE = 0;
 		const int INDEX_MESSAGE_LENGTH = 9;
@@ -117,7 +119,18 @@ namespace ProScanMobile
 
 			if (_appSettings != null)
 				if (_appSettings.SettingsList[0].auto)
-					connectToHostAndBeginPlayback ();
+				connectToHostAndBeginPlayback (_appSettings.SettingsList[0].host,
+					_appSettings.SettingsList[0].port.ToString(), _appSettings.SettingsList[0].pass);
+
+			#if PLUS_VERSION
+			//See if the custom key value variable was set by our notification processing method
+			if (!string.IsNullOrEmpty(AppDelegate.launchWithCustomHostValue) && 
+				!string.IsNullOrEmpty(AppDelegate.launchWithCustomPortValue))
+			{
+				connectToHostAndBeginPlayback (AppDelegate.launchWithCustomHostValue,
+					AppDelegate.launchWithCustomPortValue);
+			}
+			#endif
 		}
 
 		private void initInterface()
@@ -154,39 +167,39 @@ namespace ProScanMobile
 			#endif
 
 			lblScannerDisplay1 = new UILabel {
-				Frame = new RectangleF (4, 50, 315, 35)
+				Frame = new RectangleF (2, 50, UIScreen.MainScreen.Bounds.Width - 2, 35)
 			};
 			lblScannerDisplay1.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay1.Text = "System";
-			lblScannerDisplay1.Font = UIFont.FromName("LED Display7", 27f);
+			lblScannerDisplay1.Font = UIFont.FromName("LED Display7", 24f);
 
 			lblScannerDisplay2 = new UILabel {
-				Frame = new RectangleF (4, 75, 315, 35)
+				Frame = new RectangleF (2, 75, UIScreen.MainScreen.Bounds.Width - 2, 35)
 			};
 			lblScannerDisplay2.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay2.Text = "Group";
-			lblScannerDisplay2.Font = UIFont.FromName("LED Display7", 27f);
+			lblScannerDisplay2.Font = UIFont.FromName("LED Display7", 24f);
 
 			lblScannerDisplay3 = new UILabel {
-				Frame = new RectangleF (4, 100, 315, 35)
+				Frame = new RectangleF (2, 100, UIScreen.MainScreen.Bounds.Width - 2, 35)
 			};
 			lblScannerDisplay3.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay3.Text = "123.456";
-			lblScannerDisplay3.Font = UIFont.FromName("LED Display7", 27f);
+			lblScannerDisplay3.Font = UIFont.FromName("LED Display7", 24f);
 
 			lblScannerDisplay4 = new UILabel {
-				Frame = new RectangleF (4, 125, 315, 35)
+				Frame = new RectangleF (2, 125, UIScreen.MainScreen.Bounds.Width - 2, 35)
 			};
 			lblScannerDisplay4.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay4.Text = "S1:1234567890";
-			lblScannerDisplay4.Font = UIFont.FromName("LED Display7", 27f);
+			lblScannerDisplay4.Font = UIFont.FromName("LED Display7", 24f);
 
 			lblScannerDisplay5 = new UILabel {
-				Frame = new RectangleF (4, 150, 315, 35)
+				Frame = new RectangleF (2, 150, UIScreen.MainScreen.Bounds.Width - 2, 35)
 			};
 			lblScannerDisplay5.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay5.Text = "GRP1234567890";
-			lblScannerDisplay5.Font = UIFont.FromName("LED Display7", 27f);
+			lblScannerDisplay5.Font = UIFont.FromName("LED Display7", 24f);
 
 			lblServerHostname = new UILabel {
 				Frame = new RectangleF (10, 180, 305, 35)
@@ -263,7 +276,7 @@ namespace ProScanMobile
 
 			// Scanner display
 			_ivScannerDisplay = new UIImageView {
-				Frame = new RectangleF (3, 23, UIScreen.MainScreen.Bounds.Width - 7, 245),
+				Frame = new RectangleF (0, 23, UIScreen.MainScreen.Bounds.Width, 245),
 				Image = UIImage.FromBundle("Images/scanner_display.jpg")
 			};
 
@@ -602,12 +615,15 @@ namespace ProScanMobile
 
 		private void btnScannerTouchUpInside_Event(object sender, EventArgs e)
 		{
-			if (networkConnection == null)
+			if (_networkConnection == null)
 				return;
-			if (networkConnection.connectionStatus != NetworkConnection.ConnectionStatus.Connected)
+			if (_networkConnection.connectionStatus != NetworkConnection.ConnectionStatus.Connected)
 				return;
-			if (networkConnection.loginStatus != NetworkConnection.LoginStatus.LoggedIn)
+			if (_networkConnection.loginStatus != NetworkConnection.LoginStatus.LoggedIn) {
+				messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
+					"Not allowed in monitoring mode.");
 				return;
+			}
 
 			UIButton btn = (UIButton)sender;
 
@@ -681,16 +697,25 @@ namespace ProScanMobile
 				break;
 			}
 
-			networkConnection.Send (message);
-			networkConnection.sendDone.WaitOne ();
-			if (networkConnection.sendStatus != NetworkConnection.SendStatus.Ok)
+			_networkConnection.Send (message);
+			_networkConnection.sendDone.WaitOne ();
+			if (_networkConnection.sendStatus != NetworkConnection.SendStatus.Ok)
 				messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
-					networkConnection._sendStatusMessage);
+					_networkConnection._sendStatusMessage);
 		}
 
 		private void btnPlayTouchUpInside_Event(object sender, EventArgs e)
 		{
-			connectToHostAndBeginPlayback ();
+			_appSettings = getSettings();
+
+			if (_appSettings == null) {
+				messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
+					"No server selected.");
+				return;
+			}
+
+			connectToHostAndBeginPlayback (_appSettings.SettingsList[0].host,
+				_appSettings.SettingsList[0].port.ToString(), _appSettings.SettingsList[0].pass);
 		}
 
 		private vcOptionsScreen.Settings getSettings()
@@ -711,14 +736,12 @@ namespace ProScanMobile
 			return si;
 		}
 
-		private void connectToHostAndBeginPlayback(bool reconnect = false)
+		public void connectToHostAndBeginPlayback(string h, string p, string pw = "", bool reconnect = false)
 		{
-			_appSettings = getSettings();
-
-			if (_appSettings == null) {
-				messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
-					"No server selected.");
-				return;
+			if (_networkConnection != null) {
+				if (_networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected &&
+					_networkConnection.currentHost == h)
+					return;
 			}
 
 			_progressHud.Mode = MBProgressHUDMode.Indeterminate;
@@ -727,10 +750,13 @@ namespace ProScanMobile
 			NSRunLoop.Current.RunUntil(DateTime.Now.AddMilliseconds(1));
 
 			for (int retries = 0; retries < 5; retries++) {
-				networkConnection = new NetworkConnection (_appSettings.SettingsList[0].host, _appSettings.SettingsList[0].port);
-				networkConnection.connectDone.WaitOne ();
+				int iPort;
+				int.TryParse (p, out iPort);
 
-				if (networkConnection.connectionStatus != NetworkConnection.ConnectionStatus.Connected) {
+				_networkConnection = new NetworkConnection (h, iPort);
+				_networkConnection.connectDone.WaitOne ();
+
+				if (_networkConnection.connectionStatus != NetworkConnection.ConnectionStatus.Connected) {
 					_progressHud.LabelText = string.Format("Connecting... (Attempt #{0})", retries + 1);
 					NSRunLoop.Current.RunUntil(DateTime.Now.AddMilliseconds(1));
 					Thread.Sleep (1000);
@@ -739,18 +765,18 @@ namespace ProScanMobile
 				}
 			}
 
-			if (networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected) {
+			if (_networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected) {
 
 				_progressHud.LabelText = "Authenticating...";
 				NSRunLoop.Current.RunUntil(DateTime.Now.AddMilliseconds(1));
 
-				string password = _appSettings.SettingsList[0].pass;
+				string password = pw;
 
-				networkConnection.Login (string.Format("STARTDAT 00048 PS17,VERSION=6.6,PASSWORD={0} ENDDAT", 
+				_networkConnection.Login (string.Format("STARTDAT 00048 PS17,VERSION=6.6,PASSWORD={0} ENDDAT", 
 					password.Length == 0 ? string.Empty : password));
-				networkConnection.loginDone.WaitOne ();
+				_networkConnection.loginDone.WaitOne ();
 
-				if (networkConnection.loginStatus == NetworkConnection.LoginStatus.LoggedIn) {
+				if (_networkConnection.loginStatus == NetworkConnection.LoginStatus.LoggedIn) {
 
 					_progressHud.LabelText = "Buffering...";
 					NSRunLoop.Current.RunUntil(DateTime.Now.AddMilliseconds(1));
@@ -771,25 +797,84 @@ namespace ProScanMobile
 					_timerCounter = DateTime.Now;
 					_timer.Start ();
 
-				} else {
-					networkConnection.LogOut ("STARTDAT 00026 PS05 ENDDAT");
-					networkConnection.logoutDone.WaitOne ();
+					_networkConnection.currentHost = h;
+					_networkConnection.currentPort = p;
+					_networkConnection.currentPass = pw;
 
-					networkConnection.Close ();
-					networkConnection.closeDone.WaitOne ();
+					lblServerHostname.Text = h;
+					lblServerLocation.Text = getLocationFromHost(h);
+
+				} else {
+					_networkConnection.LogOut ("STARTDAT 00026 PS05 ENDDAT");
+					_networkConnection.logoutDone.WaitOne ();
+
+					_networkConnection.Close ();
+					_networkConnection.closeDone.WaitOne ();
 
 					messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
-						networkConnection._loginStatusMessage);
+						_networkConnection._loginStatusMessage);
 				}
 			} else {
 				_soundDisconnected.PlaySystemSound ();
 
 				messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
-					networkConnection._connectionStatusMessage);
+					_networkConnection._connectionStatusMessage);
 			}
 
 			_progressHud.Hide(true);
 			NSRunLoop.Current.RunUntil(DateTime.Now.AddMilliseconds(1));
+		}
+
+		private string getLocationFromHost(string h)
+		{
+			vcOptionsScreen.Servers s = GetServers();
+			if (s != null) {
+				int index = s.ServerList.FindIndex (r => r.host.Equals (h));
+
+				if (index != -1)
+					return string.Format ("{0}, {1}, {2}", s.ServerList [index].county,
+						s.ServerList [index].state,
+						s.ServerList [index].country);
+			}
+
+			return string.Empty;
+		}
+
+		private vcOptionsScreen.Servers GetServers()
+		{
+			var documents = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
+			var filename = Path.Combine (documents, "proscanmobile_servers.xml");
+
+			if (File.Exists (filename)) {
+
+				vcOptionsScreen.Servers s_tmp = new vcOptionsScreen.Servers ();
+
+				XmlSerializer deserializer = new XmlSerializer (typeof(vcOptionsScreen.Servers));
+				TextReader textReader = new StreamReader (filename, Encoding.UTF8);
+				s_tmp = (vcOptionsScreen.Servers)deserializer.Deserialize (textReader);
+				textReader.Close ();
+
+				vcOptionsScreen.Servers s = new vcOptionsScreen.Servers ();
+				s.ServerList = new List<vcOptionsScreen.ServerDetails> ();
+
+				foreach (vcOptionsScreen.ServerDetails sd_tmp in s_tmp.ServerList) {
+					s.ServerList.Add (new vcOptionsScreen.ServerDetails () {
+						host = XmlConvert.DecodeName(sd_tmp.host),
+						port = XmlConvert.DecodeName(sd_tmp.port),
+						desc = XmlConvert.DecodeName(sd_tmp.desc),
+						country = XmlConvert.DecodeName(sd_tmp.country),
+						state = XmlConvert.DecodeName(sd_tmp.state),
+						county = XmlConvert.DecodeName(sd_tmp.county),
+						open = XmlConvert.DecodeName(sd_tmp.open)
+					});
+				}
+
+				s_tmp = null;
+
+				return s;
+			}
+
+			return null;
 		}
 
 		#if PLUS_VERSION
@@ -821,11 +906,11 @@ namespace ProScanMobile
 			_scannerAudio.Dispose ();
 			_scannerScreen.Dispose ();
 
-			networkConnection.LogOut ("STARTDAT 00026 PS05 ENDDAT");
-			networkConnection.logoutDone.WaitOne ();
+			_networkConnection.LogOut ("STARTDAT 00026 PS05 ENDDAT");
+			_networkConnection.logoutDone.WaitOne ();
 
-			networkConnection.Close ();
-			networkConnection.closeDone.WaitOne ();
+			_networkConnection.Close ();
+			_networkConnection.closeDone.WaitOne ();
 
 			lblRecording.Text = string.Empty;
 
@@ -837,36 +922,38 @@ namespace ProScanMobile
 		{   
 			try
 			{
-				if (networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected) {
+				if (_networkConnection.connectionStatus == NetworkConnection.ConnectionStatus.Connected) {
 
-					if (_lastBytesReceived != networkConnection.bytesReceived) {
-						_lastBytesReceived = networkConnection.bytesReceived;
+					if (_lastBytesReceived != _networkConnection.bytesReceived) {
+						_lastBytesReceived = _networkConnection.bytesReceived;
 						_timerCounter = DateTime.Now;
 					}
 
 					TimeSpan ts = DateTime.Now - _timerCounter;
 
 					if (ts.TotalSeconds > 5 ||
-						networkConnection.receiveDataStatus == NetworkConnection.SendStatus.Error) {
+						_networkConnection.receiveDataStatus == NetworkConnection.SendStatus.Error) {
 
 						_scannerAudio.Dispose ();
 						_scannerScreen.Dispose ();
 
-						networkConnection.Close ();
-						networkConnection.closeDone.WaitOne ();
+						_networkConnection.Close ();
+						_networkConnection.closeDone.WaitOne ();
 
 						_timer.Stop ();
 
-						BeginInvokeOnMainThread (delegate { connectToHostAndBeginPlayback(true); });
+						_appSettings = getSettings();
+						BeginInvokeOnMainThread (delegate { connectToHostAndBeginPlayback(_networkConnection.currentHost,
+							_networkConnection.currentPort, _networkConnection.currentPass, true); });
 
 						return;
 					}
 
-					if (networkConnection.connectionBuffer.Count > 0)
+					if (_networkConnection.connectionBuffer.Count > 0)
 					{
 						int i_messageLength;
 						byte[] b_messageLength = new byte[BYTES_MESSAGE_LENGTH];
-						Array.ConstrainedCopy (networkConnection.connectionBuffer.Read(14, true), 
+						Array.ConstrainedCopy (_networkConnection.connectionBuffer.Read(14, true), 
 							INDEX_MESSAGE_LENGTH, b_messageLength, 0, BYTES_MESSAGE_LENGTH);
 
 						//Console.WriteLine("---------- b_messageLength........: {0} (first bytes of data buffer)", bytesToString(b_messageLength));
@@ -878,14 +965,14 @@ namespace ProScanMobile
 						bool continueParse = true;
 						while (continueParse)
 						{
-							if (networkConnection.connectionBuffer.Count < i_messageLength)
+							if (_networkConnection.connectionBuffer.Count < i_messageLength)
 							{
 								//Console.WriteLine("---------- **** MESSAGE LENGTH GREATER THAN DATABUFFER **** ----------");
 								continueParse = false;
 							} else {
 
 								byte[] messageReceived = new byte[i_messageLength];
-								messageReceived = networkConnection.connectionBuffer.Read(i_messageLength);
+								messageReceived = _networkConnection.connectionBuffer.Read(i_messageLength);
 								//Console.WriteLine("---------- m_listDataBuffer while.: {0}", networkConnection.connectionBuffer.Count.ToString());
 
 								byte[] b_messageType = new byte[BYTES_MESSAGE_TYPE];
@@ -904,13 +991,13 @@ namespace ProScanMobile
 									break;
 								}
 
-								if (networkConnection.connectionBuffer.Count == 0 || 
-									networkConnection.connectionBuffer.Count < MIN_MESSAGE_LENGTH)
+								if (_networkConnection.connectionBuffer.Count == 0 || 
+									_networkConnection.connectionBuffer.Count < MIN_MESSAGE_LENGTH)
 								{
 									continueParse = false;
 								} else {
 									b_messageLength = new byte[BYTES_MESSAGE_LENGTH];
-									Array.ConstrainedCopy (networkConnection.connectionBuffer.Read(MIN_MESSAGE_LENGTH, true), 
+									Array.ConstrainedCopy (_networkConnection.connectionBuffer.Read(MIN_MESSAGE_LENGTH, true), 
 										INDEX_MESSAGE_LENGTH, b_messageLength, 0, BYTES_MESSAGE_LENGTH);
 								//Console.WriteLine("---------- b_messageLength while..: {0} (first bytes of data buffer)", bytesToString(b_messageLength));
 									int.TryParse (bytesToString (b_messageLength), out i_messageLength);
@@ -927,12 +1014,9 @@ namespace ProScanMobile
 						lblScannerDisplay3.Text = _scannerScreen.scannerScreen_Line3;
 						lblScannerDisplay4.Text = _scannerScreen.scannerScreen_Line4;
 						lblScannerDisplay5.Text = _scannerScreen.scannerScreen_Line5;
-						lblBytes.Text = bytesCountToString(networkConnection.bytesReceived);
+						lblBytes.Text = bytesCountToString(_networkConnection.bytesReceived);
 
 						lblRecording.Text = (_recordAudio == true ? "Recording" : string.Empty);
-
-						lblServerHostname.Text = _appSettings.SettingsList[0].host;
-						lblServerLocation.Text = _appSettings.SettingsList[0].location;
 
 						TimeSpan t = DateTime.Now - _startTime;
 						lblTime.Text = string.Format("{0:D2}h{1:D2}m{2:D2}s", 
@@ -943,15 +1027,6 @@ namespace ProScanMobile
 						lblMpegLayer.Text = _scannerAudio.scannerAudio_Mpeg;
 						lblMpegFrequency.Text = _scannerAudio.scannerAudio_Freq;
 						lblMpegRate.Text = _scannerAudio.scannerAudio_Rate;
-
-						/*if (_scannerAudio.scannerAudio_Buffering)
-						{
-							notificationView.TitleText = "Buffering...";
-							notificationView.Show (animated: true);
-						} else {
-							if (!notificationView.Hidden)
-								notificationView.Hide (animated: true);
-						}*/
 					});
 				}
 			} catch (Exception ex) {
@@ -1008,6 +1083,11 @@ namespace ProScanMobile
 				return "signal_5";
 
 			return "signal_0";
+		}
+
+		public NetworkConnection getCurrentNetworkConnection()
+		{
+			return _networkConnection;
 		}
 	}
 }

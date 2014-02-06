@@ -54,7 +54,6 @@ namespace ProScanMobile
 			public int port { get; set; }
 			public bool auto { get; set; }
 			public string pass { get; set; }
-			public string location { get; set; }
 		}
 
 		[Serializable]
@@ -314,7 +313,6 @@ namespace ProScanMobile
 
 			sid.port = port;
 			sid.auto = _swAutoConnect.On;
-			sid.location = getLocationFromHost (sid.host);
 			#if PLUS_VERSION
 			sid.pass = enc.Encrypt(_txtServerPassword.Text);
 			#else
@@ -421,20 +419,6 @@ namespace ProScanMobile
 				#endif
 				_swAutoConnect.On = si.SettingsList [0].auto;
 			}
-		}
-
-		private string getLocationFromHost(string h)
-		{
-			if (s != null) {
-				int index = s.ServerList.FindIndex (r => r.host.Equals (h));
-
-				if (index != -1)
-					return string.Format ("{0}, {1}, {2}", s.ServerList [index].county,
-						s.ServerList [index].state,
-						s.ServerList [index].country);
-			}
-				
-			return string.Empty;
 		}
 
 		private void MessageBoxShow(string Title, string Message)

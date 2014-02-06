@@ -20,6 +20,10 @@ namespace ProScanMobile
 	{
 		private Socket _tcpSocket;
 
+		public string currentHost;
+		public string currentPort;
+		public string currentPass;
+
 		public enum ConnectionStatus
 		{
 			Disconnected,

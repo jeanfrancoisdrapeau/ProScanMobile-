@@ -10,7 +10,9 @@ namespace ProScanMobile
 {
 	public class TableSource : UITableViewSource 
 	{
+		#if PLUS_VERSION
 		NSIndexPath _selectRowIndex;
+		#endif
 
 		Dictionary<string, List<TableItem>> indexedTableItems;
 		string[] keys;
@@ -67,9 +69,10 @@ namespace ProScanMobile
 
 			#if PLUS_VERSION
 			vcOptionsScreen.txtPW.Text = string.Empty;
-			#endif
 
 			_selectRowIndex = indexPath;
+			#endif
+
 			tableView.BeginUpdates ();
 			tableView.EndUpdates ();
 			//tableView.DeselectRow (indexPath, true);

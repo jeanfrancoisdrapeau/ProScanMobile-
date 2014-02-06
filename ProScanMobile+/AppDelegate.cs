@@ -13,7 +13,11 @@ namespace ProScanMobile
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		public static AppDelegate Self { get; private set; }
+		public static string launchWithCustomHostValue { get; private set; }
+		public static string launchWithCustomPortValue { get; private set; }
 		public UINavigationController MainNavController { get; private set; }
+
+		private bool _appIsInBackground;
 
 		// class-level declarations
 		UIWindow window;
@@ -25,6 +29,7 @@ namespace ProScanMobile
 		#endif
 
 		NSObject foregroundObserver;
+		NSObject backgroundObserver;
 
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this
@@ -35,8 +40,13 @@ namespace ProScanMobile
 		//
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
+			_appIsInBackground = false;
+
 			foregroundObserver = NSNotificationCenter.DefaultCenter.AddObserver (
 				UIApplication.DidBecomeActiveNotification, foregroundObserver_Notify);
+
+			backgroundObserver = NSNotificationCenter.DefaultCenter.AddObserver (
+				UIApplication.DidEnterBackgroundNotification, backgroundObserver_Notify);
 
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
@@ -83,6 +93,12 @@ namespace ProScanMobile
 			UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(UIRemoteNotificationType.Alert
 				| UIRemoteNotificationType.Badge
 				| UIRemoteNotificationType.Sound);
+
+			//The NSDictionary options variable would contain our notification data if the user clicked the 'view' button on the notification
+			// to launch the application.  So you could process it here.  I find it nice to have one method to process these options from the
+			// FinishedLaunching, as well as the ReceivedRemoteNotification methods.
+			processNotification(options, true);
+
 			#endif
 
 			Self = this;
@@ -97,6 +113,11 @@ namespace ProScanMobile
 				NSNotificationCenter.DefaultCenter.RemoveObserver (foregroundObserver);
 				foregroundObserver = null;
 			}
+
+			if (backgroundObserver != null) {
+				NSNotificationCenter.DefaultCenter.RemoveObserver (backgroundObserver);
+				backgroundObserver = null;
+			}
 		}
 
 		public void foregroundObserver_Notify(NSNotification notification)
@@ -105,6 +126,15 @@ namespace ProScanMobile
 
 			UIApplication.SharedApplication.ApplicationIconBadgeNumber = -1;
 			UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+
+			_appIsInBackground = false;
+		}
+
+		public void backgroundObserver_Notify(NSNotification notification)
+		{
+			Console.WriteLine("Did become inactive.");
+
+			_appIsInBackground = true;
 		}
 
 		public override void RegisteredForRemoteNotifications (UIApplication application, NSData deviceToken)
@@ -135,36 +165,42 @@ namespace ProScanMobile
 		public override void ReceivedRemoteNotification (UIApplication application, NSDictionary userInfo)
 		{
 			Console.WriteLine("Received Remote Notification!");
-			//processNotification(userInfo, false);
+			processNotification(userInfo, _appIsInBackground);
 		}
 
-		void processNotification(NSDictionary options, bool fromFinishedLaunching)
+		void processNotification(NSDictionary options, bool background)
 		{
-			//Check to see if the dictionary has the aps key.  This is the notification payload you would have sent
-			if (null != options && options.ContainsKey(new NSString("aps")))
+			//You can also get the custom key/value pairs you may have sent in your aps (outside of the aps payload in the json)
+			// This could be something like the ID of a new message that a user has seen, so you'd find the ID here and then skip displaying
+			// the usual screen that shows up when the app is started, and go right to viewing the message, or something like that.
+
+			if (null != options && options.ContainsKey(new NSString("host")))
 			{
-				//Get the aps dictionary
-				NSDictionary aps = options.ObjectForKey(new NSString("aps")) as NSDictionary;
+				launchWithCustomHostValue = (options[new NSString("host")] as NSString).ToString();
+			}
 
-				string alert = string.Empty;
+			NetworkConnection nc = viewControllerMainScreen.getCurrentNetworkConnection();
+			if (nc != null &&
+			    nc.connectionStatus == NetworkConnection.ConnectionStatus.Connected &&
+			    nc.currentHost == launchWithCustomHostValue)
+				return;
 
-				//Extract the alert text
-				//NOTE: If you're using the simple alert by just specifying "  aps:{alert:"alert msg here"}  "
-				//      this will work fine.  But if you're using a complex alert with Localization keys, etc., your "alert" object from the aps dictionary
-				//      will be another NSDictionary... Basically the json gets dumped right into a NSDictionary, so keep that in mind
-				if (aps.ContainsKey(new NSString("alert")))
-					alert = (aps[new NSString("alert")] as NSString).ToString();
+			if (null != options && options.ContainsKey(new NSString("port")))
+			{
+				launchWithCustomPortValue = (options[new NSString("port")] as NSString).ToString();
+			}
 
-				//If this came from the ReceivedRemoteNotification while the app was running,
-				// we of course need to manually process things like the sound, badge, and alert.
-				if (!fromFinishedLaunching)
-				{
-					//Manually show an alert
-					if (!string.IsNullOrEmpty(alert))
-					{
-						UIAlertView avAlert = new UIAlertView("Notification", alert, null, "OK", null);
-						avAlert.Show();
+			if (!string.IsNullOrEmpty(launchWithCustomHostValue) && 
+				!string.IsNullOrEmpty(launchWithCustomPortValue))
+			{
+				if (!background) {
+					if (MessageBox.Show (string.Format ("Alert received from \n{0}\nWould like to connect to this server?", launchWithCustomHostValue),
+						    NSBundle.MainBundle.ObjectForInfoDictionary ("CFBundleDisplayName").ToString (),
+						    MessageBoxButton.YesNo) == MessageBoxResult.Yes) {
+						viewControllerMainScreen.connectToHostAndBeginPlayback (launchWithCustomHostValue, launchWithCustomPortValue);
 					}
+				} else {
+					viewControllerMainScreen.connectToHostAndBeginPlayback (launchWithCustomHostValue, launchWithCustomPortValue);
 				}
 			}
 		}
