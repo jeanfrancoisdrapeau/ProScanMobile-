@@ -24,6 +24,16 @@ namespace ProScanMobile
 		public string currentPort;
 		public string currentPass;
 
+		public enum ConnectionType
+		{
+			Control,
+			Monitor
+		}
+		private ConnectionType _connectionType;
+		public ConnectionType connectionType 
+		{ 	get { return _connectionType; } 
+			set { _connectionType = value; }}
+
 		public enum ConnectionStatus
 		{
 			Disconnected,

@@ -30,15 +30,9 @@ namespace ProScanMobile
 			}
 		}
 
-		UIScrollView _scrollView;
-
 		vcOptionsScreen.Settings _appSettings;
 
 		UIImageView ivScannerBars;
-		#if PLUS_VERSION
-		UIImageView ivArrowLeft;
-		UIImageView ivArrowRight;
-		#endif
 
 		UILabel lblScannerType, lblScannerDisplay1, lblScannerDisplay2, lblScannerDisplay3, lblScannerDisplay4, lblScannerDisplay5;
 		UILabel lblServerHostname, lblServerLocation; 
@@ -155,16 +149,6 @@ namespace ProScanMobile
 			ivScannerBars = new UIImageView {
 				Frame = new RectangleF (UIScreen.MainScreen.Bounds.Width - 50, 32, 19, 14),
 			};
-			#if PLUS_VERSION
-			ivArrowLeft = new UIImageView {
-				Frame = new RectangleF (UIScreen.MainScreen.Bounds.Width - 20, 50, 12, 20),
-				Image = UIImage.FromBundle("Images/arrow_left.png"),
-			};
-			ivArrowRight = new UIImageView {
-				Frame = new RectangleF (UIScreen.MainScreen.Bounds.Width + 5, 50, 12, 20),
-				Image = UIImage.FromBundle("Images/arrow_right.png"),
-			};
-			#endif
 
 			lblScannerDisplay1 = new UILabel {
 				Frame = new RectangleF (2, 50, UIScreen.MainScreen.Bounds.Width - 2, 35)
@@ -174,84 +158,84 @@ namespace ProScanMobile
 			lblScannerDisplay1.Font = UIFont.FromName("LED Display7", 24f);
 
 			lblScannerDisplay2 = new UILabel {
-				Frame = new RectangleF (2, 75, UIScreen.MainScreen.Bounds.Width - 2, 35)
+				Frame = new RectangleF (2, 70, UIScreen.MainScreen.Bounds.Width - 2, 35)
 			};
 			lblScannerDisplay2.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay2.Text = "Group";
 			lblScannerDisplay2.Font = UIFont.FromName("LED Display7", 24f);
 
 			lblScannerDisplay3 = new UILabel {
-				Frame = new RectangleF (2, 100, UIScreen.MainScreen.Bounds.Width - 2, 35)
+				Frame = new RectangleF (2, 90, UIScreen.MainScreen.Bounds.Width - 2, 35)
 			};
 			lblScannerDisplay3.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay3.Text = "123.456";
 			lblScannerDisplay3.Font = UIFont.FromName("LED Display7", 24f);
 
 			lblScannerDisplay4 = new UILabel {
-				Frame = new RectangleF (2, 125, UIScreen.MainScreen.Bounds.Width - 2, 35)
+				Frame = new RectangleF (2, 110, UIScreen.MainScreen.Bounds.Width - 2, 35)
 			};
 			lblScannerDisplay4.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay4.Text = "S1:1234567890";
 			lblScannerDisplay4.Font = UIFont.FromName("LED Display7", 24f);
 
 			lblScannerDisplay5 = new UILabel {
-				Frame = new RectangleF (2, 150, UIScreen.MainScreen.Bounds.Width - 2, 35)
+				Frame = new RectangleF (2, 130, UIScreen.MainScreen.Bounds.Width - 2, 35)
 			};
 			lblScannerDisplay5.TextAlignment = UITextAlignment.Center;
 			lblScannerDisplay5.Text = "GRP1234567890";
 			lblScannerDisplay5.Font = UIFont.FromName("LED Display7", 24f);
 
 			lblServerHostname = new UILabel {
-				Frame = new RectangleF (10, 180, 305, 35)
+				Frame = new RectangleF (10, 150, 305, 35)
 			};
 			lblServerHostname.TextAlignment = UITextAlignment.Left;
 			lblServerHostname.Text = "Server hostname";
 			lblServerHostname.Font = UIFont.FromName("LED Display7", 12f);
 
 			lblServerLocation = new UILabel {
-				Frame = new RectangleF (10, 190, 305, 35)
+				Frame = new RectangleF (10, 160, 305, 35)
 			};
 			lblServerLocation.TextAlignment = UITextAlignment.Left;
 			lblServerLocation.Text = "County, State, Country";
 			lblServerLocation.Font = UIFont.FromName("LED Display7", 10f);
 
 			lblMpegLayer = new UILabel {
-				Frame = new RectangleF (10, 205, 125, 35)
+				Frame = new RectangleF (10, 170, 125, 35)
 			};
 			lblMpegLayer.TextAlignment = UITextAlignment.Left;
 			lblMpegLayer.Text = "MPEG ?, LYR ?";
 			lblMpegLayer.Font = UIFont.FromName("LED Display7", 10f);
 
 			lblMpegFrequency = new UILabel {
-				Frame = new RectangleF (10, 215, 100, 35)
+				Frame = new RectangleF (10, 180, 100, 35)
 			};
 			lblMpegFrequency.TextAlignment = UITextAlignment.Left;
 			lblMpegFrequency.Text = "0 Hz";
 			lblMpegFrequency.Font = UIFont.FromName("LED Display7", 10f);
 
 			lblMpegRate = new UILabel {
-				Frame = new RectangleF (10, 225, 100, 35)
+				Frame = new RectangleF (10, 190, 100, 35)
 			};
 			lblMpegRate.TextAlignment = UITextAlignment.Left;
 			lblMpegRate.Text = "0 Bps";
 			lblMpegRate.Font = UIFont.FromName("LED Display7", 10f);
 
 			lblTime = new UILabel {
-				Frame = new RectangleF (160, 205, 150, 35)
+				Frame = new RectangleF (160, 172, 150, 35)
 			};
 			lblTime.TextAlignment = UITextAlignment.Right;
 			lblTime.Text = "00:00:00.00";
 			lblTime.Font = UIFont.FromName("LED Display7", 15f);
 
 			lblBytes = new UILabel {
-				Frame = new RectangleF (160, 225, 150, 35)
+				Frame = new RectangleF (160, 185, 150, 35)
 			};
 			lblBytes.TextAlignment = UITextAlignment.Right;
 			lblBytes.Text = "0B";
 			lblBytes.Font = UIFont.FromName("LED Display7", 15f);
 
 			lblRecording = new UILabel {
-				Frame = new RectangleF ((UIScreen.MainScreen.Bounds.Width / 2) - 85, 240, 175, 35)
+				Frame = new RectangleF ((UIScreen.MainScreen.Bounds.Width / 2) - 85, 195, 175, 35)
 			};
 			lblRecording.TextAlignment = UITextAlignment.Center;
 			lblRecording.TextColor = UIColor.Red;
@@ -276,14 +260,14 @@ namespace ProScanMobile
 
 			// Scanner display
 			_ivScannerDisplay = new UIImageView {
-				Frame = new RectangleF (0, 23, UIScreen.MainScreen.Bounds.Width, 245),
+				Frame = new RectangleF (0, 23, UIScreen.MainScreen.Bounds.Width, 200),
 				Image = UIImage.FromBundle("Images/scanner_display.jpg")
 			};
 
 			#if PLUS_VERSION
 			// Rec button
 			btnRec = new UIButton {
-				Frame = new RectangleF(5, 5, 40, 40)
+				Frame = new RectangleF(5, 225, 40, 40)
 			};
 			btnRec.Layer.CornerRadius = 9.5f;
 			btnRec.Layer.MasksToBounds = true;
@@ -294,7 +278,7 @@ namespace ProScanMobile
 
 			// Play button
 			btnPlay = new UIButton {
-				Frame = new RectangleF(50, 5, 40, 40)
+				Frame = new RectangleF(50, 225, 40, 40)
 			};
 			btnPlay.Layer.CornerRadius = 9.5f;
 			btnPlay.Layer.MasksToBounds = true;
@@ -304,7 +288,7 @@ namespace ProScanMobile
 
 			// Stop button
 			btnStop = new UIButton {
-				Frame = new RectangleF(95, 5, 40, 40)
+				Frame = new RectangleF(95, 225, 40, 40)
 			};
 			btnStop.Enabled = false;
 			btnStop.Layer.CornerRadius = 9.5f;
@@ -315,7 +299,7 @@ namespace ProScanMobile
 			#else
 			// Play button
 			btnPlay = new UIButton {
-				Frame = new RectangleF(5, 5, 40, 40)
+			Frame = new RectangleF(5, 225, 40, 40)
 			};
 			btnPlay.Layer.CornerRadius = 9.5f;
 			btnPlay.Layer.MasksToBounds = true;
@@ -325,7 +309,7 @@ namespace ProScanMobile
 
 			// Stop button
 			btnStop = new UIButton {
-				Frame = new RectangleF(50, 5, 40, 40)
+			Frame = new RectangleF(50, 225, 40, 40)
 			};
 			btnStop.Enabled = false;
 			btnStop.Layer.CornerRadius = 9.5f;
@@ -338,7 +322,7 @@ namespace ProScanMobile
 			#if PLUS_VERSION
 			// Scanner buttons
 			UIButton btnScanner_Func = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 20, 0, 55, 25)
+				Frame = new RectangleF(20, 270, 55, 25)
 			};
 			btnScanner_Func.Tag = 1; //"btnScanner_Func"
 			btnScanner_Func.Layer.CornerRadius = 11.0f;
@@ -348,7 +332,7 @@ namespace ProScanMobile
 			btnScanner_Func.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_1 = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 75, 0, 55, 25)
+				Frame = new RectangleF(75, 270, 55, 25)
 			};
 			btnScanner_1.Tag = 2; //"btnScanner_1"
 			btnScanner_1.Layer.CornerRadius = 11.0f;
@@ -358,7 +342,7 @@ namespace ProScanMobile
 			btnScanner_1.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_2 = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 130, 0, 55, 25)
+				Frame = new RectangleF(130, 270, 55, 25)
 			};
 			btnScanner_2.Tag = 3; //"btnScanner_2"
 			btnScanner_2.Layer.CornerRadius = 11.0f;
@@ -368,7 +352,7 @@ namespace ProScanMobile
 			btnScanner_2.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_3 = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 185, 0, 55, 25)
+				Frame = new RectangleF(185, 270, 55, 25)
 			};
 			btnScanner_3.Tag = 4; //"btnScanner_3"
 			btnScanner_3.Layer.CornerRadius = 11.0f;
@@ -378,7 +362,7 @@ namespace ProScanMobile
 			btnScanner_3.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_Scan = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 240, 0, 55, 25)
+				Frame = new RectangleF(240, 270, 55, 25)
 			};
 			btnScanner_Scan.Tag = 5; //"btnScanner_Scan"
 			btnScanner_Scan.Layer.CornerRadius = 11.0f;
@@ -387,8 +371,10 @@ namespace ProScanMobile
 			btnScanner_Scan.SetImage(UIImage.FromBundle("Images/scanner_button_scan.jpg"), UIControlState.Normal);
 			btnScanner_Scan.TouchUpInside += btnScannerTouchUpInside_Event;
 
+			//*************************************************
+
 			UIButton btnScanner_Menu = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 20, 25, 55, 25)
+				Frame = new RectangleF(20, 295, 55, 25)
 			};
 			btnScanner_Menu.Tag = 6; //"btnScanner_Menu"
 			btnScanner_Menu.Layer.CornerRadius = 11.0f;
@@ -398,7 +384,7 @@ namespace ProScanMobile
 			btnScanner_Menu.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_4 = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 75, 25, 55, 25)
+				Frame = new RectangleF(75, 295, 55, 25)
 			};
 			btnScanner_4.Tag = 7; //"btnScanner_4"
 			btnScanner_4.Layer.CornerRadius = 11.0f;
@@ -408,7 +394,7 @@ namespace ProScanMobile
 			btnScanner_4.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_5 = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 130, 25, 55, 25)
+				Frame = new RectangleF(130, 295, 55, 25)
 			};
 			btnScanner_5.Tag = 8; //"btnScanner_5"
 			btnScanner_5.Layer.CornerRadius = 11.0f;
@@ -418,7 +404,7 @@ namespace ProScanMobile
 			btnScanner_5.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_6 = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 185, 25, 55, 25)
+				Frame = new RectangleF(185, 295, 55, 25)
 			};
 			btnScanner_6.Tag = 9; //"btnScanner_6"
 			btnScanner_6.Layer.CornerRadius = 11.0f;
@@ -428,7 +414,7 @@ namespace ProScanMobile
 			btnScanner_6.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_Hold = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 240, 25, 55, 25)
+				Frame = new RectangleF(240, 295, 55, 25)
 			};
 			btnScanner_Hold.Tag = 10; //"btnScanner_Hold"
 			btnScanner_Hold.Layer.CornerRadius = 11.0f;
@@ -437,8 +423,10 @@ namespace ProScanMobile
 			btnScanner_Hold.SetImage(UIImage.FromBundle("Images/scanner_button_hold.jpg"), UIControlState.Normal);
 			btnScanner_Hold.TouchUpInside += btnScannerTouchUpInside_Event;
 
+			//*************************************************
+
 			UIButton btnScanner_LO = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 20, 50, 55, 25)
+				Frame = new RectangleF(20, 320, 55, 25)
 			};
 			btnScanner_LO.Tag = 11; //"btnScanner_LO"
 			btnScanner_LO.Layer.CornerRadius = 11.0f;
@@ -448,7 +436,7 @@ namespace ProScanMobile
 			btnScanner_LO.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_7 = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 75, 50, 55, 25)
+				Frame = new RectangleF(75, 320, 55, 25)
 			};
 			btnScanner_7.Tag = 12; //"btnScanner_7"
 			btnScanner_7.Layer.CornerRadius = 11.0f;
@@ -458,7 +446,7 @@ namespace ProScanMobile
 			btnScanner_7.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_8 = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 130, 50, 55, 25)
+				Frame = new RectangleF(130, 320, 55, 25)
 			};
 			btnScanner_8.Tag = 13; //"btnScanner_8"
 			btnScanner_8.Layer.CornerRadius = 11.0f;
@@ -468,7 +456,7 @@ namespace ProScanMobile
 			btnScanner_8.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_9 = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 185, 50, 55, 25)
+				Frame = new RectangleF(185, 320, 55, 25)
 			};
 			btnScanner_9.Tag = 14; //"btnScanner_9"
 			btnScanner_9.Layer.CornerRadius = 11.0f;
@@ -477,8 +465,10 @@ namespace ProScanMobile
 			btnScanner_9.SetImage(UIImage.FromBundle("Images/scanner_button_9.jpg"), UIControlState.Normal);
 			btnScanner_9.TouchUpInside += btnScannerTouchUpInside_Event;
 
+			//*************************************************
+
 			UIButton btnScanner_Left = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 20, 75, 55, 25)
+				Frame = new RectangleF(20, 345, 55, 25)
 			};
 			btnScanner_Left.Tag = 15; //"btnScanner_Left"
 			btnScanner_Left.Layer.CornerRadius = 11.0f;
@@ -488,7 +478,7 @@ namespace ProScanMobile
 			btnScanner_Left.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_No = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 75, 75, 55, 25)
+				Frame = new RectangleF(75, 345, 55, 25)
 			};
 			btnScanner_No.Tag = 16; //"btnScanner_No"
 			btnScanner_No.Layer.CornerRadius = 11.0f;
@@ -498,7 +488,7 @@ namespace ProScanMobile
 			btnScanner_No.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_0 = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 130, 75, 55, 25)
+				Frame = new RectangleF(130, 345, 55, 25)
 			};
 			btnScanner_0.Tag = 17; //"btnScanner_0"
 			btnScanner_0.Layer.CornerRadius = 11.0f;
@@ -508,7 +498,7 @@ namespace ProScanMobile
 			btnScanner_0.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_Eyes = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 185, 75, 55, 25)
+				Frame = new RectangleF(185, 345, 55, 25)
 			};
 			btnScanner_Eyes.Tag = 18; //"btnScanner_Eyes"
 			btnScanner_Eyes.Layer.CornerRadius = 11.0f;
@@ -518,7 +508,7 @@ namespace ProScanMobile
 			btnScanner_Eyes.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_Right = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 240, 75, 55, 25)
+				Frame = new RectangleF(240, 345, 55, 25)
 			};
 			btnScanner_Right.Tag = 19; //"btnScanner_Right"
 			btnScanner_Right.Layer.CornerRadius = 11.0f;
@@ -527,8 +517,10 @@ namespace ProScanMobile
 			btnScanner_Right.SetImage(UIImage.FromBundle("Images/scanner_button_right.jpg"), UIControlState.Normal);
 			btnScanner_Right.TouchUpInside += btnScannerTouchUpInside_Event;
 
+			//*************************************************
+
 			UIButton btnScanner_FuncH = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 20, 100, 55, 25)
+				Frame = new RectangleF(20, 370, 55, 25)
 			};
 			btnScanner_FuncH.Tag = 20; //"btnScanner_FuncH"
 			btnScanner_FuncH.Layer.CornerRadius = 11.0f;
@@ -538,7 +530,7 @@ namespace ProScanMobile
 			btnScanner_FuncH.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_FuncR = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 75, 100, 55, 25)
+				Frame = new RectangleF(75, 370, 55, 25)
 			};
 			btnScanner_FuncR.Tag = 21; //"btnScanner_FuncR"
 			btnScanner_FuncR.Layer.CornerRadius = 11.0f;
@@ -548,7 +540,7 @@ namespace ProScanMobile
 			btnScanner_FuncR.TouchUpInside += btnScannerTouchUpInside_Event;
 
 			UIButton btnScanner_Push = new UIButton {
-				Frame = new RectangleF(UIScreen.MainScreen.Bounds.Width + 130, 100, 55, 25)
+				Frame = new RectangleF(130, 370, 55, 25)
 			};
 			btnScanner_Push.Tag = 22; //"btnScanner_Push"
 			btnScanner_Push.Layer.CornerRadius = 11.0f;
@@ -558,47 +550,7 @@ namespace ProScanMobile
 			btnScanner_Push.TouchUpInside += btnScannerTouchUpInside_Event;
 			#endif
 
-			// Scrollview for Play, Stop, Options and Scanner controls
-			_scrollView = new UIScrollView {
-				Frame = new RectangleF (0, 270, UIScreen.MainScreen.Bounds.Width,
-					125),
-				#if PLUS_VERSION
-				ContentSize = new SizeF (UIScreen.MainScreen.Bounds.Width * 2, 125),
-				#else
-				ContentSize = new SizeF (UIScreen.MainScreen.Bounds.Width, 125),
-				#endif
-				BackgroundColor = UIColor.White,
-				AutoresizingMask = UIViewAutoresizing.FlexibleWidth,
-				PagingEnabled = true,
-				ShowsHorizontalScrollIndicator = false
-			};
-
-			_scrollView.Layer.MasksToBounds = true;
-			//_scrollView.Layer.ShadowColor = UIColor.DarkGray.CGColor;
-			//_scrollView.Layer.ShadowOpacity = 0.1f;
-			//_scrollView.Layer.ShadowRadius = 1.0f;
-			//_scrollView.Layer.ShadowOffset = new System.Drawing.SizeF(0f, 3f);
-
-			#if PLUS_VERSION
-			_scrollView.AddSubviews (new UIView[] { btnPlay, btnRec,
-				btnStop,
-				ivArrowLeft
-		    });
-			#else
-			_scrollView.AddSubviews (new UIView[] { btnPlay,
-				btnStop
-			 });
-			#endif
-
-			#if PLUS_VERSION
-			_scrollView.AddSubviews (new UIView[] { btnScanner_Func, btnScanner_1, btnScanner_2, btnScanner_3, btnScanner_Scan,
-				btnScanner_Menu, btnScanner_4, btnScanner_5, btnScanner_6, btnScanner_Hold, 
-				btnScanner_LO, btnScanner_7, btnScanner_8, btnScanner_9, 
-				btnScanner_Left, btnScanner_No, btnScanner_0, btnScanner_Eyes, btnScanner_Right,
-				btnScanner_FuncH, btnScanner_FuncR, btnScanner_Push,
-				ivArrowRight
-			});
-			#endif
+			//*************************************************
 
 			// Add everything to current view
 			View.AddSubviews (new UIView[] { _ivScannerDisplay, lblScannerType, ivScannerBars,
@@ -607,7 +559,16 @@ namespace ProScanMobile
 				lblMpegLayer, lblMpegFrequency, lblMpegRate,
 				lblTime, lblBytes,
 				lblRecording,
-				_scrollView,
+				#if PLUS_VERSION
+				btnRec, btnPlay, btnStop,
+				btnScanner_Func, btnScanner_1, btnScanner_2, btnScanner_3, btnScanner_Scan,
+				btnScanner_Menu, btnScanner_4, btnScanner_5, btnScanner_6, btnScanner_Hold, 
+				btnScanner_LO, btnScanner_7, btnScanner_8, btnScanner_9, 
+				btnScanner_Left, btnScanner_No, btnScanner_0, btnScanner_Eyes, btnScanner_Right,
+				btnScanner_FuncH, btnScanner_FuncR, btnScanner_Push,
+				#else
+				btnPlay, btnStop,
+				#endif
 				lblAppVersion, lblAppCreator,
 				_progressHud
 			});
@@ -620,6 +581,9 @@ namespace ProScanMobile
 			if (_networkConnection.connectionStatus != NetworkConnection.ConnectionStatus.Connected)
 				return;
 			if (_networkConnection.loginStatus != NetworkConnection.LoginStatus.LoggedIn) {
+				return;
+			}
+			if (_networkConnection.connectionType != NetworkConnection.ConnectionType.Control) {
 				messageBoxShow (NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleDisplayName").ToString(),
 					"Not allowed in monitoring mode.");
 				return;
@@ -771,6 +735,12 @@ namespace ProScanMobile
 				NSRunLoop.Current.RunUntil(DateTime.Now.AddMilliseconds(1));
 
 				string password = pw;
+
+				if (string.IsNullOrEmpty (password)) {
+					_networkConnection.connectionType = NetworkConnection.ConnectionType.Monitor;
+				} else {
+					_networkConnection.connectionType = NetworkConnection.ConnectionType.Control;
+				}
 
 				_networkConnection.Login (string.Format("STARTDAT 00048 PS17,VERSION=6.6,PASSWORD={0} ENDDAT", 
 					password.Length == 0 ? string.Empty : password));
